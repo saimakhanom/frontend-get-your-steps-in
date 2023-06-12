@@ -2,18 +2,22 @@ import { useLoader } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { useAnimations } from "@react-three/drei";
 import { useEffect } from "react";
-import characterFile from "../assets/character.glb"
-import { RigidBody } from "@react-three/rapier";
+import runnerFile from "../assets/Hoodie-Character.glb";
+// import characterFile from "../assets/character.glb"
+import { CuboidCollider, RigidBody } from "@react-three/rapier";
+import { Box } from "@react-three/drei";
 
 const Character = () => {
   // when the game is ready we will have a state that changes based on buttons pressed/timings etc that will replace the hardcoded animation variables
 
-  const model = useLoader(GLTFLoader, characterFile );
+  const model = useLoader(GLTFLoader, runnerFile);
   const modelAnimations = useAnimations(model.animations, model.scene);
   const charRunning = "CharacterArmature|Run";
   const charWalk = "CharacterArmature|Walk";
   const charIdle = "CharacterArmature|Idle";
   const charDeath = "CharacterArmature|Death";
+
+  console.log(model);
 
   useEffect(() => {
     const action = modelAnimations.actions[charRunning];
@@ -23,15 +27,16 @@ const Character = () => {
     };
   }, [modelAnimations.actions, charRunning]);
 
- 
   return (
-    <RigidBody>
+    <RigidBody args={[0.1, 0.1, 0.1]}>
+      <Box>
         <primitive
           object={model.scene}
           scale={1.2}
-          position={[0, 1.2, 0]}
+          position={[0, 4, 0]}
           rotation={[0, -3.14, 0]}
         />
+      </Box>
     </RigidBody>
   );
 };

@@ -20,14 +20,14 @@ function App() {
       className="canvas-container"
       camera={{ position: [10, 10, 10], fov: 50 }}
     >
-      <Canvas style={{ backgroundColor: "blue" }} shadows>
+      <Canvas style={{ backgroundColor: "blue" }} shadows  >
         <Suspense>
-          <Physics>
+          <Physics debug>
             <OrbitControls />
             <Lights />
             <RandomTrees />
             <Character />
-            <ObstacleRunner />
+            {/* <ObstacleRunner /> */}
             <Rock />
             <Branch />
             <Path pathLength={pathLength} />
