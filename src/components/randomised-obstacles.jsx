@@ -1,7 +1,8 @@
 import { generateRandomPathPosition } from "../utils/random-path-points";
 
 
-export default function RandomisedObstacles({pathLength, pathWidth}) {
+export default function RandomisedObstacles({ planeDimensions }) {
+  const {pathWidth, pathLength} = planeDimensions
     const numBoxes = 10; // Number of boxes to generate
     const pathConstraint = pathLength/2
     const boxSize = 1; // Size of each box

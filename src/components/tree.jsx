@@ -1,4 +1,3 @@
-import { useGLTF } from "@react-three/drei";
 import TreeGLB from "../assets/Tree.glb";
 import { useMemo } from "react";
 import { useLoader } from "@react-three/fiber";

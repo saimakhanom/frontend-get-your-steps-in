@@ -12,9 +12,11 @@ import Branch from "./components/Branch";
 
 function App() {
 
-  const pathDimensions = {
+  const planeDimensions = {
     pathLength: 1000,
-    pathWidth: 10
+    pathWidth: 10,
+    groundWidth: 1000,
+    groundLength: 1000
   }
 
 
@@ -27,12 +29,12 @@ function App() {
       >
         <OrbitControls />
         <Lights />
-        <RandomisedTrees pathDimensions={pathDimensions} />
+        <RandomisedTrees planeDimensions={planeDimensions} />
         <Character />
         <Rock />
         <Branch />
-        <RandomisedObstacles pathDimensions={pathDimensions} />
-        <Path pathDimensions={pathDimensions} />
+        {/* <RandomisedObstacles planeDimensions={planeDimensions} /> */}
+        <Path planeDimensions={planeDimensions} />
         <Ground />
       </Canvas>
     </div>
