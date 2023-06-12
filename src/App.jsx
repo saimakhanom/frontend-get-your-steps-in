@@ -7,6 +7,8 @@ import Lights from "./components/lights";
 import Character from "./components/Character";
 import RandomisedTrees from "./components/randomised-trees";
 import RandomisedObstacles from "./components/randomised-obstacles";
+import Rock from "./components/Rock";
+import Branch from "./components/Branch";
 
 function App() {
 
@@ -27,6 +29,8 @@ function App() {
         <Lights />
         <RandomisedTrees pathDimensions={pathDimensions} />
         <Character />
+        <Rock />
+        <Branch />
         <RandomisedObstacles pathDimensions={pathDimensions} />
         <Path pathDimensions={pathDimensions} />
         <Ground />
