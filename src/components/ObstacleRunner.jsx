@@ -3,6 +3,7 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { useAnimations } from "@react-three/drei";
 import { useEffect } from "react";
 import runner from "../assets/Hoodie-Character.glb"
+import { RigidBody } from "@react-three/rapier";
 
 const ObstacleRunner = () => {
 
@@ -21,12 +22,14 @@ const ObstacleRunner = () => {
   }, [modelAnimations.actions, charRunning]);
 
   return (
-    <primitive
-      object={model.scene}
-      scale={1.2}
-      position={[2.5, -1.9, -20]}
-      rotation={[0, 0, 0]}
-    />
+    <RigidBody>
+        <primitive
+          object={model.scene}
+          scale={1.2}
+          position={[2.5, 0.3, -20]}
+          rotation={[0, 0, 0]}
+        />
+    </RigidBody>
   );
 };
 
