@@ -3,7 +3,7 @@ import TreeGLB from "../assets/Tree.glb"
 export default function RandomTrees() {
     const tree = useGLTF(TreeGLB)
     // const numTrees = 10;
-    const treeSize = 0.8;
+    const treeSize = 1.2;
 
     return (
         <>
