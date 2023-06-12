@@ -4,8 +4,6 @@ export default function RandomTrees() {
     const tree = useGLTF(TreeGLB)
     // const numTrees = 10;
     const treeSize = 0.8;
-    //making a change
-    
 
     return (
         <>
