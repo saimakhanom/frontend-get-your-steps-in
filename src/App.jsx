@@ -5,12 +5,10 @@ import Path from "./components/path";
 import Ground from "./components/ground";
 import RandomTrees from "./components/randomised-trees";
 import Lights from "./components/lights";
-import RandomBoxes from "./components/random-boxes";
 import Character from "./components/Character";
 
 function App() {
   const pathLength = 1000;
-  const pathWidth = 10;
 
   return (
     <div
@@ -22,7 +20,6 @@ function App() {
         <Lights />
         <RandomTrees />
         <Character />
-        <RandomBoxes pathLength={pathLength}  pathWidth={pathWidth}/>
         <Path pathLength={pathLength} />
         <Ground />
       </Canvas>
