@@ -27,7 +27,7 @@ function App() {
             <Lights />
             <RandomTrees />
             <Character />
-            <ObstacleRunner />
+            {/* <ObstacleRunner /> */}
             <Rock />
             <Branch />
             <Path pathLength={pathLength} />

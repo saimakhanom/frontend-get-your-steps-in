@@ -2,7 +2,7 @@ import { useLoader } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { useAnimations } from "@react-three/drei";
 import { useEffect } from "react";
-import characterFile from "../assets/character.glb"
+import characterFile from "../assets/Hoodie-Character.glb";
 import { RigidBody } from "@react-three/rapier";
 
 const Character = () => {
