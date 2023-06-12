@@ -6,6 +6,7 @@ import Ground from "./components/ground";
 import RandomTrees from "./components/randomised-trees";
 import Lights from "./components/lights";
 import Character from "./components/Character";
+import ObstacleRunner from "./components/ObstacleRunner";
 
 function App() {
   const pathLength = 1000;
@@ -20,6 +21,7 @@ function App() {
         <Lights />
         <RandomTrees />
         <Character />
+        <ObstacleRunner />
         <Path pathLength={pathLength} />
         <Ground />
       </Canvas>
