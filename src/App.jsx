@@ -3,24 +3,32 @@ import { Canvas } from "@react-three/fiber";
 import Path from "./components/path";
 // import RandomBoxes from "./components/random-boxes";
 import Ground from "./components/ground";
-import RandomTrees from "./components/randomised-trees";
 import Lights from "./components/lights";
 import Character from "./components/Character";
+import RandomisedTrees from "./components/randomised-trees";
+import RandomisedObstacles from "./components/randomised-obstacles";
 
 function App() {
-  const pathLength = 1000;
+
+  const pathDimensions = {
+    pathLength: 1000,
+    pathWidth: 10
+  }
+
 
   return (
-    <div
-      className="canvas-container"
-      camera={{ position: [10, 10, 10], fov: 50 }}
-    >
-      <Canvas style={{ backgroundColor: "blue" }} shadows>
+    <div className="canvas-container">
+      <Canvas
+        style={{ backgroundColor: "blue" }}
+        camera={{ position: [0, 2.5, 5]}}
+        shadows
+      >
         <OrbitControls />
         <Lights />
-        <RandomTrees />
+        <RandomisedTrees pathDimensions={pathDimensions} />
         <Character />
-        <Path pathLength={pathLength} />
+        <RandomisedObstacles pathDimensions={pathDimensions} />
+        <Path pathDimensions={pathDimensions} />
         <Ground />
       </Canvas>
     </div>

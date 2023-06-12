@@ -1,11 +1,9 @@
-export default function Path({pathLength}) {
- 
+export default function Path({ pathDimensions }) {
+  const { pathLength } = pathDimensions;
   return (
-
-      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -1.9, 0]}>
-        <planeGeometry args={[10, pathLength]} receiveShadow/>
-        <meshStandardMaterial color="grey" />
-      </mesh>
-
+    <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -1.9, 0]}>
+      <planeGeometry args={[10, pathLength]} receiveShadow />
+      <meshStandardMaterial color="grey" />
+    </mesh>
   );
 }
