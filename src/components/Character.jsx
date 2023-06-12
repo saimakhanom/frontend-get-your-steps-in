@@ -3,11 +3,12 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { useControls } from "leva";
 import { useAnimations } from "@react-three/drei";
 import { useEffect } from "react";
+import character from "../assets/character.glb"
 
 const Character = () => {
   // when the game is ready we will have a state that changes based on buttons pressed/timings etc that will replace the hardcoded animation variables
 
-  const model = useLoader(GLTFLoader, "./character.glb");
+  const model = useLoader(GLTFLoader, character);
   const modelAnimations = useAnimations(model.animations, model.scene);
   const charRunning = "CharacterArmature|Run";
   const charWalk = "CharacterArmature|Walk";

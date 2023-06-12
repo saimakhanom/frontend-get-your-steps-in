@@ -1,11 +1,12 @@
-import { generateRandomPosition } from "../utils/generate-random-path-positions";
+import { generateRandomPosition } from "../utils/random-path-points";
 
-export default function RandomBoxes({pathLength}) {
+
+export default function RandomBoxes({pathLength, pathWidth}) {
     const numBoxes = 10; // Number of boxes to generate
     const pathConstraint = pathLength/2
     const boxSize = 1; // Size of each box
   
-    const boxPositions = Array.from({ length: numBoxes }, () => generateRandomPosition(boxSize, pathConstraint));
+    const boxPositions = Array.from({ length: numBoxes }, () => generateRandomPosition(boxSize, pathConstraint, pathWidth));
 
     return (
         <>
