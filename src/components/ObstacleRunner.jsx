@@ -2,10 +2,11 @@ import { useLoader } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { useAnimations } from "@react-three/drei";
 import { useEffect } from "react";
+import runner from "../assets/Hoodie-Character.glb"
 
 const ObstacleRunner = () => {
 
-  const model = useLoader(GLTFLoader, "../assets/Hoodie-Character.glb");
+  const model = useLoader(GLTFLoader, runner );
   const modelAnimations = useAnimations(model.animations, model.scene);
   const charRunning = "CharacterArmature|Run";
   const charIdle = "CharacterArmature|Idle";
@@ -23,8 +24,8 @@ const ObstacleRunner = () => {
     <primitive
       object={model.scene}
       scale={1.2}
-      position={[0, -1.9, 0]}
-      rotation={[0, 3.14, 0]}
+      position={[2.5, -1.9, -20]}
+      rotation={[0, 0, 0]}
     />
   );
 };
