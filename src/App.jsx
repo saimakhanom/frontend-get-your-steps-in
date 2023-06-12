@@ -9,33 +9,37 @@ import RandomisedTrees from "./components/randomised-trees";
 import RandomisedObstacles from "./components/randomised-obstacles";
 import Rock from "./components/Rock";
 import Branch from "./components/Branch";
+import { Suspense } from "react";
+import { Physics } from "@react-three/rapier";
 
 function App() {
-
   const planeDimensions = {
     pathLength: 1000,
     pathWidth: 10,
     groundWidth: 1000,
-    groundLength: 1000
-  }
-
+    groundLength: 1000,
+  };
 
   return (
     <div className="canvas-container">
       <Canvas
         style={{ backgroundColor: "blue" }}
-        camera={{ position: [0, 2.5, 5]}}
+        camera={{ position: [0, 2.5, 5] }}
         shadows
       >
-        <OrbitControls />
-        <Lights />
-        <RandomisedTrees planeDimensions={planeDimensions} />
-        <Character />
-        <Rock />
-        <Branch />
-        {/* <RandomisedObstacles planeDimensions={planeDimensions} /> */}
-        <Path planeDimensions={planeDimensions} />
-        <Ground />
+        <Suspense>
+          <Physics>
+            <OrbitControls />
+            <Lights />
+            <RandomisedTrees planeDimensions={planeDimensions} />
+            <Character />
+            <Rock />
+            <Branch />
+            {/* <RandomisedObstacles planeDimensions={planeDimensions} /> */}
+            <Path planeDimensions={planeDimensions} />
+            <Ground />
+          </Physics>
+        </Suspense>
       </Canvas>
     </div>
   );
