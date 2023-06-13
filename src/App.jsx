@@ -11,6 +11,7 @@ import Rock from "./components/Rock";
 import Branch from "./components/Branch";
 import { Suspense } from "react";
 import { Physics } from "@react-three/rapier";
+import Score from "./components/Score";
 
 function App() {
   const planeDimensions = {
@@ -38,6 +39,7 @@ function App() {
             {/* <RandomisedObstacles planeDimensions={planeDimensions} /> */}
             <Path planeDimensions={planeDimensions} />
             <Ground />
+            <Score/>
           </Physics>
         </Suspense>
       </Canvas>
