@@ -14,6 +14,7 @@ import StepCounter from "./components/StepCounter";
 import ObstacleRunner from "./components/ObstacleRunner"
 import Tree from "./components/Tree"
 
+
 function App() {
   const [left, setLeft] = useState(0)
   const [right, setRight] = useState(0)
