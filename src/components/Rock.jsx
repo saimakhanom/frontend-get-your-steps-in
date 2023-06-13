@@ -8,7 +8,7 @@ const Rock = ({ position, scale }) => {
   const model = useLoader(GLTFLoader, rockFile);
 
   return (
-    <RigidBody>
+    <RigidBody type="fixed">
       <Clone
         object={model.scene}
         position={position}

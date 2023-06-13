@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { generateRandomPathPosition } from "../utils/random-path-points";
 
 export default function RandomisedObstacles({
@@ -9,9 +10,11 @@ export default function RandomisedObstacles({
   const { pathWidth, pathLength } = planeDimensions;
   const pathConstraint = pathLength / 2;
 
-  const objectPositions = Array.from({ length: numObjects }, () =>
-    generateRandomPathPosition(objectSize, pathConstraint, pathWidth)
-  );
+  const objectPositions = useMemo(() => {
+    return Array.from({ length: numObjects }, () =>
+      generateRandomPathPosition(objectSize, pathConstraint, pathWidth)
+    );
+  }, [numObjects, objectSize, pathConstraint, pathWidth]);
 
   return (
     <>

@@ -4,13 +4,13 @@ export default function RandomisedGrassComponents({ planeDimensions, Component, 
   const { pathLength, groundWidth } = planeDimensions;
   const pathConstraint = pathLength / 2;
 
-  const treePositions = Array.from({ length: numObjects }, () =>
+  const objectPositions = Array.from({ length: numObjects }, () =>
     generateRandomGrassPosition(buffer, objectSize, pathConstraint, groundWidth)
     );
 
   return (
     <>
-      {treePositions.map((position, index) => {
+      {objectPositions.map((position, index) => {
         if (position === undefined) {
           return null;
         }
