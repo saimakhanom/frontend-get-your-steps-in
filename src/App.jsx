@@ -24,7 +24,7 @@ function App() {
     <div className="canvas-container">
       <Canvas
         style={{ backgroundColor: "blue" }}
-        camera={{ position: [0, 2.5, 5] }}
+        camera={{ position: [0, 4, 7] }}
         shadows
       >
         <Suspense>
