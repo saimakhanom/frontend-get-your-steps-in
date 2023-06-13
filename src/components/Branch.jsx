@@ -8,7 +8,7 @@ const Branch = ({position, scale}) => {
   const model = useLoader(GLTFLoader, branchFile );
 
   return ( 
-    <RigidBody>
+    <RigidBody type="fixed">
        <Clone
       object={model.scene}
       position={position}

@@ -20,7 +20,7 @@ const ObstacleRunner = ({ position, scale }) => {
   }, [modelAnimations.actions, charRunning]);
 
   return (
-    <RigidBody>
+    <RigidBody type="fixed">
       <Clone
         object={model.scene}
         position={position}

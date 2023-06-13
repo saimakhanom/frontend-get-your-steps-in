@@ -27,7 +27,6 @@ const Character = ({left, setLeft, right, setRight, forward, setForward, jump, s
   
   useFrame((state, delta) => {
     const x = charRef.current?.translation().x
-    console.log(x)
     if(x <= -4){
         charRef.current?.applyImpulse({x:30*delta, y: 0, z: 0})
     }
@@ -87,14 +86,14 @@ useEffect(() => {
  
   return (
     <RigidBody ref={charRef} args={[0.1, 0.1, 0.1]}>
-      <Box>
+      
         <primitive
           object={model.scene}
           scale={1.2}
           position={[0, 1.2, 4]}
           rotation={[0, -3.14, 0]}
         />
-      </Box>
+      
     </RigidBody>
   );
 };
