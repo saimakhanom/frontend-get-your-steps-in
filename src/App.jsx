@@ -33,7 +33,7 @@ function App() {
         shadows
       >
         <Suspense>
-          <Physics>
+          <Physics debug>
             <OrbitControls />
             {/* <PerspectiveCamera position={[0,4,7]}/> */}
             <Lights />
