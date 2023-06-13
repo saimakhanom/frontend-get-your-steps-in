@@ -1,14 +1,14 @@
 import { useLoader } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
-import branchFile from "../assets/Branch.glb"
+import benchFile from "../assets/Bench.glb"
 import { RigidBody } from "@react-three/rapier";
 import { Clone } from "@react-three/drei";
 
 const Branch = ({position, scale}) => {
-  const model = useLoader(GLTFLoader, branchFile );
+  const model = useLoader(GLTFLoader, benchFile );
 
   return ( 
-    <RigidBody type="fixed">
+    <RigidBody>
        <Clone
       object={model.scene}
       position={position}

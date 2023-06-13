@@ -4,7 +4,6 @@ import { PerspectiveCamera, useAnimations } from "@react-three/drei";
 import { useEffect, useState, useRef } from "react";
 import runnerFile from "../assets/Hoodie-Character.glb";
 import { Box } from "@react-three/drei";
-import characterFile from "../assets/Hoodie-Character.glb";
 import { RigidBody } from "@react-three/rapier";
 
 // const MyCamera = () => {
@@ -68,8 +67,6 @@ const Character = ({left, setLeft, right, setRight, forward, setForward, jump, s
     }
 })
 
-
-
 useEffect(() => {
 
     charRef.current.restrictRotations(true)
@@ -112,7 +109,7 @@ useEffect(() => {
         <primitive
           object={model.scene}
           scale={1.2}
-          position={[0, 1.2, 0]}
+          position={[0, 1.2, 4]}
           rotation={[0, -3.14, 0]}
         />
     </RigidBody>

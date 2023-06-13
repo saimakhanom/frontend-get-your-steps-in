@@ -1,21 +1,19 @@
 import TreeGLB from "../assets/Tree.glb";
-import { useMemo } from "react";
 import { useLoader } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import { Clone } from "@react-three/drei";
 
-export default function Tree({ treePosition, treeSize }) {
-    const { scene } = useLoader(GLTFLoader, TreeGLB)
-    const copiedScene = useMemo(() => scene.clone(), [scene])
+export default function Tree({position, scale}) {
+  const model = useLoader(GLTFLoader, TreeGLB);
 
   return (
     <>
-      <mesh castShadow>
-        <primitive
-          object={copiedScene}
-          scale={[treeSize, treeSize, treeSize]}
-          position={treePosition}
-        />
-      </mesh>
+      <Clone
+        object={model.scene}
+        position={position}
+        rotation={[0, -3.14, 0]}
+        scale={scale}
+      />
     </>
   );
 }

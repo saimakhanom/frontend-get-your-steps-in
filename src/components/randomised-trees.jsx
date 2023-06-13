@@ -1,28 +1,34 @@
+import { useMemo } from "react";
 import { generateRandomGrassPosition } from "../utils/random-grass-points";
-import Tree from "./tree";
 
-export default function RandomisedTrees({ planeDimensions }) {
+export default function RandomisedGrassComponents({
+  planeDimensions,
+  Component,
+  objectSize = 1,
+  numObjects = 10,
+  buffer = 10,
+}) {
   const { pathLength, groundWidth } = planeDimensions;
   const pathConstraint = pathLength / 2;
-  const numTrees = 20;
-  const treeSize = 1.2;
-  const treeBuffer = 10;
 
-
-
-  const treePositions = Array.from({ length: numTrees }, () =>
-    generateRandomGrassPosition(treeBuffer, treeSize, pathConstraint, groundWidth)
+  const objectPositions = useMemo(() => {
+    return Array.from({ length: numObjects }, () =>
+      generateRandomGrassPosition(
+        buffer,
+        objectSize,
+        pathConstraint,
+        groundWidth
+      )
     );
-    
-    console.log(treePositions)
+  }, [buffer, objectSize, pathConstraint, groundWidth, numObjects]);
 
   return (
     <>
-      {treePositions.map((position, index) => {
+      {objectPositions.map((position, index) => {
         if (position === undefined) {
           return null;
         }
-          return <Tree key={index} treePosition={position} treeSize={treeSize} /> 
+        return <Component key={index} position={position} scale={objectSize} />;
       })}
     </>
   );
