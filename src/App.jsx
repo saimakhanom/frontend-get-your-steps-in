@@ -10,8 +10,10 @@ import Lights from "./components/Lights";
 import Character from "./components/Character";
 import Rock from "./components/Rock";
 import Branch from "./components/Branch";
+import StepCounter from "./components/StepCounter";
 import ObstacleRunner from "./components/ObstacleRunner"
 import Tree from "./components/Tree"
+
 
 function App() {
   const [left, setLeft] = useState(0)
@@ -28,6 +30,7 @@ function App() {
 
   return (
     <div className="canvas-container">
+      <StepCounter/>
       <Canvas
         style={{ backgroundColor: "blue" }}
         camera={{ position: [0, 4, 7] }}
