@@ -1,5 +1,5 @@
 import { generateRandomGrassPosition } from "../utils/random-grass-points";
-import Tree from "./tree";
+import Tree from "./Tree";
 
 export default function RandomisedTrees({ planeDimensions }) {
   const { pathLength, groundWidth } = planeDimensions;
@@ -8,13 +8,10 @@ export default function RandomisedTrees({ planeDimensions }) {
   const treeSize = 1.2;
   const treeBuffer = 10;
 
-
-
   const treePositions = Array.from({ length: numTrees }, () =>
     generateRandomGrassPosition(treeBuffer, treeSize, pathConstraint, groundWidth)
     );
     
-    console.log(treePositions)
 
   return (
     <>

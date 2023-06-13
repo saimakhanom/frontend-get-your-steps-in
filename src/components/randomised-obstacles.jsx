@@ -1,23 +1,27 @@
 import { generateRandomPathPosition } from "../utils/random-path-points";
 
+export default function RandomisedObstacles({
+  planeDimensions,
+  Component,
+  objectSize = 1,
+  numObjects = 10,
+}) {
+  const { pathWidth, pathLength } = planeDimensions;
+  const pathConstraint = pathLength / 2;
 
-export default function RandomisedObstacles({ planeDimensions }) {
-  const {pathWidth, pathLength} = planeDimensions
-    const numBoxes = 10; // Number of boxes to generate
-    const pathConstraint = pathLength/2
-    const boxSize = 1; // Size of each box
-  
-    const boxPositions = Array.from({ length: numBoxes }, () => generateRandomPathPosition(boxSize, pathConstraint, pathWidth));
+  const objectPositions = Array.from({ length: numObjects }, () =>
+    generateRandomPathPosition(objectSize, pathConstraint, pathWidth)
+  );
 
-    return (
-        <>
-         {boxPositions.map((position, index) => (
-        <mesh key={index} position={position}>
-          <boxGeometry args={[boxSize, boxSize, boxSize]} />
-          <meshStandardMaterial color="yellow" />
-        </mesh>
-      ))}
-        </>
-    )
+  return (
+    <>
+      {objectPositions.map((position, index) => {
+       return <Component
+          key={index}
+          position={position}
+          scale={objectSize}
+        />;
+      })}
+    </>
+  );
 }
-

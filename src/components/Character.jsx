@@ -4,7 +4,6 @@ import { useAnimations } from "@react-three/drei";
 import { useEffect } from "react";
 import runnerFile from "../assets/Hoodie-Character.glb";
 import { Box } from "@react-three/drei";
-import characterFile from "../assets/Hoodie-Character.glb";
 import { RigidBody } from "@react-three/rapier";
 
 const Character = () => {
@@ -16,8 +15,6 @@ const Character = () => {
   const charWalk = "CharacterArmature|Walk";
   const charIdle = "CharacterArmature|Idle";
   const charDeath = "CharacterArmature|Death";
-
-  console.log(model);
 
   useEffect(() => {
     const action = modelAnimations.actions[charRunning];
