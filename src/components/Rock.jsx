@@ -2,17 +2,18 @@ import { useLoader } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import rockFile from "../assets/Rocks.glb";
 import { RigidBody } from "@react-three/rapier";
+import { Clone } from "@react-three/drei";
 
-const Rock = () => {
+const Rock = ({ position, scale }) => {
   const model = useLoader(GLTFLoader, rockFile);
 
-  return ( 
-    <RigidBody>
-      <primitive
+  return (
+    <RigidBody type="fixed">
+      <Clone
         object={model.scene}
-        scale={6}
-        position={[-2, 0.3, -10]}
+        position={position}
         rotation={[0, -3.14, 0]}
+        scale={scale}
       />
     </RigidBody>
   );

@@ -1,19 +1,26 @@
-import { OrbitControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import Path from "./components/path";
-// import RandomBoxes from "./components/random-boxes";
-import Ground from "./components/ground";
-import Lights from "./components/lights";
+import { Suspense, useState } from "react";
+import { Physics } from "@react-three/rapier";
+import { OrbitControls } from "@react-three/drei";
+import RandomisedObstacles from "./components/Randomised-obstacles";
+import RandomisedGrassComponents from "./components/Randomised-trees";
+import Path from "./components/Path";
+import Ground from "./components/Ground";
+import Lights from "./components/Lights";
 import Character from "./components/Character";
-import RandomisedTrees from "./components/randomised-trees";
-import RandomisedObstacles from "./components/randomised-obstacles";
 import Rock from "./components/Rock";
 import Branch from "./components/Branch";
-import { Suspense } from "react";
-import { Physics } from "@react-three/rapier";
 import StepCounter from "./components/StepCounter";
+import ObstacleRunner from "./components/ObstacleRunner"
+import Tree from "./components/Tree"
+
 
 function App() {
+  const [left, setLeft] = useState(0)
+  const [right, setRight] = useState(0)
+  const [forward, setForward] = useState(-5)
+  const [jump, setJump] = useState(0)
+
   const planeDimensions = {
     pathLength: 1000,
     pathWidth: 10,
@@ -32,12 +39,16 @@ function App() {
         <Suspense>
           <Physics debug>
             <OrbitControls />
+            {/* <PerspectiveCamera position={[0,4,7]}/> */}
             <Lights />
-            <RandomisedTrees planeDimensions={planeDimensions} />
-            <Character />
-            <Rock />
-            <Branch />
-            {/* <RandomisedObstacles planeDimensions={planeDimensions} /> */}
+            <Character jump={jump} setJump={setJump} left={left} setLeft={setLeft} right={right} setRight={setRight} forward={forward} setForward={setForward}/>
+
+            <RandomisedGrassComponents planeDimensions={planeDimensions} Component={Tree} objectSize={1.2} numObjects={20} buffer={10}/>
+
+            <RandomisedObstacles planeDimensions={planeDimensions} Component={Rock} objectSize={5} numObjects={10} />
+            <RandomisedObstacles planeDimensions={planeDimensions} Component={Branch} objectSize={0.5} numObjects={10} />
+            <RandomisedObstacles planeDimensions={planeDimensions} Component={ObstacleRunner} objectSize={1.2} numObjects={3} />
+
             <Path planeDimensions={planeDimensions} />
             <Ground />
           </Physics>

@@ -21,7 +21,6 @@ export const generateRandomGrassPosition = (
     z = -z; // Assign negative value to z randomly
   }
   if (isNotOnPath(x)) {
-    console.log(isNotOnPath(x))
     return [x, y, z];
   }
 };
