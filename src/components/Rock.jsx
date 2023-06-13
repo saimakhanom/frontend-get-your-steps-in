@@ -1,11 +1,10 @@
 import { useLoader } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
-import rockFile from "../assets/Rocks.glb"
+import rockFile from "../assets/Rocks.glb";
 import { RigidBody } from "@react-three/rapier";
 
 const Rock = () => {
-
-  const model = useLoader(GLTFLoader, rockFile );
+  const model = useLoader(GLTFLoader, rockFile);
 
   return ( 
     <RigidBody>
@@ -17,6 +16,6 @@ const Rock = () => {
       />
     </RigidBody>
   );
-}
- 
+};
+
 export default Rock;

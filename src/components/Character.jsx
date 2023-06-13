@@ -3,9 +3,9 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { useAnimations } from "@react-three/drei";
 import { useEffect } from "react";
 import runnerFile from "../assets/Hoodie-Character.glb";
-// import characterFile from "../assets/character.glb"
-import { CuboidCollider, RigidBody } from "@react-three/rapier";
 import { Box } from "@react-three/drei";
+import characterFile from "../assets/Hoodie-Character.glb";
+import { RigidBody } from "@react-three/rapier";
 
 const Character = () => {
   // when the game is ready we will have a state that changes based on buttons pressed/timings etc that will replace the hardcoded animation variables
@@ -33,7 +33,7 @@ const Character = () => {
         <primitive
           object={model.scene}
           scale={1.2}
-          position={[0, 4, 0]}
+          position={[0, 1.2, 0]}
           rotation={[0, -3.14, 0]}
         />
       </Box>
