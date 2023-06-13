@@ -9,10 +9,15 @@ import RandomisedTrees from "./components/randomised-trees";
 import RandomisedObstacles from "./components/randomised-obstacles";
 import Rock from "./components/Rock";
 import Branch from "./components/Branch";
-import { Suspense } from "react";
+import { Suspense, useState } from "react";
 import { Physics } from "@react-three/rapier";
 
 function App() {
+  const [left, setLeft] = useState(0)
+  const [right, setRight] = useState(0)
+  const [forward, setForward] = useState(-5)
+  const [jump, setJump] = useState(0)
+
   const planeDimensions = {
     pathLength: 1000,
     pathWidth: 10,
@@ -32,7 +37,7 @@ function App() {
             <OrbitControls />
             <Lights />
             <RandomisedTrees planeDimensions={planeDimensions} />
-            <Character />
+            <Character jump={jump} setJump={setJump} left={left} setLeft={setLeft} right={right} setRight={setRight} forward={forward} setForward={setForward}/>
             <Rock />
             <Branch />
             {/* <RandomisedObstacles planeDimensions={planeDimensions} /> */}
