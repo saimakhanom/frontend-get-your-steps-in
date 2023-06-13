@@ -1,15 +1,23 @@
 import { useLoader, useFrame } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
-import { useAnimations } from "@react-three/drei";
+import { PerspectiveCamera, useAnimations } from "@react-three/drei";
 import { useEffect, useState, useRef } from "react";
 import runnerFile from "../assets/Hoodie-Character.glb";
 import { Box } from "@react-three/drei";
 import characterFile from "../assets/Hoodie-Character.glb";
 import { RigidBody } from "@react-three/rapier";
 
+// const MyCamera = () => {
+//     <PerspectiveCamera
+//     fov={75}
+//     makeDefault={true}
+//     position={[0, 4, 7]}
+//     />
+// }
+
 const Character = ({left, setLeft, right, setRight, forward, setForward, jump, setJump}) => {
     const charRef = useRef()
-    console.log(charRef)
+    const cameraRef = useRef()
 
 
   // when the game is ready we will have a state that changes based on buttons pressed/timings etc that will replace the hardcoded animation variables
@@ -29,9 +37,17 @@ const Character = ({left, setLeft, right, setRight, forward, setForward, jump, s
     };
   }, [modelAnimations.actions, charRunning]);
   
+ const z = charRef.current?.translation().z
+
+
   useFrame((state, delta) => {
+    const y = charRef.current?.translation().y
     const x = charRef.current?.translation().x
-    console.log(x)
+    const z = charRef.current?.translation().z
+    state.camera.lookAt(0,0,z-5)
+    state.camera.position.set(0,y+5,z+15)
+    state.camera.updateProjectionMatrix()
+
     if(x <= -4){
         charRef.current?.applyImpulse({x:30*delta, y: 0, z: 0})
     }
@@ -55,6 +71,7 @@ const Character = ({left, setLeft, right, setRight, forward, setForward, jump, s
 
 
 useEffect(() => {
+
     charRef.current.restrictRotations(true)
     const handleKeyDown = (event) => {
         if (event.code === "ArrowLeft"){
@@ -90,16 +107,16 @@ useEffect(() => {
 
  
   return (
-    <RigidBody ref={charRef} args={[0.1, 0.1, 0.1]}>
-      <Box>
+    <>
+    <RigidBody ref={charRef}>
         <primitive
           object={model.scene}
           scale={1.2}
           position={[0, 1.2, 0]}
           rotation={[0, -3.14, 0]}
         />
-      </Box>
     </RigidBody>
+    </>
   );
 };
 

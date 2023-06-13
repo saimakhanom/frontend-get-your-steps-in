@@ -1,4 +1,4 @@
-import { OrbitControls } from "@react-three/drei";
+import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import Path from "./components/path";
 // import RandomBoxes from "./components/random-boxes";
@@ -35,6 +35,7 @@ function App() {
         <Suspense>
           <Physics debug>
             <OrbitControls />
+            {/* <PerspectiveCamera position={[0,4,7]}/> */}
             <Lights />
             <RandomisedTrees planeDimensions={planeDimensions} />
             <Character jump={jump} setJump={setJump} left={left} setLeft={setLeft} right={right} setRight={setRight} forward={forward} setForward={setForward}/>
