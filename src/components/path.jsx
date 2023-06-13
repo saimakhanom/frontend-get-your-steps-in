@@ -1,16 +1,13 @@
 import { RigidBody } from "@react-three/rapier";
 
-export default function Path({pathLength}) {
- 
+export default function Path({ planeDimensions }) {
+  const { pathLength } = planeDimensions;
   return (
-    <>
-      <RigidBody type="fixed">
-        <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.1, 0]}>
-          <planeGeometry args={[10, pathLength]} receiveShadow/>
-          <meshStandardMaterial color="grey" />
-        </mesh>
-      </RigidBody>
-    </>
-
-  );
+    <RigidBody type="fixed">
+    <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.1, 0]}>
+      <planeGeometry args={[10, pathLength]} receiveShadow/>
+      <meshStandardMaterial color="grey" />
+    </mesh>
+  </RigidBody>
+  )
 }
