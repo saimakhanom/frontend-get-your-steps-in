@@ -29,14 +29,12 @@ const Character = () => {
 
   return (
     <RigidBody args={[0.1, 0.1, 0.1]}>
-      <Box>
-        <primitive
-          object={model.scene}
-          scale={1.2}
-          position={[0, 1.2, 0]}
-          rotation={[0, -3.14, 0]}
-        />
-      </Box>
+      <primitive
+        object={model.scene}
+        scale={1.2}
+        position={[0, 1.2, 0]}
+        rotation={[0, -3.14, 0]}
+      />
     </RigidBody>
   );
 };
