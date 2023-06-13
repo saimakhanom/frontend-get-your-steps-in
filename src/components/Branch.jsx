@@ -6,18 +6,11 @@ import { Clone } from "@react-three/drei";
 import { useState } from "react";
 
 const Branch = ({ position, scale }) => {
-  const [isAsleep, setIsAsleep]= useState(false)
   const model = useLoader(GLTFLoader, branchFile);
 
   return (
     <RigidBody type="fixed" 
-    onWake={()=>{console.log("hello")}}
     name= "branch"
-    onCollisionEnter={({manifold, target, other})=>{
-      if(other.rigidBodyObject.name === "character"){
-        setIsAsleep(true)
-      }
-    }}
     collisionGroups={interactionGroups(1, [0])}>
       <Clone
         object={model.scene}

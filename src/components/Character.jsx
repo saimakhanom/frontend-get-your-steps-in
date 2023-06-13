@@ -29,8 +29,8 @@ const Character = ({
   const charRef = useRef();
   const cameraRef = useRef();
   // const [coolDown, setCoolDown] = useState(false);
-  let coolDown= false;
-
+  const [collidedBranches, setCollidedBranches] = useState([]);
+  // let collidedBranches = [];
   // when the game is ready we will have a state that changes based on buttons pressed/timings etc that will replace the hardcoded animation variables
 
   const model = useLoader(GLTFLoader, runnerFile);
@@ -109,18 +109,27 @@ const Character = ({
   }, []);
 
   const handleCollisionEnter = (event) => {
-    
-    // console.log(event.other.rigidBodyObject);
-    if (!coolDown && event.other.rigidBodyObject.name === "branch") {
-      coolDown = true
-      // setCoolDown(true); 
+    // console.log(event.other.rigidBodyObject.id)
+    if (
+      !collidedBranches.includes(event.other.rigidBodyObject.id) &&
+      event.other.rigidBodyObject.name === "branch"
+    ) {
+      setCollidedBranches([
+        ...collidedBranches,
+        event.other.rigidBodyObject.id,
+      ]);
       setMotivation((prev) => prev - 1);
-    } else {
+      // console.log("hit") 
     }
+    console.log(collidedBranches);
+    // // console.log(event.other.rigidBodyObject);
+    // if (!coolDown && event.other.rigidBodyObject.name === "branch") {
+    //   coolDown = true
+    //   // setCoolDown(true);
+    //   setMotivation((prev) => prev - 1);
+    // } else {
+    // }
   };
-
-
-
 
   return (
     <>
