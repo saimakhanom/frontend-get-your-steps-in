@@ -11,7 +11,7 @@ import Rock from "./components/Rock";
 import Branch from "./components/Branch";
 import { Suspense } from "react";
 import { Physics } from "@react-three/rapier";
-import Score from "./components/Score";
+import StepCounter from "./components/StepCounter";
 
 function App() {
   const planeDimensions = {
@@ -23,6 +23,7 @@ function App() {
 
   return (
     <div className="canvas-container">
+      <StepCounter/>
       <Canvas
         style={{ backgroundColor: "blue" }}
         camera={{ position: [0, 4, 7] }}
@@ -39,7 +40,6 @@ function App() {
             {/* <RandomisedObstacles planeDimensions={planeDimensions} /> */}
             <Path planeDimensions={planeDimensions} />
             <Ground />
-            <Score/>
           </Physics>
         </Suspense>
       </Canvas>

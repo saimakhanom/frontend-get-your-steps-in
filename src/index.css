@@ -1,3 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Bangers&display=swap");
+*{
+  margin: 0;
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -11,4 +17,22 @@ body {
 #root {
   margin: 0;
   padding: 0;
+}
+
+.testScore {
+  font-family: "Bangers", cursive;
+  color: tomato;
+  letter-spacing: 5px;
+}
+
+.container {
+  background-color: rgba(255, 255, 255, 0.3);
+  padding: 4px 8px;
+  border-radius: 10px;
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 10;
+  backdrop-filter: blur(3px);
+  user-select: none;
 }
