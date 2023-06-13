@@ -30,7 +30,7 @@ const Character = () => {
         <primitive
           object={model.scene}
           scale={1.2}
-          position={[0, 1.2, 0]}
+          position={[0, 1.2, 4]}
           rotation={[0, -3.14, 0]}
         />
       </Box>
