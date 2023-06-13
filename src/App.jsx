@@ -33,7 +33,7 @@ function App() {
         shadows
       >
         <Suspense>
-          <Physics>
+          <Physics debug>
             <OrbitControls />
             <Lights />
             <RandomisedTrees planeDimensions={planeDimensions} />
