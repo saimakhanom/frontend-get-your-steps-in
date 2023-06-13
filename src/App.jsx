@@ -34,8 +34,9 @@ function App() {
         shadows
       >
         <Suspense>
-          <Physics>
+          <Physics debug>
             <OrbitControls />
+            {/* <PerspectiveCamera position={[0,4,7]}/> */}
             <Lights />
             <Character jump={jump} setJump={setJump} left={left} setLeft={setLeft} right={right} setRight={setRight} forward={forward} setForward={setForward}/>
 
@@ -43,7 +44,7 @@ function App() {
 
             <RandomisedObstacles planeDimensions={planeDimensions} Component={Rock} objectSize={5} numObjects={10} />
             <RandomisedObstacles planeDimensions={planeDimensions} Component={Branch} objectSize={0.5} numObjects={10} />
-            <RandomisedObstacles planeDimensions={planeDimensions} Component={ObstacleRunner} objectSize={1} numObjects={3} />
+            <RandomisedObstacles planeDimensions={planeDimensions} Component={ObstacleRunner} objectSize={1.2} numObjects={3} />
 
             <Path planeDimensions={planeDimensions} />
             <Ground />
