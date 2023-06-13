@@ -1,17 +1,12 @@
 import { generateRandomGrassPosition } from "../utils/random-grass-points";
-import Tree from "./Tree";
 
-export default function RandomisedTrees({ planeDimensions }) {
+export default function RandomisedGrassComponents({ planeDimensions, Component, objectSize = 1, numObjects=10, buffer=10  }) {
   const { pathLength, groundWidth } = planeDimensions;
   const pathConstraint = pathLength / 2;
-  const numTrees = 20;
-  const treeSize = 1.2;
-  const treeBuffer = 10;
 
-  const treePositions = Array.from({ length: numTrees }, () =>
-    generateRandomGrassPosition(treeBuffer, treeSize, pathConstraint, groundWidth)
+  const treePositions = Array.from({ length: numObjects }, () =>
+    generateRandomGrassPosition(buffer, objectSize, pathConstraint, groundWidth)
     );
-    
 
   return (
     <>
@@ -19,7 +14,7 @@ export default function RandomisedTrees({ planeDimensions }) {
         if (position === undefined) {
           return null;
         }
-          return <Tree key={index} treePosition={position} treeSize={treeSize} /> 
+          return <Component key={index} position={position} scale={objectSize} /> 
       })}
     </>
   );
