@@ -7,7 +7,7 @@ const Rock = () => {
   const model = useLoader(GLTFLoader, rockFile);
 
   return ( 
-    <RigidBody>
+    <RigidBody type="fixed">
       <primitive
         object={model.scene}
         scale={6}
