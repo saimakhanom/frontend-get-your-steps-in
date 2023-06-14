@@ -12,7 +12,7 @@ import Rock from "./components/Rock";
 import Branch from "./components/Branch";
 import StepCounter from "./components/StepCounter";
 import ObstacleRunner from "./components/ObstacleRunner";
-import Tree from "./components/Tree";
+import Tree from "./components/tree";
 import Motivation from "./components/Motivation";
 
 function App() {
@@ -31,7 +31,7 @@ function App() {
 
   return (
     <div className="canvas-container">
-      <StepCounter />
+      <StepCounter motivation={motivation} />
       <Motivation motivation={motivation} />
       <Canvas
         style={{ backgroundColor: "blue" }}
