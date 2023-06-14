@@ -1,17 +1,18 @@
 import { Canvas } from "@react-three/fiber";
 import { Suspense, useState } from "react";
 import { Physics } from "@react-three/rapier";
-import RandomisedObstacles from "./components/Randomised-obstacles";
-import RandomisedGrassComponents from "./components/Randomised-trees";
-import Path from "./components/Path";
-import Ground from "./components/Ground";
-import Lights from "./components/Lights";
+import { OrbitControls } from "@react-three/drei";
+import RandomisedObstacles from "./components/randomised-obstacles";
+import RandomisedGrassComponents from "./components/randomised-trees";
+import Path from "./components/path";
+import Ground from "./components/ground";
+import Lights from "./components/lights";
 import Character from "./components/Character";
 import Rock from "./components/Rock";
 import Branch from "./components/Branch";
 import StepCounter from "./components/StepCounter";
 import ObstacleRunner from "./components/ObstacleRunner";
-import Tree from "./components/Tree";
+import Tree from "./components/tree";
 import Motivation from "./components/Motivation";
 
 function App() {
@@ -30,7 +31,7 @@ function App() {
 
   return (
     <div className="canvas-container">
-      <StepCounter />
+      <StepCounter motivation={motivation} />
       <Motivation motivation={motivation} />
       <Canvas
         style={{ backgroundColor: "blue" }}
