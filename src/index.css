@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Bangers&display=swap");
-*{
+* {
   margin: 0;
   box-sizing: border-box;
 }
@@ -19,20 +19,52 @@ body {
   padding: 0;
 }
 
-.testScore {
+.text {
   font-family: "Bangers", cursive;
   color: tomato;
   letter-spacing: 5px;
 }
 
-.container {
+.score,
+.motivation {
+  display: flex;
+  align-items: center;
   background-color: rgba(255, 255, 255, 0.3);
-  padding: 4px 8px;
   border-radius: 10px;
   position: absolute;
   top: 2rem;
-  right: 2rem;
   z-index: 10;
   backdrop-filter: blur(3px);
   user-select: none;
+  padding: 10px;
+  min-height: 75px;
+}
+
+.score {
+  right: 2rem;
+}
+
+.motivation {
+  justify-content: space-between;
+  left: 2rem;
+ 
+}
+
+.fist {
+  width: 60px;
+}
+
+.game-over {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  backdrop-filter: blur(3px);
+  user-select: none;
+  font-size: 3rem;
+  font-weight: bold;
+  padding: 50px 40px;
 }
