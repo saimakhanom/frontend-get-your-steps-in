@@ -2,11 +2,24 @@ import { useEffect, useState } from "react";
 
 function StepCounter() {
   const [score, setScore] = useState(0);
+  const [interval, setInterval] = useState(500)
+  const [timer, setTimer] = useState(0)
+
 
   useEffect(() => {
     setTimeout(() => {
+      setTimer((s) => s + 1);
+    }, 1000)
+    console.log(timer)
+  
+    if (timer%25 === 0 && timer !== 0){
+      console.log("about to speed up")
+      setInterval((currentInterval) => currentInterval*0.6)
+    }
+
+    setTimeout(() => {
       setScore((s) => s + 1);
-    }, 500);
+    }, interval);
   }, [score]);
 
   return (
