@@ -7,15 +7,16 @@ function StepCounter({motivation}) {
 
 
   useEffect(() => {
-    if (motivation > 0) {
     setTimeout(() => {
       setTimer((s) => s + 1);
+      if (timer % 15 === 0 && timer !== 0){
+        setInterval((currentInterval) => currentInterval*0.6)
+      }
     }, 1000)
-  
-    if (timer%25 === 0 && timer !== 0){
-      setInterval((currentInterval) => currentInterval*0.6)
-    }
+  }, [timer])
 
+  useEffect(() => {
+    if (motivation > 0) {
     setTimeout(() => {
       setScore((s) => s + 1);
     }, interval);
