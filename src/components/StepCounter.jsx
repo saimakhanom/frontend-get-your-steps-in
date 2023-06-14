@@ -10,8 +10,8 @@ function StepCounter() {
   }, [score]);
 
   return (
-    <div className="container">
-      <h2 className="testScore">Step Count: {score} </h2>
+    <div className="score">
+      <h2 className="text">Step Count: {score} </h2>
     </div>
   );
 }

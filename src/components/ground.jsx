@@ -1,8 +1,8 @@
-import { RigidBody } from "@react-three/rapier";
+import { RigidBody, } from "@react-three/rapier";
 
 export default function Ground() {
     return (
-        <RigidBody type="fixed">
+        <RigidBody type="fixed" >
             <mesh
             rotation={[-Math.PI / 2, 0, 0]}
                 position={[0, 0, 0]}
