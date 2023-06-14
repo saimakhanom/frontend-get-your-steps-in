@@ -1,17 +1,17 @@
 import { Canvas } from "@react-three/fiber";
 import { Suspense, useState } from "react";
 import { Physics } from "@react-three/rapier";
-import RandomisedObstacles from "./components/randomised-obstacles";
-import RandomisedGrassComponents from "./components/randomised-trees";
-import Path from "./components/path";
-import Ground from "./components/ground";
-import Lights from "./components/lights";
+import RandomisedObstacles from "./components/Randomised-obstacles";
+import RandomisedGrassComponents from "./components/Randomised-trees";
+import Path from "./components/Path";
+import Ground from "./components/Ground";
+import Lights from "./components/Lights";
 import Character from "./components/Character";
 import Rock from "./components/Rock";
 import Branch from "./components/Branch";
 import StepCounter from "./components/StepCounter";
 // import ObstacleRunner from "./components/ObstacleRunner";
-import Tree from "./components/tree";
+import Tree from "./components/Tree";
 import Motivation from "./components/Motivation";
 
 function App() {
@@ -22,7 +22,7 @@ function App() {
   const [motivation, setMotivation] = useState(3);
 
   const planeDimensions = {
-    pathLength: 1000,
+    pathLength: 10000,
     pathWidth: 10,
     groundWidth: 1000,
     groundLength: 1000,
@@ -57,7 +57,7 @@ function App() {
               planeDimensions={planeDimensions}
               Component={Tree}
               objectSize={1.2}
-              numObjects={100}
+              numObjects={500}
               buffer={10}
             />
 
@@ -65,13 +65,13 @@ function App() {
               planeDimensions={planeDimensions}
               Component={Rock}
               objectSize={3}
-              numObjects={10}
+              numObjects={100}
             />
             <RandomisedObstacles
               planeDimensions={planeDimensions}
               Component={Branch}
               objectSize={0.5}
-              numObjects={10}
+              numObjects={100}
             />
             {/* <RandomisedObstacles
               planeDimensions={planeDimensions}
@@ -81,7 +81,7 @@ function App() {
             /> */}
 
             <Path planeDimensions={planeDimensions} />
-            <Ground />
+            <Ground planeDimensions={planeDimensions}/>
           </Physics>
         </Suspense>
       </Canvas>
