@@ -71,7 +71,9 @@ const Character = ({
   });
 
   useEffect(() => {
-    charRef.current.restrictRotations(true);
+    // charRef.current.restrictRotations(true);
+    charRef.current.setEnabledRotations(false, false, false);
+
     const handleKeyDown = (event) => {
       if (event.code === "ArrowLeft") {
         setLeft(-5);
@@ -120,8 +122,7 @@ const Character = ({
       <RigidBody
         ref={charRef}
         name="character"
-        // linearDamping={0.1}
-        angularDamping={0.1}
+        gravityScale={1.4}
         colliders={false}
         onCollisionEnter={(event) => {
           handleCollisionEnter(event);

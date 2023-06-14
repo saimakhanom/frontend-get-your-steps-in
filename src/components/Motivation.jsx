@@ -23,11 +23,11 @@ function Motivation({motivation}) {
         return <img key={index} src={fist} alt="fist icon" className="fist" />
       })}
     </div>)}
-      {/* {motivation === 0 && (
+      {motivation === 0 && (
         <div className="game-over">
           <h2 className="text" >{text}</h2>
         </div>
-      )} */}
+      )}
       </>
   );
 }
