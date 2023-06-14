@@ -20,7 +20,7 @@ function StepCounter({motivation}) {
     setTimeout(() => {
       setScore((s) => s + 1);
     }, interval);
-  }}, [score]);
+  }}, [score, interval, motivation]);
 
   return (
     <div className="score">

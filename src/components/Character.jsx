@@ -1,7 +1,7 @@
 import { useLoader, useFrame } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import {  useAnimations } from "@react-three/drei";
-import { useEffect, useState, useRef, useMemo } from "react";
+import { useEffect, useRef, useMemo } from "react";
 import runnerFile from "../assets/Hoodie-Character.glb";
 import { RigidBody, interactionGroups, CylinderCollider } from "@react-three/rapier";
 
@@ -11,14 +11,11 @@ const Character = ({
   right,
   setRight,
   forward,
-  setForward,
   jump,
   setJump,
-  motivation,
   setMotivation,
 }) => {
   const charRef = useRef();
-  const cameraRef = useRef();
   // when the game is ready we will have a state that changes based on buttons pressed/timings etc that will replace the hardcoded animation variables
 
   let collidedObjects = useMemo(() => {
@@ -28,9 +25,9 @@ const Character = ({
   const model = useLoader(GLTFLoader, runnerFile);
   const modelAnimations = useAnimations(model.animations, model.scene);
   const charRunning = "CharacterArmature|Run";
-  const charWalk = "CharacterArmature|Walk";
-  const charIdle = "CharacterArmature|Idle";
-  const charDeath = "CharacterArmature|Death";
+  // const charWalk = "CharacterArmature|Walk";
+  // const charIdle = "CharacterArmature|Idle";
+  // const charDeath = "CharacterArmature|Death";
 
   useEffect(() => {
     const action = modelAnimations.actions[charRunning];
@@ -39,8 +36,6 @@ const Character = ({
       action.fadeOut(0.5);
     };
   }, [modelAnimations.actions, charRunning]);
-
-  const z = charRef.current?.translation().z;
 
   useFrame((state, delta) => {
     const y = charRef.current?.translation().y;
@@ -71,7 +66,6 @@ const Character = ({
   });
 
   useEffect(() => {
-    // charRef.current.restrictRotations(true);
     charRef.current.setEnabledRotations(false, false, false);
 
     const handleKeyDown = (event) => {
@@ -100,10 +94,9 @@ const Character = ({
       window.removeEventListener("keydown", handleKeyDown);
       window.removeEventListener("keyup", handleKeyUp);
     };
-  }, []);
+  }, [setLeft, setRight, setJump]);
 
   const handleCollisionEnter = (event) => {
-    // console.log(event.flipped)
 
     if (
       !collidedObjects.includes(event.other.rigidBodyObject.id) &&

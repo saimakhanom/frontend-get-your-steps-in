@@ -22,7 +22,7 @@ function App() {
   const [motivation, setMotivation] = useState(3);
 
   const planeDimensions = {
-    pathLength: 1000,
+    pathLength: 10000,
     pathWidth: 10,
     groundWidth: 1000,
     groundLength: 1000,
@@ -57,7 +57,7 @@ function App() {
               planeDimensions={planeDimensions}
               Component={Tree}
               objectSize={1.2}
-              numObjects={100}
+              numObjects={500}
               buffer={10}
             />
 
@@ -65,13 +65,13 @@ function App() {
               planeDimensions={planeDimensions}
               Component={Rock}
               objectSize={3}
-              numObjects={10}
+              numObjects={100}
             />
             <RandomisedObstacles
               planeDimensions={planeDimensions}
               Component={Branch}
               objectSize={0.5}
-              numObjects={10}
+              numObjects={100}
             />
             {/* <RandomisedObstacles
               planeDimensions={planeDimensions}
@@ -81,7 +81,7 @@ function App() {
             /> */}
 
             <Path planeDimensions={planeDimensions} />
-            <Ground />
+            <Ground planeDimensions={planeDimensions}/>
           </Physics>
         </Suspense>
       </Canvas>
