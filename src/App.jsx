@@ -57,14 +57,14 @@ function App() {
               planeDimensions={planeDimensions}
               Component={Tree}
               objectSize={1.2}
-              numObjects={20}
+              numObjects={100}
               buffer={10}
             />
 
             <RandomisedObstacles
               planeDimensions={planeDimensions}
               Component={Rock}
-              objectSize={5}
+              objectSize={3}
               numObjects={10}
             />
             <RandomisedObstacles
@@ -73,12 +73,12 @@ function App() {
               objectSize={0.5}
               numObjects={10}
             />
-            <RandomisedObstacles
+            {/* <RandomisedObstacles
               planeDimensions={planeDimensions}
               Component={ObstacleRunner}
               objectSize={1.2}
               numObjects={3}
-            />
+            /> */}
 
             <Path planeDimensions={planeDimensions} />
             <Ground />
