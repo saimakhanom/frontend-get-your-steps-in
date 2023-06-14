@@ -8,9 +8,10 @@ const Rock = ({ position, scale }) => {
   const model = useLoader(GLTFLoader, rockFile);
 
   return (
-    <RigidBody type="fixed" 
-    name="rocks"
-    collisionGroups={interactionGroups(1, [0])}
+    <RigidBody
+      type="fixed"
+      name="rock"
+      collisionGroups={interactionGroups(1, [0])}
     >
       <Clone
         object={model.scene}

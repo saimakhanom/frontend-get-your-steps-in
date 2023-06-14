@@ -1,18 +1,9 @@
 import { useLoader, useFrame } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
-import { PerspectiveCamera, useAnimations } from "@react-three/drei";
-import { useEffect, useState, useRef } from "react";
+import { useAnimations } from "@react-three/drei";
+import { useEffect, useState, useRef, useMemo } from "react";
 import runnerFile from "../assets/Hoodie-Character.glb";
-import { Box } from "@react-three/drei";
 import { RigidBody, interactionGroups } from "@react-three/rapier";
-
-// const MyCamera = () => {
-//     <PerspectiveCamera
-//     fov={75}
-//     makeDefault={true}
-//     position={[0, 4, 7]}
-//     />
-// }
 
 const Character = ({
   left,
@@ -28,10 +19,11 @@ const Character = ({
 }) => {
   const charRef = useRef();
   const cameraRef = useRef();
-  // const [coolDown, setCoolDown] = useState(false);
-  const [collidedBranches, setCollidedBranches] = useState([]);
-  // let collidedBranches = [];
   // when the game is ready we will have a state that changes based on buttons pressed/timings etc that will replace the hardcoded animation variables
+
+  let collidedObjects = useMemo(() => {
+    return [];
+  }, []);
 
   const model = useLoader(GLTFLoader, runnerFile);
   const modelAnimations = useAnimations(model.animations, model.scene);
@@ -109,26 +101,16 @@ const Character = ({
   }, []);
 
   const handleCollisionEnter = (event) => {
-    // console.log(event.other.rigidBodyObject.id)
     if (
-      !collidedBranches.includes(event.other.rigidBodyObject.id) &&
-      event.other.rigidBodyObject.name === "branch"
+      !collidedObjects.includes(event.other.rigidBodyObject.id) &&
+      collidedObjects.length < 3 &&
+      (event.other.rigidBodyObject.name === "branch" ||
+        event.other.rigidBodyObject.name === "obstacleRunner" ||
+        event.other.rigidBodyObject.name === "rock")
     ) {
-      setCollidedBranches([
-        ...collidedBranches,
-        event.other.rigidBodyObject.id,
-      ]);
+      collidedObjects.push(event.other.rigidBodyObject.id);
       setMotivation((prev) => prev - 1);
-      // console.log("hit") 
     }
-    console.log(collidedBranches);
-    // // console.log(event.other.rigidBodyObject);
-    // if (!coolDown && event.other.rigidBodyObject.name === "branch") {
-    //   coolDown = true
-    //   // setCoolDown(true);
-    //   setMotivation((prev) => prev - 1);
-    // } else {
-    // }
   };
 
   return (

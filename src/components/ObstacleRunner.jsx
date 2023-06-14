@@ -20,9 +20,10 @@ const ObstacleRunner = ({ position, scale }) => {
   }, [modelAnimations.actions, charRunning]);
 
   return (
-    <RigidBody type="fixed"
-    name="ObstacleRunner"
-    collisionGroups={interactionGroups(1, [0])}
+    <RigidBody
+      type="fixed"
+      name="obstacleRunner"
+      collisionGroups={interactionGroups(1, [0])}
     >
       <Clone
         object={model.scene}

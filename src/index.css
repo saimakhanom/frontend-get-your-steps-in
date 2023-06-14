@@ -25,22 +25,46 @@ body {
   letter-spacing: 5px;
 }
 
-.container,
-.container2 {
+.score,
+.motivation {
+  display: flex;
+  align-items: center;
   background-color: rgba(255, 255, 255, 0.3);
-  padding: 4px 8px;
   border-radius: 10px;
   position: absolute;
   top: 2rem;
   z-index: 10;
   backdrop-filter: blur(3px);
   user-select: none;
+  padding: 10px;
+  min-height: 75px;
 }
 
-.container {
+.score {
   right: 2rem;
 }
 
-.container2 {
+.motivation {
+  justify-content: space-between;
   left: 2rem;
+ 
+}
+
+.fist {
+  width: 60px;
+}
+
+.game-over {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  backdrop-filter: blur(3px);
+  user-select: none;
+  font-size: 3rem;
+  font-weight: bold;
+  padding: 50px 40px;
 }

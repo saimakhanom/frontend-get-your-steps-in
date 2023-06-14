@@ -1,11 +1,35 @@
+import { useEffect, useState } from "react";
+import fist from "../assets/fist.png";
 
-function Motivation({motivation}){
-    
-    return (
-        <div className="container2">
-          <h2 className="text" > Motivation: {motivation} </h2>
+function Motivation({motivation}) {
+
+  const [text, setText] = useState("");
+
+  useEffect(() => {
+    if (motivation === 0) {
+      setText("Game over!");
+    } else {
+      setText(`Motivation: `);
+    }
+  }, [motivation]);
+
+  let motivationIcons = Array(motivation).fill(1)
+ 
+  return (
+    <>
+    {motivation > 0 && (<div className="motivation">
+      <h2 className="text"> {text} </h2>
+      {motivationIcons.map((icon, index) => {
+        return <img key={index} src={fist} alt="fist icon" className="fist" />
+      })}
+    </div>)}
+      {motivation === 0 && (
+        <div className="game-over">
+          <h2 className="text" >{text}</h2>
         </div>
-      );
+      )}
+      </>
+  );
 }
 
-export default Motivation
+export default Motivation;
