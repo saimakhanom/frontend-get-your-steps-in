@@ -1,18 +1,17 @@
 import { Canvas } from "@react-three/fiber";
 import { Suspense, useState } from "react";
 import { Physics } from "@react-three/rapier";
-import { OrbitControls } from "@react-three/drei";
-import RandomisedObstacles from "./components/randomised-obstacles";
-import RandomisedGrassComponents from "./components/randomised-trees";
-import Path from "./components/path";
-import Ground from "./components/ground";
-import Lights from "./components/lights";
+import RandomisedObstacles from "./components/Randomised-obstacles";
+import RandomisedGrassComponents from "./components/Randomised-trees";
+import Path from "./components/Path";
+import Ground from "./components/Ground";
+import Lights from "./components/Lights";
 import Character from "./components/Character";
 import Rock from "./components/Rock";
 import Branch from "./components/Branch";
 import StepCounter from "./components/StepCounter";
-import ObstacleRunner from "./components/ObstacleRunner";
-import Tree from "./components/tree";
+// import ObstacleRunner from "./components/ObstacleRunner";
+import Tree from "./components/Tree";
 import Motivation from "./components/Motivation";
 
 function App() {
@@ -58,14 +57,14 @@ function App() {
               planeDimensions={planeDimensions}
               Component={Tree}
               objectSize={1.2}
-              numObjects={20}
+              numObjects={100}
               buffer={10}
             />
 
             <RandomisedObstacles
               planeDimensions={planeDimensions}
               Component={Rock}
-              objectSize={5}
+              objectSize={3}
               numObjects={10}
             />
             <RandomisedObstacles
@@ -74,12 +73,12 @@ function App() {
               objectSize={0.5}
               numObjects={10}
             />
-            <RandomisedObstacles
+            {/* <RandomisedObstacles
               planeDimensions={planeDimensions}
               Component={ObstacleRunner}
               objectSize={1.2}
               numObjects={3}
-            />
+            /> */}
 
             <Path planeDimensions={planeDimensions} />
             <Ground />

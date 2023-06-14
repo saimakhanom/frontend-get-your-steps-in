@@ -3,7 +3,7 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { Clone, useAnimations } from "@react-three/drei";
 import { useEffect } from "react";
 import runner from "../assets/character.glb";
-import { RigidBody, interactionGroups } from "@react-three/rapier";
+import { CylinderCollider, RigidBody, interactionGroups } from "@react-three/rapier";
 
 const ObstacleRunner = ({ position, scale }) => {
   const model = useLoader(GLTFLoader, runner);
@@ -23,8 +23,10 @@ const ObstacleRunner = ({ position, scale }) => {
     <RigidBody
       type="fixed"
       name="obstacleRunner"
+      colliders={false}
       collisionGroups={interactionGroups(1, [0])}
     >
+      <CylinderCollider args={[0.8, 0.5]} position={position} />
       <Clone
         object={model.scene}
         position={position}

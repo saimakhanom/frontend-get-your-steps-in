@@ -1,9 +1,9 @@
 import { useLoader, useFrame } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
-import { useAnimations } from "@react-three/drei";
+import {  useAnimations } from "@react-three/drei";
 import { useEffect, useState, useRef, useMemo } from "react";
 import runnerFile from "../assets/Hoodie-Character.glb";
-import { RigidBody, interactionGroups } from "@react-three/rapier";
+import { RigidBody, interactionGroups, CylinderCollider } from "@react-three/rapier";
 
 const Character = ({
   left,
@@ -57,7 +57,7 @@ const Character = ({
       charRef.current?.applyImpulse({ x: -30 * delta, y: 0, z: 0 });
     }
     if (forward) {
-      charRef.current?.applyImpulse({ x: 0, y: 0, z: forward * delta });
+      charRef.current?.applyImpulse({ x: 0, y: 0, z: (forward*0.9) * delta });
     }
     if (left) {
       charRef.current?.applyImpulse({ x: left * delta, y: 0, z: 0 }, true);
@@ -71,7 +71,9 @@ const Character = ({
   });
 
   useEffect(() => {
-    charRef.current.restrictRotations(true);
+    // charRef.current.restrictRotations(true);
+    charRef.current.setEnabledRotations(false, false, false);
+
     const handleKeyDown = (event) => {
       if (event.code === "ArrowLeft") {
         setLeft(-5);
@@ -90,10 +92,10 @@ const Character = ({
         setJump(0);
       }
     };
-
+    
     window.addEventListener("keydown", handleKeyDown);
     window.addEventListener("keyup", handleKeyUp);
-
+    
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
       window.removeEventListener("keyup", handleKeyUp);
@@ -101,12 +103,14 @@ const Character = ({
   }, []);
 
   const handleCollisionEnter = (event) => {
+    // console.log(event.flipped)
+
     if (
       !collidedObjects.includes(event.other.rigidBodyObject.id) &&
       collidedObjects.length < 3 &&
       (event.other.rigidBodyObject.name === "branch" ||
-        event.other.rigidBodyObject.name === "obstacleRunner" ||
-        event.other.rigidBodyObject.name === "rock")
+      event.other.rigidBodyObject.name === "obstacleRunner" ||
+      event.other.rigidBodyObject.name === "rock")
     ) {
       collidedObjects.push(event.other.rigidBodyObject.id);
       setMotivation((prev) => prev - 1);
@@ -118,15 +122,18 @@ const Character = ({
       <RigidBody
         ref={charRef}
         name="character"
+        gravityScale={1.4}
+        colliders={false}
         onCollisionEnter={(event) => {
           handleCollisionEnter(event);
         }}
         collisionGroups={interactionGroups(0, [1])}
       >
+       <CylinderCollider args={[0.1, 0.8]} position={[0, 3, 4]}/>
         <primitive
           object={model.scene}
           scale={1.2}
-          position={[0, 1.2, 4]}
+          position={[0, 3, 4]}
           rotation={[0, -3.14, 0]}
         />
       </RigidBody>
