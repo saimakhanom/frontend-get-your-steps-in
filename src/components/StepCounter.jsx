@@ -10,10 +10,8 @@ function StepCounter() {
     setTimeout(() => {
       setTimer((s) => s + 1);
     }, 1000)
-    console.log(timer)
   
     if (timer%25 === 0 && timer !== 0){
-      console.log("about to speed up")
       setInterval((currentInterval) => currentInterval*0.6)
     }
 
