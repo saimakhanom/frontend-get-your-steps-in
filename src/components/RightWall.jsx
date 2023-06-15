@@ -12,8 +12,7 @@ function RightWall({ planeDimensions }) {
     >
       <mesh rotation={[-Math.PI / 2, -2, 0]} position={[5, 0.1, 0]}>
         <planeGeometry args={[5, pathLength]} receiveShadow />
-        <meshStandardMaterial color="#ff0000" opacity={0.0} transparent />
-        {/* <MeshReflectorMaterial opacity={0.0}/> */}
+        <meshStandardMaterial opacity={0.0} transparent />
       </mesh>
     </RigidBody>
   );

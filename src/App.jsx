@@ -20,7 +20,7 @@ import RightWall from "./components/RightWall";
 function App() {
   const [left, setLeft] = useState(0);
   const [right, setRight] = useState(0);
-  const [forward, setForward] = useState(-5);
+  const [forward, setForward] = useState(-20);
   const [jump, setJump] = useState(0);
   const [motivation, setMotivation] = useState(3);
 

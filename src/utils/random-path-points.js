@@ -8,7 +8,7 @@ export const generateRandomPathPosition = (
   const z = -(Math.random() * (pathConstraint - objectSize - 2) + 2);
   let y;
   if (objectSize > 2 || objectSize < 1) {
-    y = 10 + objectSize / 2;
+    y = 5 + objectSize / 2;
   } else {
     y = -0.3 + objectSize / 2;
   }

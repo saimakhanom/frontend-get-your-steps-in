@@ -47,6 +47,7 @@ const Character = ({
     const y = charRef.current?.translation().y;
     const x = charRef.current?.translation().x;
     const z = charRef.current?.translation().z;
+    const velocity = charRef.current?.linvel();
     // state.camera.lookAt(0, 0, z - 5);
     state.camera.position.set(0, y + 5, z + 15);
     state.camera.updateProjectionMatrix();
@@ -57,7 +58,8 @@ const Character = ({
     // if (x >= 4) {
     //   charRef.current?.applyImpulse({ x: -30 * delta, y: 0, z: 0 });
     // }
-    if (forward) {
+    if (forward && velocity?.z > -75) {
+      // console.log(velocity);
       charRef.current?.applyImpulse({
         x: 0,
         y: 0,
@@ -71,7 +73,14 @@ const Character = ({
       charRef.current?.applyImpulse({ x: right * delta, y: 0, z: 0 }, true);
     }
     if (jump) {
-      charRef.current?.applyImpulse({ x: 0, y: 0 + jump * delta, z: 0 }, true);
+      charRef.current?.applyImpulse(
+        { x: 0, y: 0 + jump * delta, z: 0 * delta },
+        true
+      );
+    }
+    if (y > -0.5) {
+      charRef.current?.applyImpulse({ x: 0, y: 0 - jump * delta, z: 0 }, true);
+      console.log(y);
     }
   });
   // console.log(charRef.current)
@@ -79,6 +88,7 @@ const Character = ({
     charRef.current.setEnabledRotations(false, false, false);
 
     const handleKeyDown = (event) => {
+      console.log(event.code);
       if (event.code === "ArrowLeft") {
         setLeft(-5);
       } else if (event.code === "ArrowRight") {
@@ -133,7 +143,7 @@ const Character = ({
       <RigidBody
         ref={charRef}
         name="character"
-        // gravityScale={1.4}
+        gravityScale={1.6}
         colliders={false}
         onCollisionEnter={(event) => {
           handleCollisionEnter(event);
