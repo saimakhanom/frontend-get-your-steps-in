@@ -38,7 +38,7 @@ function App() {
         shadows
       >
         <Suspense>
-          <Physics>
+          <Physics debug>
             <Lights />
             <PerspectiveCamera position={[0, 4, 7]}>
             <Character

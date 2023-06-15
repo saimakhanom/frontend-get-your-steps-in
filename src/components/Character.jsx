@@ -1,7 +1,7 @@
 import { useLoader, useFrame } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import {  useAnimations } from "@react-three/drei";
-import { useEffect, useRef, useMemo } from "react";
+import { useEffect, useRef, useMemo, useState } from "react";
 import runnerFile from "../assets/Hoodie-Character.glb";
 import { RigidBody, interactionGroups, CylinderCollider } from "@react-three/rapier";
 
@@ -15,6 +15,7 @@ const Character = ({
   setJump,
   setMotivation,
 }) => {
+    const [allowJump, setAllowJump] = useState(true)
   const charRef = useRef();
   // when the game is ready we will have a state that changes based on buttons pressed/timings etc that will replace the hardcoded animation variables
 
@@ -51,7 +52,7 @@ const Character = ({
       charRef.current?.applyImpulse({ x: -30 * delta, y: 0, z: 0 });
     }
     if (forward) {
-      charRef.current?.applyImpulse({ x: 0, y: 0, z: (forward*0.9) * delta });
+      charRef.current?.applyImpulse({ x: 0, y: 0, z: (forward*0.7) * delta });
     }
     if (left) {
       charRef.current?.applyImpulse({ x: left * delta, y: 0, z: 0 }, true);
@@ -72,8 +73,13 @@ const Character = ({
         setLeft(-5);
       } else if (event.code === "ArrowRight") {
         setRight(5);
-      } else if (event.code === "Space") {
-        setJump(30);
+      } else if (event.code === "Space" && !event.repeat && allowJump) {
+        setJump(6)
+        setAllowJump(false)
+        setTimeout(() => {setAllowJump(true)}, 500)
+      }
+      else if (event.code === "Space" && event.repeat) {
+        setJump(-6)   
       }
     };
     const handleKeyUp = (event) => {
@@ -82,7 +88,10 @@ const Character = ({
       } else if (event.code === "ArrowRight") {
         setRight(0);
       } else if (event.code === "Space") {
-        setJump(0);
+        setJump(0)
+        // setJump(5)
+        // setAllowJump(false)
+        // setTimeout(() => {setJump(0)}, 500);
       }
     };
     
@@ -93,7 +102,7 @@ const Character = ({
       window.removeEventListener("keydown", handleKeyDown);
       window.removeEventListener("keyup", handleKeyUp);
     };
-  }, [setLeft, setRight, setJump]);
+  }, [left, right, jump, allowJump]);
 
   const handleCollisionEnter = (event) => {
 
@@ -114,18 +123,18 @@ const Character = ({
       <RigidBody
         ref={charRef}
         name="character"
-        gravityScale={1.4}
-        colliders={false}
+        // gravityScale={1.4}
+        // colliders={false}
         onCollisionEnter={(event) => {
           handleCollisionEnter(event);
         }}
         collisionGroups={interactionGroups(0, [1])}
       >
-       <CylinderCollider args={[0.1, 0.8]} position={[0, 3, 4]}/>
+       {/* <CylinderCollider args={[0.1, 0.8]} position={[0, 3, 4]}/> */}
         <primitive
           object={model.scene}
           scale={1.2}
-          position={[0, 3, 4]}
+          position={[0, 4, 4]}
           rotation={[0, -3.14, 0]}
         />
       </RigidBody>
