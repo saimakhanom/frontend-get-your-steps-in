@@ -51,12 +51,12 @@ const Character = ({
     state.camera.position.set(0, y + 5, z + 15);
     state.camera.updateProjectionMatrix();
 
-    if (x <= -4) {
-      charRef.current?.applyImpulse({ x: 30 * delta, y: 0, z: 0 });
-    }
-    if (x >= 4) {
-      charRef.current?.applyImpulse({ x: -30 * delta, y: 0, z: 0 });
-    }
+    // if (x <= -4) {
+    //   charRef.current?.applyImpulse({ x: 30 * delta, y: 0, z: 0 });
+    // }
+    // if (x >= 4) {
+    //   charRef.current?.applyImpulse({ x: -30 * delta, y: 0, z: 0 });
+    // }
     if (forward) {
       charRef.current?.applyImpulse({
         x: 0,

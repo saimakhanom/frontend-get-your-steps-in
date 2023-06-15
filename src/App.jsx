@@ -14,6 +14,8 @@ import StepCounter from "./components/StepCounter";
 import Tree from "./components/Tree";
 import Motivation from "./components/Motivation";
 import { PerspectiveCamera } from "@react-three/drei";
+import SideWalls from "./components/SideWalls";
+import RightWall from "./components/RightWall";
 
 function App() {
   const [left, setLeft] = useState(0);
@@ -32,27 +34,24 @@ function App() {
   return (
     <div className="canvas-container">
       <StepCounter motivation={motivation} />
-      <Motivation motivation={motivation} />
-      <Canvas
-        style={{ backgroundColor: "blue" }}
-        shadows
-      >
+      {/* <Motivation motivation={motivation} /> */}
+      <Canvas style={{ backgroundColor: "blue" }} shadows>
         <Suspense>
           <Physics debug>
             <Lights />
             <PerspectiveCamera position={[0, 4, 7]}>
-            <Character
-              jump={jump}
-              setJump={setJump}
-              left={left}
-              setLeft={setLeft}
-              right={right}
-              setRight={setRight}
-              forward={forward}
-              setForward={setForward}
-              motivation={motivation}
-              setMotivation={setMotivation}
-            />
+              <Character
+                jump={jump}
+                setJump={setJump}
+                left={left}
+                setLeft={setLeft}
+                right={right}
+                setRight={setRight}
+                forward={forward}
+                setForward={setForward}
+                motivation={motivation}
+                setMotivation={setMotivation}
+              />
             </PerspectiveCamera>
 
             <RandomisedGrassComponents
@@ -83,7 +82,9 @@ function App() {
             /> */}
 
             <Path planeDimensions={planeDimensions} />
-            <Ground planeDimensions={planeDimensions}/>
+            <SideWalls planeDimensions={planeDimensions} />
+            <RightWall planeDimensions={planeDimensions}/>
+            <Ground planeDimensions={planeDimensions} />
           </Physics>
         </Suspense>
       </Canvas>
