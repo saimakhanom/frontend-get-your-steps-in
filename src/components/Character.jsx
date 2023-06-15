@@ -74,12 +74,12 @@ const Character = ({
       } else if (event.code === "ArrowRight") {
         setRight(5);
       } else if (event.code === "Space" && !event.repeat && allowJump) {
-        setJump(6)
+        setJump(8)
         setAllowJump(false)
         setTimeout(() => {setAllowJump(true)}, 500)
       }
       else if (event.code === "Space" && event.repeat) {
-        setJump(-6)   
+        setJump(-8)   
       }
     };
     const handleKeyUp = (event) => {
