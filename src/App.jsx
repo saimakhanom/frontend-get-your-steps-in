@@ -13,6 +13,7 @@ import StepCounter from "./components/StepCounter";
 // import ObstacleRunner from "./components/ObstacleRunner";
 import Tree from "./components/Tree";
 import Motivation from "./components/Motivation";
+import { PerspectiveCamera } from "@react-three/drei";
 
 function App() {
   const [left, setLeft] = useState(0);
@@ -34,12 +35,12 @@ function App() {
       <Motivation motivation={motivation} />
       <Canvas
         style={{ backgroundColor: "blue" }}
-        camera={{ position: [0, 4, 7] }}
         shadows
       >
         <Suspense>
           <Physics>
             <Lights />
+            <PerspectiveCamera position={[0, 4, 7]}>
             <Character
               jump={jump}
               setJump={setJump}
@@ -52,6 +53,7 @@ function App() {
               motivation={motivation}
               setMotivation={setMotivation}
             />
+            </PerspectiveCamera>
 
             <RandomisedGrassComponents
               planeDimensions={planeDimensions}

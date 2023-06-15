@@ -41,7 +41,6 @@ const Character = ({
     const y = charRef.current?.translation().y;
     const x = charRef.current?.translation().x;
     const z = charRef.current?.translation().z;
-    state.camera.lookAt(0, 0, z - 5);
     state.camera.position.set(0, y + 5, z + 15);
     state.camera.updateProjectionMatrix();
 
