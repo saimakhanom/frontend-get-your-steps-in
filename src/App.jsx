@@ -67,13 +67,13 @@ function App() {
               planeDimensions={planeDimensions}
               Component={Rock}
               objectSize={3}
-              numObjects={100}
+              numObjects={50}
             />
             <RandomisedObstacles
               planeDimensions={planeDimensions}
               Component={Branch}
               objectSize={0.5}
-              numObjects={100}
+              numObjects={50}
             />
             {/* <RandomisedObstacles
               planeDimensions={planeDimensions}
