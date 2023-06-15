@@ -3,7 +3,7 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import {  useAnimations } from "@react-three/drei";
 import { useEffect, useRef, useMemo } from "react";
 import runnerFile from "../assets/Hoodie-Character.glb";
-import { RigidBody, interactionGroups, CylinderCollider } from "@react-three/rapier";
+import { RigidBody, interactionGroups, CylinderCollider, CuboidCollider } from "@react-three/rapier";
 
 const Character = ({
   left,
@@ -41,6 +41,7 @@ const Character = ({
     const y = charRef.current?.translation().y;
     const x = charRef.current?.translation().x;
     const z = charRef.current?.translation().z;
+    // state.camera.lookAt(0, 0, z - 5);
     state.camera.position.set(0, y + 5, z + 15);
     state.camera.updateProjectionMatrix();
 
@@ -51,7 +52,7 @@ const Character = ({
       charRef.current?.applyImpulse({ x: -30 * delta, y: 0, z: 0 });
     }
     if (forward) {
-      charRef.current?.applyImpulse({ x: 0, y: 0, z: (forward*0.9) * delta });
+      charRef.current?.applyImpulse({ x: 0, y: 0, z: (forward*0.8) * delta });
     }
     if (left) {
       charRef.current?.applyImpulse({ x: left * delta, y: 0, z: 0 }, true);
@@ -114,18 +115,19 @@ const Character = ({
       <RigidBody
         ref={charRef}
         name="character"
-        gravityScale={1.4}
+        // gravityScale={1.4}
         colliders={false}
         onCollisionEnter={(event) => {
           handleCollisionEnter(event);
         }}
         collisionGroups={interactionGroups(0, [1])}
       >
-       <CylinderCollider args={[0.1, 0.8]} position={[0, 3, 4]}/>
+        <CuboidCollider args={[0.35, 0.35, 0.35]} position={[0, 3, 4]} />
+        
         <primitive
           object={model.scene}
           scale={1.2}
-          position={[0, 3, 4]}
+          position={[0, 2.8, 4]}
           rotation={[0, -3.14, 0]}
         />
       </RigidBody>

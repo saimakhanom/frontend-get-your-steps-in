@@ -13,6 +13,9 @@ const Rock = ({ position, scale }) => {
       name="rock"
       colliders={false}
       collisionGroups={interactionGroups(1, [0])}
+      // density={5}
+      linearDamping={1}
+      angularDamping={1}
     >
        <CylinderCollider args={[0.1, 0.8]} position={position} />
       <Clone

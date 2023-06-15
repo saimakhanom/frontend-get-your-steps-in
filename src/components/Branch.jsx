@@ -11,9 +11,7 @@ const Branch = ({ position, scale }) => {
   return (
     <RigidBody type="dynamic" 
       name="branch"
-      colliders={false}
       collisionGroups={interactionGroups(1, [0])}>
-       <CylinderCollider args={[0.1, 0.8]} position={position} />
       <Clone
         object={model.scene}
         position={position}
