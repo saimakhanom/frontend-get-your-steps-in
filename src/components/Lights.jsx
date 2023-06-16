@@ -1,9 +1,9 @@
 export default function Lights() {
   return (
     <>
-      <ambientLight />
-      <directionalLight />
-      <pointLight />
+      <ambientLight intensity={0.5}/>
+      {/* <directionalLight /> */}
+      {/* <pointLight /> */}
     </>
   );
 }
