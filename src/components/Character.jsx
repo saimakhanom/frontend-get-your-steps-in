@@ -3,6 +3,8 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { useAnimations } from "@react-three/drei";
 import { useEffect, useRef, useMemo, useState } from "react";
 import runnerFile from "../assets/Hoodie-Character.glb";
+import * as THREE from "three";
+
 import {
   RigidBody,
   interactionGroups,
@@ -18,6 +20,7 @@ const Character = ({
   jump,
   setJump,
   setMotivation,
+  motivation,
 }) => {
   const [allowJump, setAllowJump] = useState(true);
   const charRef = useRef();
@@ -29,14 +32,25 @@ const Character = ({
   const model = useLoader(GLTFLoader, runnerFile);
   const modelAnimations = useAnimations(model.animations, model.scene);
   const charRunning = "CharacterArmature|Run";
+  const charDeath = "CharacterArmature|Death";
 
   useEffect(() => {
-    const action = modelAnimations.actions[charRunning];
-    action.reset().fadeIn(0.5).play();
+    const runAction = modelAnimations.actions[charRunning];
+    const deathAction = modelAnimations.actions[charDeath];
+
+    if (motivation > 0) {
+      runAction.fadeIn(0.5).play();
+    } else {
+      deathAction.timeScale = 0.5;
+      deathAction.clampWhenFinished = true;
+      deathAction.setLoop(THREE.LoopOnce);
+      deathAction.play();
+    }
     return () => {
-      action.fadeOut(0.5);
+      runAction.stop();
+      deathAction.stop();
     };
-  }, [modelAnimations.actions, charRunning]);
+  }, [motivation, modelAnimations, charRunning, charDeath]);
 
   useFrame((state, delta) => {
     const y = charRef.current?.translation().y;
@@ -47,7 +61,6 @@ const Character = ({
     state.camera.updateProjectionMatrix();
 
     if (forward && velocity?.z > -75) {
-      
       charRef.current?.applyImpulse({
         x: 0,
         y: 0,
@@ -68,10 +81,12 @@ const Character = ({
     }
     if (y > -0.5) {
       charRef.current?.applyImpulse({ x: 0, y: 0 - jump * delta, z: 0 }, true);
-
+    }
+    if (motivation === 0) {
+      charRef.current?.setLinvel({ x: 0, y: 0, z: 0 });
     }
   });
-  
+
   useEffect(() => {
     charRef.current.setEnabledRotations(false, false, false);
 
@@ -93,11 +108,20 @@ const Character = ({
     const handleKeyUp = (event) => {
       if (event.code === "ArrowLeft") {
         setLeft(0);
+        charRef.current?.setLinvel({
+          x: 0,
+          y: 0,
+          z: charRef.current?.linvel().z,
+        });
       } else if (event.code === "ArrowRight") {
         setRight(0);
+        charRef.current?.setLinvel({
+          x: 0,
+          y: 0,
+          z: charRef.current?.linvel().z,
+        });
       } else if (event.code === "Space") {
         setJump(0);
-        
       }
     };
 

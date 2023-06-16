@@ -1,4 +1,4 @@
-import './App.css'
+import "./App.css";
 import { Canvas } from "@react-three/fiber";
 import { Suspense, useState } from "react";
 import { Physics } from "@react-three/rapier";
@@ -17,7 +17,7 @@ import Motivation from "./components/Motivation";
 import { Environment, PerspectiveCamera, Sky } from "@react-three/drei";
 import SideWalls from "./components/SideWalls";
 import RightWall from "./components/RightWall";
-import { Page } from './components/Loading-Page';
+import { Page } from "./components/Loading-Page";
 
 function App() {
   const [left, setLeft] = useState(0);
@@ -26,7 +26,6 @@ function App() {
   const [jump, setJump] = useState(0);
   const [motivation, setMotivation] = useState(3);
   const [score, setScore] = useState(0);
-  
 
   const planeDimensions = {
     pathLength: 10000,
@@ -35,20 +34,27 @@ function App() {
     groundLength: 1000,
   };
 
-
-  
-
   return (
     <div className="canvas-container">
-      <Page setForward={setForward} setScore={setScore}/>
+      <Page setForward={setForward} setScore={setScore} />
       <StepCounter motivation={motivation} score={score} setScore={setScore} />
       <Motivation motivation={motivation} />
       <Canvas shadows>
         <Suspense>
           <Physics>
             <Lights />
-            <Sky turbidity={10} rayleigh={2.5} mieCofficient={0.005} mieDirectionalG={0.7} azimuth={180} exposure={1} elevation={0} sunPosition={[0,0.5,-10000]} distance={450000}/>
-            <Environment preset="dawn"/>
+            <Sky
+              turbidity={10}
+              rayleigh={2.5}
+              mieCofficient={0.005}
+              mieDirectionalG={0.7}
+              azimuth={180}
+              exposure={1}
+              elevation={0}
+              sunPosition={[0, 0.5, -10000]}
+              distance={450000}
+            />
+            <Environment preset="dawn" />
             <PerspectiveCamera position={[0, 4, 7]}>
               <Character
                 jump={jump}
@@ -100,7 +106,7 @@ function App() {
 
             <Path planeDimensions={planeDimensions} />
             <SideWalls planeDimensions={planeDimensions} />
-            <RightWall planeDimensions={planeDimensions}/>
+            <RightWall planeDimensions={planeDimensions} />
             <Ground planeDimensions={planeDimensions} />
           </Physics>
         </Suspense>
