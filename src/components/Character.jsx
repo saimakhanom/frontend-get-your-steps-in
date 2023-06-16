@@ -51,7 +51,6 @@ const Character = ({
     // state.camera.lookAt(0, 0, z - 5);
     state.camera.position.set(0, y + 5, z + 15);
     state.camera.updateProjectionMatrix();
-    console.log(forward);
 
     // if (x <= -4) {
     //   charRef.current?.applyImpulse({ x: 30 * delta, y: 0, z: 0 });
@@ -88,12 +87,11 @@ const Character = ({
     charRef.current.setEnabledRotations(false, false, false);
 
     const handleKeyDown = async (event) => {
-      console.log(event.code);
       if (event.code === "ArrowLeft" && jumpKeyPressed === false) {
         setLeft(-5);
       } else if (event.code === "ArrowRight" && jumpKeyPressed === false) {
         setRight(5);
-      } else if (event.code === "Space" && allowJump) {
+      } else if (event.code === "Space" && !event.repeat && allowJump) {
         try {
           await setJump(8);
           setTimeout(() => {
@@ -107,9 +105,10 @@ const Character = ({
         // setTimeout(() => {
         //   setAllowJump(true);
         // }, 500);
-      } else if (event.code === "Space" && event.repeat) {
+      } else if (event.code === "Space" && event.repeat === true) {
         setJumpKeyPressed(true);
         setJump(-8);
+        event.preventDefault()
       }
     };
     const handleKeyUp = (event) => {

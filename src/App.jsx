@@ -35,10 +35,10 @@ function App() {
   return (
     <div className="canvas-container">
       <StepCounter motivation={motivation} />
-      {/* <Motivation motivation={motivation} /> */}
+      <Motivation motivation={motivation} />
       <Canvas shadows>
         <Suspense>
-          <Physics debug>
+          <Physics>
             {/* <Lights /> */}
             <Sky turbidity={10} rayleigh={2.5} mieCofficient={0.005} mieDirectionalG={0.7} azimuth={180} exposure={1} elevation={0} sunPosition={[0,0.5,-10000]} distance={450000}/>
             <Environment preset="dawn"/>
