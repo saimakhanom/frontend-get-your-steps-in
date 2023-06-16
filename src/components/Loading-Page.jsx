@@ -26,7 +26,17 @@ export const Page = ({ setForward, setScore }) => {
           <h1>Get Your Steps In!</h1>
         </div>
         <div className="controls">
-          <h2>Controls</h2>
+          <div className="instructions">
+            <h2>Instructions </h2>
+            <p>
+              You are playing as John, a lad hell-bent on getting his steps in,
+              on his journey he encounters a load of obstacles blocking his
+              path. If he were to
+              hit one of these obstacles it would decrease his motivation to
+              continue running, if he hits 3 obstacles he's off for a kebab...
+            </p>
+        </div>
+          <h2 className="ctrl-title">Controls</h2>
           <p>
             <b>Left Arrow:</b> Left
           </p>
@@ -36,30 +46,8 @@ export const Page = ({ setForward, setScore }) => {
           <p>
             <b>Space:</b> Jump
           </p>
-            <button>Press Any Key To Start</button>
-          <h1 className="seperator">--------------</h1>
-          <div className="instructions">
-            <h2>Instructions </h2>
-            <p>
-              The aim of the game is to avoid as many obstacles as you can as
-              you gradually speed up throughout the path , avoid trees and rocks
-              and other runners. If you look at the top left you will notice
-              that you have a motivation bar, if it dips below 0 the game is
-              over!
-            </p>
-
-            <h1 className="seperator">--------------</h1>
+          <button>Press Any Key To Start</button>
           </div>
-          <div className="synopsis">
-            <h2>Synopsis </h2>
-            <p>
-              This game tells the story of John, a lad who spends every night
-              downing redstripes on his sofa until his parter got him a fitbit,
-              he then realised that they set him a step goal for each day, and
-              is making up for his unhealthy lifestyle
-            </p>
-          </div>
-        </div>
         <footer>
           <ul className="names">
             <div className="name-item">
