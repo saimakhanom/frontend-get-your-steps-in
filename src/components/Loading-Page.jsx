@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { VscGithub } from "react-icons/vsc";
+import { SiLinkedin } from "react-icons/si";
 
 export const Page = ({ setForward }) => {
   const [gameStarted, setGameStarted] = useState(false);
@@ -27,36 +28,51 @@ export const Page = ({ setForward }) => {
         <h2>Press any key to start!</h2>
         <footer>
           <ul className="names">
-            <a href="https://github.com/dave-hickman" target="_blank">
-              <div className="name-item">
-                <VscGithub />
-                <li>Λ Dave Hickman</li>
-              </div>
-            </a>
-            <a href="https://github.com/jorgemf2604" target="blank">
             <div className="name-item">
-              <VscGithub />
+              <a href="https://github.com/dave-hickman" target="_blank" rel="noreferrer">
+                <VscGithub />
+              </a>
+              <a href="https://www.linkedin.com/in/dave-hickman-dev/" target="_blank" rel="noreferrer">
+                <SiLinkedin />
+              </a>
+              <li>Λ Dave Hickman</li>
+            </div>
+            <div className="name-item">
+              <a href="https://github.com/jorgemf2604" target="_blank" rel="noreferrer">
+                <VscGithub />
+              </a>
+              <a href="#">
+                <SiLinkedin />
+              </a>
               <li>Λ Jorge Martin</li>
             </div>
-            </a>
-            <a href="https://github.com/Joelymodevs" target="blank">
             <div className="name-item">
-              <VscGithub />
+              <a href="https://github.com/Joelymodevs" target="_blank" rel="noreferrer">
+                <VscGithub />
+              </a>
+              <a href="https://www.linkedin.com/in/joel-morton-557537275/" target="_blank" rel="noreferrer">
+                <SiLinkedin />
+              </a>
               <li>Λ Joel Morton</li>
             </div>
-            </a>
-            <a href="https://github.com/NadiaIb" target="blank">
             <div className="name-item">
-              <VscGithub />
+              <a href="https://github.com/NadiaIb" target="_blank" rel="noreferrer">
+                <VscGithub />
+              </a>
+              <a href="https://www.linkedin.com/in/nadia-ibrahim-1422a4109/" target="_blank" rel="noreferrer">
+                <SiLinkedin />
+              </a>
               <li>Λ Nadia Ibrahim</li>
             </div>
-            </a>
-            <a href="https://github.com/saimakhanom" target="blank">
-              <div className="name-item">
+            <div className="name-item">
+              <a href="https://github.com/saimakhanom" target="_blank" rel="noreferrer">
                 <VscGithub />
-                <li>Λ Saima Khanom</li>
-              </div>
-            </a>
+              </a>
+              <a href="https://www.linkedin.com/in/saimakhanom/" target="_blank" rel="noreferrer">
+                <SiLinkedin />
+              </a>
+              <li>Λ Saima Khanom</li>
+            </div>
           </ul>
         </footer>
       </div>

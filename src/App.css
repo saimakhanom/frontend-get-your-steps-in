@@ -12,7 +12,7 @@ a:hover {
     -o-transition:color .2s ease-in;
     -webkit-transition:color .2s ease-in;
     color: goldenrod;
-    scale: 1.1;
+    scale: 1.4;
     cursor: pointer;
 }
 .blurry-screen {
