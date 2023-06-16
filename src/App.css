@@ -55,3 +55,11 @@ footer {
     align-items: center;
     gap: 0.5rem;
 }
+
+.controls {
+    background-color: rgba(248, 248, 248, 0.591);
+    border-radius: 8px;
+    opacity: 0.6;
+    padding: 1rem;
+
+}

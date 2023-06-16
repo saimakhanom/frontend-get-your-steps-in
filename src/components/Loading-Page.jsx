@@ -21,11 +21,13 @@ export const Page = ({ setForward }) => {
     setForward(0);
     return (
       <div className="blurry-screen">
+        <div className="controls">
         <h1>Controls:</h1>
-        <p>Left Arrow: Left</p>
-        <p>Right Arrow: Right</p>
-        <p>Space: Jump</p>
+        <p><b>Left Arrow:</b> Left</p>
+        <p><b>Right Arrow:</b> Right</p>
+        <p><b>Space:</b> Jump</p>
         <h2>Press any key to start!</h2>
+        </div>
         <footer>
           <ul className="names">
             <div className="name-item">
