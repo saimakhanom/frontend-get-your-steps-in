@@ -1,6 +1,6 @@
 import './App.css'
 import { Canvas } from "@react-three/fiber";
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, useState } from "react";
 import { Physics } from "@react-three/rapier";
 import RandomisedObstacles from "./components/Randomised-obstacles";
 import RandomisedGrassComponents from "./components/Randomised-trees";
@@ -12,10 +12,9 @@ import Character from "./components/Character";
 import Rock from "./components/Rock";
 import Branch from "./components/Branch";
 import StepCounter from "./components/StepCounter";
-// import ObstacleRunner from "./components/ObstacleRunner";
 import Tree from "./components/Tree";
 import Motivation from "./components/Motivation";
-import { Environment, OrbitControls, PerspectiveCamera, Sky } from "@react-three/drei";
+import { Environment, PerspectiveCamera, Sky } from "@react-three/drei";
 import SideWalls from "./components/SideWalls";
 import RightWall from "./components/RightWall";
 import { Page } from './components/Loading-Page';
@@ -26,6 +25,7 @@ function App() {
   const [forward, setForward] = useState(-20);
   const [jump, setJump] = useState(0);
   const [motivation, setMotivation] = useState(3);
+  const [score, setScore] = useState(0);
   
 
   const planeDimensions = {
@@ -40,13 +40,13 @@ function App() {
 
   return (
     <div className="canvas-container">
-      <Page setForward={setForward}/>
-      <StepCounter motivation={motivation} />
+      <Page setForward={setForward} setScore={setScore}/>
+      <StepCounter motivation={motivation} score={score} setScore={setScore} />
       <Motivation motivation={motivation} />
       <Canvas shadows>
         <Suspense>
           <Physics>
-            {/* <Lights /> */}
+            <Lights />
             <Sky turbidity={10} rayleigh={2.5} mieCofficient={0.005} mieDirectionalG={0.7} azimuth={180} exposure={1} elevation={0} sunPosition={[0,0.5,-10000]} distance={450000}/>
             <Environment preset="dawn"/>
             <PerspectiveCamera position={[0, 4, 7]}>

@@ -6,7 +6,6 @@ import runnerFile from "../assets/Hoodie-Character.glb";
 import {
   RigidBody,
   interactionGroups,
-  CylinderCollider,
   CuboidCollider,
 } from "@react-three/rapier";
 
@@ -22,7 +21,6 @@ const Character = ({
 }) => {
   const [allowJump, setAllowJump] = useState(true);
   const charRef = useRef();
-  // when the game is ready we will have a state that changes based on buttons pressed/timings etc that will replace the hardcoded animation variables
 
   let collidedObjects = useMemo(() => {
     return [];
@@ -31,9 +29,6 @@ const Character = ({
   const model = useLoader(GLTFLoader, runnerFile);
   const modelAnimations = useAnimations(model.animations, model.scene);
   const charRunning = "CharacterArmature|Run";
-  // const charWalk = "CharacterArmature|Walk";
-  // const charIdle = "CharacterArmature|Idle";
-  // const charDeath = "CharacterArmature|Death";
 
   useEffect(() => {
     const action = modelAnimations.actions[charRunning];
@@ -48,18 +43,11 @@ const Character = ({
     const x = charRef.current?.translation().x;
     const z = charRef.current?.translation().z;
     const velocity = charRef.current?.linvel();
-    // state.camera.lookAt(0, 0, z - 5);
     state.camera.position.set(0, y + 5, z + 15);
     state.camera.updateProjectionMatrix();
 
-    // if (x <= -4) {
-    //   charRef.current?.applyImpulse({ x: 30 * delta, y: 0, z: 0 });
-    // }
-    // if (x >= 4) {
-    //   charRef.current?.applyImpulse({ x: -30 * delta, y: 0, z: 0 });
-    // }
     if (forward && velocity?.z > -75) {
-      // console.log(velocity);
+      
       charRef.current?.applyImpulse({
         x: 0,
         y: 0,
@@ -80,15 +68,14 @@ const Character = ({
     }
     if (y > -0.5) {
       charRef.current?.applyImpulse({ x: 0, y: 0 - jump * delta, z: 0 }, true);
-      console.log(y);
+
     }
   });
-  // console.log(charRef.current)
+  
   useEffect(() => {
     charRef.current.setEnabledRotations(false, false, false);
 
     const handleKeyDown = (event) => {
-      console.log(event.code);
       if (event.code === "ArrowLeft") {
         setLeft(-5);
       } else if (event.code === "ArrowRight") {
@@ -110,9 +97,7 @@ const Character = ({
         setRight(0);
       } else if (event.code === "Space") {
         setJump(0);
-        // setJump(5)
-        // setAllowJump(false)
-        // setTimeout(() => {setJump(0)}, 500);
+        
       }
     };
 

@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 
-function StepCounter({motivation}) {
-  const [score, setScore] = useState(0);
+function StepCounter({motivation, score, setScore}) {
   const [interval, setInterval] = useState(500)
   const [timer, setTimer] = useState(0)
 
