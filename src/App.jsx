@@ -18,6 +18,7 @@ import { Environment, PerspectiveCamera, Sky } from "@react-three/drei";
 import SideWalls from "./components/SideWalls";
 import RightWall from "./components/RightWall";
 import { Page } from './components/Loading-Page';
+import { getAllScores } from './utils/api-calls';
 
 function App() {
   const [left, setLeft] = useState(0);
@@ -40,6 +41,7 @@ function App() {
 
   return (
     <div className="canvas-container">
+      <button onClick={getAllScores}>Axios Get</button>
       <Page setForward={setForward} setScore={setScore}/>
       <StepCounter motivation={motivation} score={score} setScore={setScore} />
       <Motivation motivation={motivation} />
