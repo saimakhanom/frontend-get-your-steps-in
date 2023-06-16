@@ -1,7 +1,8 @@
-import './App.css'
-import { Canvas } from "@react-three/fiber";
 import { Suspense, useState } from "react";
+import { Canvas } from "@react-three/fiber";
+import { Environment, PerspectiveCamera, Sky } from "@react-three/drei";
 import { Physics } from "@react-three/rapier";
+
 import RandomisedObstacles from "./components/Randomised-obstacles";
 import RandomisedGrassComponents from "./components/Randomised-trees";
 import Path from "./components/Path";
@@ -14,10 +15,10 @@ import Branch from "./components/Branch";
 import StepCounter from "./components/StepCounter";
 import Tree from "./components/Tree";
 import Motivation from "./components/Motivation";
-import { Environment, PerspectiveCamera, Sky } from "@react-three/drei";
 import SideWalls from "./components/SideWalls";
 import RightWall from "./components/RightWall";
 import { Page } from './components/Loading-Page';
+import './App.css'
 
 function App() {
   const [left, setLeft] = useState(0);
@@ -35,8 +36,7 @@ function App() {
     groundLength: 1000,
   };
 
-
-  
+ 
 
   return (
     <div className="canvas-container">
