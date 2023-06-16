@@ -6,6 +6,7 @@ import RandomisedGrassComponents from "./components/Randomised-trees";
 import Path from "./components/Path";
 import Ground from "./components/Ground";
 import Lights from "./components/Lights";
+import Grass from "./components/Grass";
 import Character from "./components/Character";
 import Rock from "./components/Rock";
 import Branch from "./components/Branch";
@@ -13,7 +14,7 @@ import StepCounter from "./components/StepCounter";
 // import ObstacleRunner from "./components/ObstacleRunner";
 import Tree from "./components/Tree";
 import Motivation from "./components/Motivation";
-import { PerspectiveCamera } from "@react-three/drei";
+import { Environment, OrbitControls, PerspectiveCamera, Sky } from "@react-three/drei";
 import SideWalls from "./components/SideWalls";
 import RightWall from "./components/RightWall";
 
@@ -27,18 +28,20 @@ function App() {
   const planeDimensions = {
     pathLength: 10000,
     pathWidth: 10,
-    groundWidth: 1000,
+    groundWidth: 300,
     groundLength: 1000,
   };
 
   return (
     <div className="canvas-container">
       <StepCounter motivation={motivation} />
-      {/* <Motivation motivation={motivation} /> */}
-      <Canvas style={{ backgroundColor: "blue" }} shadows>
+      <Motivation motivation={motivation} />
+      <Canvas shadows>
         <Suspense>
-          <Physics debug>
-            <Lights />
+          <Physics>
+            {/* <Lights /> */}
+            <Sky turbidity={10} rayleigh={2.5} mieCofficient={0.005} mieDirectionalG={0.7} azimuth={180} exposure={1} elevation={0} sunPosition={[0,0.5,-10000]} distance={450000}/>
+            <Environment preset="dawn"/>
             <PerspectiveCamera position={[0, 4, 7]}>
               <Character
                 jump={jump}
@@ -58,6 +61,13 @@ function App() {
               planeDimensions={planeDimensions}
               Component={Tree}
               objectSize={1.2}
+              numObjects={200}
+              buffer={10}
+            />
+            <RandomisedGrassComponents
+              planeDimensions={planeDimensions}
+              Component={Grass}
+              objectSize={5}
               numObjects={500}
               buffer={10}
             />
