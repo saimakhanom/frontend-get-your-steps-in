@@ -1,5 +1,6 @@
+import './App.css'
 import { Canvas } from "@react-three/fiber";
-import { Suspense, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { Physics } from "@react-three/rapier";
 import RandomisedObstacles from "./components/Randomised-obstacles";
 import RandomisedGrassComponents from "./components/Randomised-trees";
@@ -17,6 +18,7 @@ import Motivation from "./components/Motivation";
 import { Environment, OrbitControls, PerspectiveCamera, Sky } from "@react-three/drei";
 import SideWalls from "./components/SideWalls";
 import RightWall from "./components/RightWall";
+import { Page } from './components/Loading-Page';
 
 function App() {
   const [left, setLeft] = useState(0);
@@ -24,6 +26,7 @@ function App() {
   const [forward, setForward] = useState(-20);
   const [jump, setJump] = useState(0);
   const [motivation, setMotivation] = useState(3);
+  
 
   const planeDimensions = {
     pathLength: 10000,
@@ -32,8 +35,12 @@ function App() {
     groundLength: 1000,
   };
 
+
+  
+
   return (
     <div className="canvas-container">
+      <Page setForward={setForward}/>
       <StepCounter motivation={motivation} />
       <Motivation motivation={motivation} />
       <Canvas shadows>
