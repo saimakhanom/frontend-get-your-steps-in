@@ -93,7 +93,7 @@ const Character = ({
         setRight(5);
       } else if (event.code === "Space" && !event.repeat && allowJump) {
         try {
-          await setJump(8);
+          await setJump(9);
           setTimeout(() => {
             setJump(0);
           }, 10);
