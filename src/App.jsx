@@ -28,7 +28,6 @@ function App() {
   const [motivation, setMotivation] = useState(3);
   const [score, setScore] = useState(0);
   
-
   const planeDimensions = {
     pathLength: 10000,
     pathWidth: 10,
@@ -36,7 +35,6 @@ function App() {
     groundLength: 1000,
   };
 
- 
 
   return (
     <div className="canvas-container">
@@ -45,7 +43,7 @@ function App() {
       <Motivation motivation={motivation} />
       <Canvas shadows>
         <Suspense>
-          <Physics>
+          <Physics debug>
             <Lights />
             <Sky turbidity={10} rayleigh={2.5} mieCofficient={0.005} mieDirectionalG={0.7} azimuth={180} exposure={1} elevation={0} sunPosition={[0,0.5,-10000]} distance={450000}/>
             <Environment preset="dawn"/>

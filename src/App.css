@@ -48,12 +48,14 @@ footer {
   list-style-type: none;
   margin-bottom: 20px;
   font-family: 'Anybody', cursive;
+  padding: 0 5%;
+  gap: 0.3rem;
 }
 
 .name-item {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.2rem;
   
 }
 
@@ -134,8 +136,4 @@ button {
 
 .ctrl-title{
     margin-top: 2rem;
-}
-
-.toast-position {
-  top: 8rem !important;
 }

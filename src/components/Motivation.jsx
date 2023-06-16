@@ -5,15 +5,13 @@ import fist from "../assets/fist.png";
 
 function Motivation({ motivation }) {
   const motivationalMessages = [
-    "Run like the wind, or at least like a caffeinated squirrel!",
-    "Keep running, the ice cream truck is just around the corner!",
-    "Pain is temporary, but the glory of finishing lasts forever!",
-    "You're running faster than a cat chasing a laser pointer!",
-    "Imagine the victory dance you'll do at the finish line!",
-    "You're running so well, even the tortoise is impressed!",
-    "Keep going, disco diva! Your moves are rocking the pavement!",
-    "You're crushing it! The road is your dance floor!",
-    "Run like a champ, then treat yourself to some well-deserved Netflix!",
+    "Run like the wind, or at least like a man about to get a kebab!",
+    "Keep running, the kebab shop is just around the corner!",
+    "Pain is temporary, but the glory of a kebab lasts forever!",
+    "You're faster than a spinning kebab skewer!",
+    "Imagine the taste of victory... and the taste of a mouthwatering kebab!",
+    "Imagine the victory dance you'll do when you get to the kebab shop!",
+    "Run like a champ, then treat yourself to some well-deserved kebab!",
     "Don't stop! The world needs more superheroes in sweatbands!",
   ];
   const notify = () =>
@@ -53,6 +51,7 @@ function Motivation({ motivation }) {
       {motivation === 0 && (
         <div className="game-over">
           <h2 className="text">Game over!</h2>
+          <p className="game-over-message">Time for a kebab...</p>
         </div>
       )}
     </>
