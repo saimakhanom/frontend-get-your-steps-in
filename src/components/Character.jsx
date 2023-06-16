@@ -21,7 +21,7 @@ const Character = ({
   setMotivation,
 }) => {
   const [allowJump, setAllowJump] = useState(true);
-  const [jumpKeyPressed, setJumpKeyPressed] = useState(false)
+  const [jumpKeyPressed, setJumpKeyPressed] = useState(false);
   const charRef = useRef();
   // when the game is ready we will have a state that changes based on buttons pressed/timings etc that will replace the hardcoded animation variables
 
@@ -52,6 +52,7 @@ const Character = ({
     // state.camera.lookAt(0, 0, z - 5);
     state.camera.position.set(0, y + 5, z + 15);
     state.camera.updateProjectionMatrix();
+    console.log(forward);
 
     // if (x <= -4) {
     //   charRef.current?.applyImpulse({ x: 30 * delta, y: 0, z: 0 });
@@ -84,51 +85,56 @@ const Character = ({
     }
   });
 
-  const pressed = []
+  const pressed = [];
   // console.log(charRef.current)
+
   useEffect(() => {
     charRef.current.setEnabledRotations(false, false, false);
 
-    const handleKeyDown = (event) => {
+    // let jumpKeyPressed = false
+    const handleKeyDown = async (event) => {
+      console.log(event.code);
       if (event.code === "ArrowLeft" && jumpKeyPressed === false) {
-        
         setLeft(-5);
-        console.log(pressed)
+        console.log(pressed);
       } else if (event.code === "ArrowRight" && jumpKeyPressed === false) {
         setRight(5);
-      } else if (event.code === "Space" && !event.repeat && allowJump ) {
-        
-        setJump(8);
-        setAllowJump(false);
-        setTimeout(() => {
-          setAllowJump(true); 
-        }, 500);
+      } else if (event.code === "Space" && allowJump) {
+        try {
+          await setJump(7);
+          setTimeout(() => {
+            setJump(0);
+          }, 250);
+        } catch (err) {
+          console.log(err);
+        }
+        // setJumpKeyPressed(true);
+        // setAllowJump(false);
+        // setTimeout(() => {
+        //   setAllowJump(true);
+        // }, 500);
       } else if (event.code === "Space" && event.repeat) {
-        setJumpKeyPressed(true)
-        setJump(-8);
+        setJumpKeyPressed(true);
+        setJump(0);
       }
     };
     const handleKeyUp = (event) => {
       if (event.code === "ArrowLeft") {
         setLeft(0);
         charRef.current?.setLinvel({
-          // setLin updates the characters linear velocity
-          x: 0, // doesn’t let char move left left or right
+          x: 0,
           y: 0,
           z: charRef.current?.linvel().z,
-          // This gets the current linear velocity of characters rigid body and sets it to setLinvel, this lets the character maintain its velocity even when keys are pressed
         });
       } else if (event.code === "ArrowRight") {
         setRight(0);
         charRef.current?.setLinvel({
-          // setLin updates the characters linear velocity
-          x: 0, // doesn’t let char move left left or right
+          x: 0,
           y: 0,
           z: charRef.current?.linvel().z,
-          // This gets the current linear velocity of characters rigid body and sets it to setLinvel, this lets the character maintain its velocity even when keys are pressed
         });
       } else if (event.code === "Space") {
-        setJumpKeyPressed(false)
+        setJumpKeyPressed(false);
         setJump(0);
         // setJump(5)
         // setAllowJump(false)

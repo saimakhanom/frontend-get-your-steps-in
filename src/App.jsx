@@ -35,7 +35,7 @@ function App() {
   return (
     <div className="canvas-container">
       <StepCounter motivation={motivation} />
-      <Motivation motivation={motivation} />
+      {/* <Motivation motivation={motivation} /> */}
       <Canvas shadows>
         <Suspense>
           <Physics>
