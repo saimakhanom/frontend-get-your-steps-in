@@ -21,6 +21,7 @@ const Character = ({
   setMotivation,
 }) => {
   const [allowJump, setAllowJump] = useState(true);
+  const [jumpKeyPressed, setJumpKeyPressed] = useState(false)
   const charRef = useRef();
   // when the game is ready we will have a state that changes based on buttons pressed/timings etc that will replace the hardcoded animation variables
 
@@ -80,35 +81,54 @@ const Character = ({
     }
     if (y > -0.5) {
       charRef.current?.applyImpulse({ x: 0, y: 0 - jump * delta, z: 0 }, true);
-      console.log(y);
     }
   });
+
+  const pressed = []
   // console.log(charRef.current)
   useEffect(() => {
     charRef.current.setEnabledRotations(false, false, false);
 
     const handleKeyDown = (event) => {
-      console.log(event.code);
-      if (event.code === "ArrowLeft") {
+      if (event.code === "ArrowLeft" && jumpKeyPressed === false) {
+        
         setLeft(-5);
-      } else if (event.code === "ArrowRight") {
+        console.log(pressed)
+      } else if (event.code === "ArrowRight" && jumpKeyPressed === false) {
         setRight(5);
-      } else if (event.code === "Space" && !event.repeat && allowJump) {
+      } else if (event.code === "Space" && !event.repeat && allowJump ) {
+        
         setJump(8);
         setAllowJump(false);
         setTimeout(() => {
-          setAllowJump(true);
+          setAllowJump(true); 
         }, 500);
       } else if (event.code === "Space" && event.repeat) {
+        setJumpKeyPressed(true)
         setJump(-8);
       }
     };
     const handleKeyUp = (event) => {
       if (event.code === "ArrowLeft") {
         setLeft(0);
+        charRef.current?.setLinvel({
+          // setLin updates the characters linear velocity
+          x: 0, // doesn’t let char move left left or right
+          y: 0,
+          z: charRef.current?.linvel().z,
+          // This gets the current linear velocity of characters rigid body and sets it to setLinvel, this lets the character maintain its velocity even when keys are pressed
+        });
       } else if (event.code === "ArrowRight") {
         setRight(0);
+        charRef.current?.setLinvel({
+          // setLin updates the characters linear velocity
+          x: 0, // doesn’t let char move left left or right
+          y: 0,
+          z: charRef.current?.linvel().z,
+          // This gets the current linear velocity of characters rigid body and sets it to setLinvel, this lets the character maintain its velocity even when keys are pressed
+        });
       } else if (event.code === "Space") {
+        setJumpKeyPressed(false)
         setJump(0);
         // setJump(5)
         // setAllowJump(false)
