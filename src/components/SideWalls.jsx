@@ -9,7 +9,6 @@ function SideWalls({ planeDimensions }) {
     <RigidBody
       type="fixed"
       colliders="trimesh"
-      //   collisionGroups={interactionGroups(2, [3])}
     >
       <mesh rotation={[-Math.PI / 2, 2, 0]} position={[-5, 0.1, 0]}>
         <planeGeometry args={[5, pathLength]} receiveShadow />

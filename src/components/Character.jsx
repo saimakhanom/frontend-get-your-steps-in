@@ -5,8 +5,6 @@ import { useEffect, useRef, useMemo, useState } from "react";
 import runnerFile from "../assets/Hoodie-Character.glb";
 import {
   RigidBody,
-  interactionGroups,
-  CuboidCollider,
 } from "@react-three/rapier";
 import {damp} from "maath/easing"
 
@@ -18,6 +16,7 @@ const Character = ({
   forward,
   jump,
   setJump,
+  motivation,
   setMotivation,
 }) => {
   const [allowJump, setAllowJump] = useState(true);
@@ -46,7 +45,6 @@ const Character = ({
     const z = charRef.current?.translation().z;
     const velocity = charRef.current?.linvel();
     const target = state.camera.position.set(0, y+5, z+15)
-    // state.camera.position.set(0, y + 5, z + 15);
     damp(state.camera.position,[0, y+5, z+15], 1, delta);
     state.camera.updateProjectionMatrix();
 
@@ -85,18 +83,13 @@ const Character = ({
         setRight(5);
       } else if (event.code === "Space" && !event.repeat && allowJump) {
         try {
-          await setJump(10);
+          setJump(10);
           setTimeout(() => {
             setJump(0);
-          }, 10);
+          }, 300);
         } catch (err) {
           console.log(err);
         }
-        // setJumpKeyPressed(true);
-        // setAllowJump(false);
-        // setTimeout(() => {
-        //   setAllowJump(true);
-        // }, 500);
       } else if (event.code === "Space" && event.repeat === true) {
         setJumpKeyPressed(true);
         setJump(-8);
@@ -121,9 +114,6 @@ const Character = ({
       } else if (event.code === "Space") {
         setJumpKeyPressed(false);
         setJump(-8);
-        // setJump(5)
-        // setAllowJump(false)
-        // setTimeout(() => {setJump(0)}, 500);
       }
     };
 
@@ -137,12 +127,14 @@ const Character = ({
   }, [left, right, jump, allowJump, jumpKeyPressed, setJump, setRight, setLeft]);
 
   const handleCollisionEnter = (event) => {
+    if (event.other.rigidBodyObject.name === "branch" ||
+    event.other.rigidBodyObject.name === "rock")
     if (
       !collidedObjects.includes(event.other.rigidBodyObject.id) &&
       collidedObjects.length < 3 &&
       (event.other.rigidBodyObject.name === "branch" ||
-        event.other.rigidBodyObject.name === "obstacleRunner" ||
         event.other.rigidBodyObject.name === "rock")
+      && motivation > 0 
     ) {
       collidedObjects.push(event.other.rigidBodyObject.id);
       setMotivation((prev) => prev - 1);
@@ -154,14 +146,11 @@ const Character = ({
       <RigidBody
         ref={charRef}
         name="character"
-        gravityScale={1.6}
-        colliders={false}
         onCollisionEnter={(event) => {
           handleCollisionEnter(event);
         }}
-        collisionGroups={interactionGroups(0, [1])}
+      
       >
-        <CuboidCollider args={[0.3, 0.35, 0.35]} position={[0, 3, 4]} />
 
         <primitive
           object={model.scene}

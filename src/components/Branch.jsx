@@ -1,9 +1,8 @@
 import { useLoader } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import branchFile from "../assets/Branch.glb";
-import { CylinderCollider, RigidBody, interactionGroups } from "@react-three/rapier";
+import { RigidBody } from "@react-three/rapier";
 import { Clone } from "@react-three/drei";
-import { useState } from "react";
 
 const Branch = ({ position, scale }) => {
   const model = useLoader(GLTFLoader, branchFile);
@@ -11,11 +10,11 @@ const Branch = ({ position, scale }) => {
   return (
     <RigidBody type="dynamic" 
       name="branch"
-      collisionGroups={interactionGroups(1, [0])}>
+    >
       <Clone
         object={model.scene}
         position={position}
-        rotation={[0, -3.14, 0]}
+        rotation={[0, 0.5, 0]}
         scale={scale}
       />
     </RigidBody>
