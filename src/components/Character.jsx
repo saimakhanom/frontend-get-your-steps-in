@@ -10,7 +10,7 @@ import {
   interactionGroups,
   CuboidCollider,
 } from "@react-three/rapier";
-import {damp} from "maath/easing"
+import { damp } from "maath/easing";
 
 const Character = ({
   left,
@@ -59,9 +59,9 @@ const Character = ({
     const x = charRef.current?.translation().x;
     const z = charRef.current?.translation().z;
     const velocity = charRef.current?.linvel();
-    const target = state.camera.position.set(0, y+5, z+15)
+    const target = state.camera.position.set(0, y + 5, z + 15);
     // state.camera.position.set(0, y + 5, z + 15);
-    damp(state.camera.position,[0, y+5, z+15], 1, delta);
+    damp(state.camera.position, [0, y + 5, z + 15], 1, delta);
     state.camera.updateProjectionMatrix();
 
     if (forward && velocity?.z > -75) {
@@ -80,7 +80,7 @@ const Character = ({
     if (jump) {
       charRef.current?.applyImpulse(
         { x: 0, y: 0 + jump * delta, z: 0 * delta },
-        true 
+        true
       );
     }
     if (y > -0.5) {
@@ -90,8 +90,6 @@ const Character = ({
       charRef.current?.setLinvel({ x: 0, y: 0, z: 0 });
     }
   });
-
-
 
   useEffect(() => {
     charRef.current.setEnabledRotations(false, false, false);
@@ -118,7 +116,7 @@ const Character = ({
       } else if (event.code === "Space" && event.repeat === true) {
         setJumpKeyPressed(true);
         setJump(-8);
-        event.preventDefault()
+        event.preventDefault();
       }
     };
     const handleKeyUp = (event) => {
@@ -152,7 +150,16 @@ const Character = ({
       window.removeEventListener("keydown", handleKeyDown);
       window.removeEventListener("keyup", handleKeyUp);
     };
-  }, [left, right, jump, allowJump, jumpKeyPressed, setJump, setRight, setLeft]);
+  }, [
+    left,
+    right,
+    jump,
+    allowJump,
+    jumpKeyPressed,
+    setJump,
+    setRight,
+    setLeft,
+  ]);
 
   const handleCollisionEnter = (event) => {
     if (

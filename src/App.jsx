@@ -27,6 +27,7 @@ function App() {
   const [forward, setForward] = useState(-20);
   const [jump, setJump] = useState(0);
   const [motivation, setMotivation] = useState(3);
+  const [showGameOver, setShowGameOver] = useState(false)
   const [score, setScore] = useState(0);
   const [name, setName] = useState("");
 
@@ -54,7 +55,7 @@ function App() {
       <button onClick={getAllScores}>Axios GET</button> */}
       <Page setForward={setForward} setScore={setScore} />
       <StepCounter motivation={motivation} score={score} setScore={setScore} />
-      <Motivation motivation={motivation} />
+      <Motivation motivation={motivation} setShowGameOver={setShowGameOver} showGameOver={showGameOver}/>
       <Canvas shadows>
         <Suspense>
           <Physics>
@@ -86,6 +87,7 @@ function App() {
                 setForward={setForward}
                 motivation={motivation}
                 setMotivation={setMotivation}
+                setShowGameOver={setShowGameOver}
               />
             </PerspectiveCamera>
 
