@@ -77,4 +77,5 @@ body {
 
 .game-over-message{
   font-size: 0.5em;
+  color:  rgb(70, 70, 70);
 }

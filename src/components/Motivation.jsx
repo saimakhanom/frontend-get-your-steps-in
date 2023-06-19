@@ -3,7 +3,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import fist from "../assets/fist.png";
 
-function Motivation({ motivation }) {
+function Motivation({ motivation,  setShowGameOver, showGameOver }) {
   const motivationalMessages = [
     "Run like the wind, or at least like a man about to get a kebab!",
     "Keep running, the kebab shop is just around the corner!",
@@ -20,10 +20,19 @@ function Motivation({ motivation }) {
     );
 
   useEffect(() => {
+    if (motivation === 0) {
+      const timeout = setTimeout(() => {
+        setShowGameOver(true);
+      }, 3000);
+      return () => {
+        clearTimeout(timeout);
+      };
+    }
+    
     if (motivation === 2 || motivation === 1) {
       notify();
     }
-  }, [motivation]);
+  }, [motivation, setShowGameOver]);
 
   let motivationIcons = Array(motivation).fill(1);
 
@@ -46,7 +55,7 @@ function Motivation({ motivation }) {
           })}
         </div>
       )}
-      {motivation === 0 && (
+      {showGameOver  && (
         <div className="game-over">
           <h2 className="text">Game over!</h2>
           <p className="game-over-message">Time for a kebab...</p>
