@@ -23,7 +23,6 @@ const Character = ({
   const [allowJump, setAllowJump] = useState(true);
   const [jumpKeyPressed, setJumpKeyPressed] = useState(false);
   const charRef = useRef();
-  // when the game is ready we will have a state that changes based on buttons pressed/timings etc that will replace the hardcoded animation variables
 
   let collidedObjects = useMemo(() => {
     return [];
@@ -32,9 +31,6 @@ const Character = ({
   const model = useLoader(GLTFLoader, runnerFile);
   const modelAnimations = useAnimations(model.animations, model.scene);
   const charRunning = "CharacterArmature|Run";
-  // const charWalk = "CharacterArmature|Walk";
-  // const charIdle = "CharacterArmature|Idle";
-  // const charDeath = "CharacterArmature|Death";
 
   useEffect(() => {
     const action = modelAnimations.actions[charRunning];
@@ -54,12 +50,6 @@ const Character = ({
     damp(state.camera.position,[0, y+5, z+15], 1, delta);
     state.camera.updateProjectionMatrix();
 
-    // if (x <= -4) {
-    //   charRef.current?.applyImpulse({ x: 30 * delta, y: 0, z: 0 });
-    // }
-    // if (x >= 4) {
-    //   charRef.current?.applyImpulse({ x: -30 * delta, y: 0, z: 0 });
-    // }
     if (forward && velocity?.z > -75) {
       charRef.current?.applyImpulse({
         x: 0,

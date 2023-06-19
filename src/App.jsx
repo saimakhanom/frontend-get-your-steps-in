@@ -1,3 +1,4 @@
+import './App.css'
 import { Canvas } from "@react-three/fiber";
 import { Suspense, useState } from "react";
 import { Physics } from "@react-three/rapier";
@@ -11,12 +12,12 @@ import Character from "./components/Character";
 import Rock from "./components/Rock";
 import Branch from "./components/Branch";
 import StepCounter from "./components/StepCounter";
-// import ObstacleRunner from "./components/ObstacleRunner";
 import Tree from "./components/Tree";
 import Motivation from "./components/Motivation";
-import { Environment, OrbitControls, PerspectiveCamera, Sky } from "@react-three/drei";
+import { Environment, PerspectiveCamera, Sky } from "@react-three/drei";
 import SideWalls from "./components/SideWalls";
 import RightWall from "./components/RightWall";
+import { Page } from './components/Loading-Page';
 
 function App() {
   const [left, setLeft] = useState(0);
@@ -24,6 +25,8 @@ function App() {
   const [forward, setForward] = useState(-20);
   const [jump, setJump] = useState(0);
   const [motivation, setMotivation] = useState(3);
+  const [score, setScore] = useState(0);
+  
 
   const planeDimensions = {
     pathLength: 10000,
@@ -32,9 +35,13 @@ function App() {
     groundLength: 1000,
   };
 
+
+  
+
   return (
     <div className="canvas-container">
-      <StepCounter motivation={motivation} />
+      <Page setForward={setForward} setScore={setScore}/>
+      <StepCounter motivation={motivation} score={score} setScore={setScore} />
       <Motivation motivation={motivation} />
       <Canvas shadows>
         <Suspense>
