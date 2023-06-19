@@ -46,7 +46,7 @@ export const Page = ({ setForward, setScore }) => {
           <p>
             <b>Space:</b> Jump
           </p>
-          <button>Press Any Key To Start</button>
+          <button className="start-btn">Press Any Key To Start</button>
           </div>
         <footer>
           <ul className="names">

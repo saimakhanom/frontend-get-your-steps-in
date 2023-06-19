@@ -2,8 +2,11 @@ import { useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import fist from "../assets/fist.png";
+import { useNavigate } from "react-router-dom";
 
 function Motivation({ motivation,  setShowGameOver, showGameOver }) {
+  const navigate = useNavigate()
+
   const motivationalMessages = [
     "Run like the wind, or at least like a man about to get a kebab!",
     "Keep running, the kebab shop is just around the corner!",
@@ -23,6 +26,9 @@ function Motivation({ motivation,  setShowGameOver, showGameOver }) {
     if (motivation === 0) {
       const timeout = setTimeout(() => {
         setShowGameOver(true);
+        setTimeout(() => {
+           navigate("/scoreboard")
+        }, 3000)
       }, 3000);
       return () => {
         clearTimeout(timeout);
