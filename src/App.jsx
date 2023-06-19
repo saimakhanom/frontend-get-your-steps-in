@@ -19,6 +19,8 @@ import RightWall from "./components/RightWall";
 import { Page } from "./components/Loading-Page";
 import { Canvas } from "@react-three/fiber";
 import { Environment, PerspectiveCamera, Sky } from "@react-three/drei";
+import Shop from "./components/Shop";
+import Kebab from "./components/Kebab";
 
 function App() {
   const [left, setLeft] = useState(0);
@@ -28,6 +30,7 @@ function App() {
   const [motivation, setMotivation] = useState(3);
   const [showGameOver, setShowGameOver] = useState(false)
   const [score, setScore] = useState(0);
+  const [win, setWin] = useState(false)
 
   const planeDimensions = {
     pathLength: 10000,
@@ -52,8 +55,8 @@ function App() {
       <button onClick={() => { postScore(name, score) }}>Axios POST</button>
       <button onClick={getAllScores}>Axios GET</button> */}
       <Page setForward={setForward} setScore={setScore} />
-      <StepCounter motivation={motivation} score={score} setScore={setScore} />
-      <Motivation motivation={motivation} setShowGameOver={setShowGameOver} showGameOver={showGameOver}/>
+      <StepCounter win={win} motivation={motivation} score={score} setScore={setScore} />
+      <Motivation motivation={motivation} setShowGameOver={setShowGameOver} showGameOver={showGameOver} win={win}/>
       <Canvas shadows>
         <Suspense>
           <Physics >
@@ -85,6 +88,7 @@ function App() {
                 motivation={motivation}
                 setMotivation={setMotivation}
                 setShowGameOver={setShowGameOver}
+                setWin={setWin}
               />
             </PerspectiveCamera>
 
@@ -123,6 +127,8 @@ function App() {
             /> */}
 
             <Path planeDimensions={planeDimensions} />
+            <Shop/>
+            <Kebab/>
             <SideWalls planeDimensions={planeDimensions} />
             <RightWall planeDimensions={planeDimensions} />
             <RightWall planeDimensions={planeDimensions} />
