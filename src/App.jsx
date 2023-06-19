@@ -38,7 +38,7 @@ function App() {
 
   return (
     <div className="canvas-container">
-      <label htmlFor="name" style={{ margin: "20px" }}>
+      {/* <label htmlFor="name" style={{ margin: "20px" }}>
         Your Name:
       </label>
       <input
@@ -50,7 +50,7 @@ function App() {
         }}
       />
       <button onClick={() => { postScore(name, score) }}>Axios POST</button>
-      <button onClick={getAllScores}>Axios GET</button>
+      <button onClick={getAllScores}>Axios GET</button> */}
       <Page setForward={setForward} setScore={setScore} />
       <StepCounter motivation={motivation} score={score} setScore={setScore} />
       <Motivation motivation={motivation} />
