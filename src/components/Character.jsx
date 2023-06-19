@@ -108,18 +108,8 @@ const Character = ({
     const handleKeyUp = (event) => {
       if (event.code === "ArrowLeft") {
         setLeft(0);
-        charRef.current?.setLinvel({
-          x: 0,
-          y: 0,
-          z: charRef.current?.linvel().z,
-        });
       } else if (event.code === "ArrowRight") {
         setRight(0);
-        charRef.current?.setLinvel({
-          x: 0,
-          y: 0,
-          z: charRef.current?.linvel().z,
-        });
       } else if (event.code === "Space") {
         setJump(0);
       }
