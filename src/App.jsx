@@ -1,8 +1,7 @@
 import "./App.css";
-import "./App.css";
-import { Canvas } from "@react-three/fiber";
 import { Suspense, useState } from "react";
 import { Physics } from "@react-three/rapier";
+
 import RandomisedObstacles from "./components/Randomised-obstacles";
 import RandomisedGrassComponents from "./components/Randomised-trees";
 import Path from "./components/Path";
@@ -15,11 +14,11 @@ import Branch from "./components/Branch";
 import StepCounter from "./components/StepCounter";
 import Tree from "./components/Tree";
 import Motivation from "./components/Motivation";
-import { Environment, PerspectiveCamera, Sky } from "@react-three/drei";
 import SideWalls from "./components/SideWalls";
 import RightWall from "./components/RightWall";
 import { Page } from "./components/Loading-Page";
-import { getAllScores, postScore } from "./utils/api-calls";
+import { Canvas } from "@react-three/fiber";
+import { Environment, PerspectiveCamera, Sky } from "@react-three/drei";
 
 function App() {
   const [left, setLeft] = useState(0);
@@ -29,7 +28,6 @@ function App() {
   const [motivation, setMotivation] = useState(3);
   const [showGameOver, setShowGameOver] = useState(false)
   const [score, setScore] = useState(0);
-  const [name, setName] = useState("");
 
   const planeDimensions = {
     pathLength: 10000,
@@ -60,7 +58,6 @@ function App() {
         <Suspense>
           <Physics >
             {/* <Lights /> */}
-            <Sky turbidity={10} rayleigh={2.5} mieCofficient={0.005} mieDirectionalG={0.7} azimuth={180} exposure={1} elevation={0} sunPosition={[0,0.5,-10000]} distance={450000}/>
             <Environment preset="dawn"/>
             <Lights />
             <Sky
