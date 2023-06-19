@@ -5,6 +5,8 @@ import { Suspense, useState } from "react";
 import { Physics } from "@react-three/rapier";
 import RandomisedObstacles from "./components/Randomised-obstacles";
 import RandomisedGrassComponents from "./components/Randomised-trees";
+import RandomisedGreenTreeComponent from "./components/Randomised-GreenTree";
+import RandomisedSwingComponent from "./components/Randomised-swing";
 import Path from "./components/Path";
 import Ground from "./components/Ground";
 import Lights from "./components/Lights";
@@ -20,6 +22,8 @@ import SideWalls from "./components/SideWalls";
 import RightWall from "./components/RightWall";
 import { Page } from "./components/Loading-Page";
 import { getAllScores, postScore } from "./utils/api-calls";
+import GreenTree from "./components/GreenTree";
+import Swing from "./components/Swing";
 
 function App() {
   const [left, setLeft] = useState(0);
@@ -27,7 +31,7 @@ function App() {
   const [forward, setForward] = useState(-20);
   const [jump, setJump] = useState(0);
   const [motivation, setMotivation] = useState(3);
-  const [showGameOver, setShowGameOver] = useState(false)
+  const [showGameOver, setShowGameOver] = useState(false);
   const [score, setScore] = useState(0);
   const [name, setName] = useState("");
 
@@ -55,13 +59,23 @@ function App() {
       <button onClick={getAllScores}>Axios GET</button> */}
       <Page setForward={setForward} setScore={setScore} />
       <StepCounter motivation={motivation} score={score} setScore={setScore} />
-      <Motivation motivation={motivation} setShowGameOver={setShowGameOver} showGameOver={showGameOver}/>
+      {/* <Motivation motivation={motivation} setShowGameOver={setShowGameOver} showGameOver={showGameOver}/> */}
       <Canvas shadows>
         <Suspense>
           <Physics>
             {/* <Lights /> */}
-            <Sky turbidity={10} rayleigh={2.5} mieCofficient={0.005} mieDirectionalG={0.7} azimuth={180} exposure={1} elevation={0} sunPosition={[0,0.5,-10000]} distance={450000}/>
-            <Environment preset="dawn"/>
+            <Sky
+              turbidity={10}
+              rayleigh={2.5}
+              mieCofficient={0.005}
+              mieDirectionalG={0.7}
+              azimuth={180}
+              exposure={1}
+              elevation={0}
+              sunPosition={[0, 0.5, -10000]}
+              distance={450000}
+            />
+            <Environment preset="dawn" />
             <Lights />
             <Sky
               turbidity={10}
@@ -91,18 +105,25 @@ function App() {
               />
             </PerspectiveCamera>
 
-            <RandomisedGrassComponents
+            {/* <RandomisedGrassComponents
               planeDimensions={planeDimensions}
               Component={Tree}
               objectSize={1.2}
               numObjects={200}
               buffer={10}
-            />
+            /> */}
             <RandomisedGrassComponents
               planeDimensions={planeDimensions}
               Component={Grass}
-              objectSize={5}
+              objectSize={3}
               numObjects={500}
+              buffer={10}
+            />
+            <RandomisedGreenTreeComponent
+              planeDimensions={planeDimensions}
+              Component={GreenTree}
+              objectSize={0.8}
+              numObjects={200}
               buffer={10}
             />
 
@@ -124,7 +145,13 @@ function App() {
               objectSize={1.2}
               numObjects={3}
             /> */}
-
+            <RandomisedSwingComponent
+              planeDimensions={planeDimensions}
+              Component={Swing}
+              objectSize={3}
+              numObjects={500}
+              buffer={10}
+            />
             <Path planeDimensions={planeDimensions} />
             <SideWalls planeDimensions={planeDimensions} />
             <RightWall planeDimensions={planeDimensions} />

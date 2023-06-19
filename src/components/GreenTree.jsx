@@ -1,11 +1,10 @@
-import TreeGLB from "../assets/Tree.glb";
-// import BigTree from "../assets/Big-Tree.glb"
+import GreenTreeGLB from "../assets/GreenTree.glb"
 import { useLoader } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { Clone } from "@react-three/drei";
 
-export default function Tree({position, scale}) {
-  const model = useLoader(GLTFLoader, TreeGLB);
+export default function GreenTree({position, scale}) {
+  const model = useLoader(GLTFLoader, GreenTreeGLB);
 
   return (
     <>
