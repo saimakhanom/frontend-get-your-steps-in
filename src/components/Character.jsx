@@ -20,7 +20,6 @@ const Character = ({
   setJump,
   motivation,
   setMotivation,
-  motivation,
 }) => {
   const [allowJump, setAllowJump] = useState(true);
   const [jumpKeyPressed, setJumpKeyPressed] = useState(false);
