@@ -8,6 +8,7 @@ import {
   interactionGroups,
   CuboidCollider,
 } from "@react-three/rapier";
+import {damp} from "maath/easing"
 
 const Character = ({
   left,
@@ -48,8 +49,9 @@ const Character = ({
     const x = charRef.current?.translation().x;
     const z = charRef.current?.translation().z;
     const velocity = charRef.current?.linvel();
-    // state.camera.lookAt(0, 0, z - 5);
-    state.camera.position.set(0, y + 5, z + 15);
+    const target = state.camera.position.set(0, y+5, z+15)
+    // state.camera.position.set(0, y + 5, z + 15);
+    damp(state.camera.position,[0, y+5, z+15], 1, delta);
     state.camera.updateProjectionMatrix();
 
     // if (x <= -4) {
@@ -93,7 +95,7 @@ const Character = ({
         setRight(5);
       } else if (event.code === "Space" && !event.repeat && allowJump) {
         try {
-          await setJump(11);
+          await setJump(10);
           setTimeout(() => {
             setJump(0);
           }, 10);
