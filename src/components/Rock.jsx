@@ -1,7 +1,7 @@
 import { useLoader } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import rockFile from "../assets/Rocks.glb";
-import { CylinderCollider, RigidBody, interactionGroups } from "@react-three/rapier";
+import { CylinderCollider, RigidBody } from "@react-three/rapier";
 import { Clone } from "@react-three/drei";
 
 const Rock = ({ position, scale }) => {
@@ -12,8 +12,6 @@ const Rock = ({ position, scale }) => {
       type="dynamic"
       name="rock"
       colliders={false}
-      collisionGroups={interactionGroups(1, [0])}
-      // density={5}
       linearDamping={1}
       angularDamping={1}
     >

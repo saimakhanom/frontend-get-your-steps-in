@@ -1,6 +1,5 @@
+import "./App.css";
 import { Suspense, useState } from "react";
-import { Canvas } from "@react-three/fiber";
-import { Environment, PerspectiveCamera, Sky } from "@react-three/drei";
 import { Physics } from "@react-three/rapier";
 
 import RandomisedObstacles from "./components/Randomised-obstacles";
@@ -17,8 +16,9 @@ import Tree from "./components/Tree";
 import Motivation from "./components/Motivation";
 import SideWalls from "./components/SideWalls";
 import RightWall from "./components/RightWall";
-import { Page } from './components/Loading-Page';
-import './App.css'
+import { Page } from "./components/Loading-Page";
+import { Canvas } from "@react-three/fiber";
+import { Environment, PerspectiveCamera, Sky } from "@react-three/drei";
 
 function App() {
   const [left, setLeft] = useState(0);
@@ -26,8 +26,9 @@ function App() {
   const [forward, setForward] = useState(-20);
   const [jump, setJump] = useState(0);
   const [motivation, setMotivation] = useState(3);
+  const [showGameOver, setShowGameOver] = useState(false)
   const [score, setScore] = useState(0);
-  
+
   const planeDimensions = {
     pathLength: 10000,
     pathWidth: 10,
@@ -35,18 +36,42 @@ function App() {
     groundLength: 1000,
   };
 
-
   return (
     <div className="canvas-container">
-      <Page setForward={setForward} setScore={setScore}/>
+      {/* <label htmlFor="name" style={{ margin: "20px" }}>
+        Your Name:
+      </label>
+      <input
+        style={{ margin: "20px" }}
+        id="name"
+        value={name}
+        onChange={(e) => {
+          setName(e.target.value);
+        }}
+      />
+      <button onClick={() => { postScore(name, score) }}>Axios POST</button>
+      <button onClick={getAllScores}>Axios GET</button> */}
+      <Page setForward={setForward} setScore={setScore} />
       <StepCounter motivation={motivation} score={score} setScore={setScore} />
-      <Motivation motivation={motivation} />
+      <Motivation motivation={motivation} setShowGameOver={setShowGameOver} showGameOver={showGameOver}/>
       <Canvas shadows>
         <Suspense>
-          <Physics debug>
-            <Lights />
-            <Sky turbidity={10} rayleigh={2.5} mieCofficient={0.005} mieDirectionalG={0.7} azimuth={180} exposure={1} elevation={0} sunPosition={[0,0.5,-10000]} distance={450000}/>
+          <Physics >
+            {/* <Lights /> */}
             <Environment preset="dawn"/>
+            <Lights />
+            <Sky
+              turbidity={10}
+              rayleigh={2.5}
+              mieCofficient={0.005}
+              mieDirectionalG={0.7}
+              azimuth={180}
+              exposure={1}
+              elevation={0}
+              sunPosition={[0, 0.5, -10000]}
+              distance={450000}
+            />
+            <Environment preset="dawn" />
             <PerspectiveCamera position={[0, 4, 7]}>
               <Character
                 jump={jump}
@@ -59,6 +84,7 @@ function App() {
                 setForward={setForward}
                 motivation={motivation}
                 setMotivation={setMotivation}
+                setShowGameOver={setShowGameOver}
               />
             </PerspectiveCamera>
 
@@ -98,7 +124,8 @@ function App() {
 
             <Path planeDimensions={planeDimensions} />
             <SideWalls planeDimensions={planeDimensions} />
-            <RightWall planeDimensions={planeDimensions}/>
+            <RightWall planeDimensions={planeDimensions} />
+            <RightWall planeDimensions={planeDimensions} />
             <Ground planeDimensions={planeDimensions} />
           </Physics>
         </Suspense>

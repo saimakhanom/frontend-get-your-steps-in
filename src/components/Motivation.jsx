@@ -11,8 +11,6 @@ function Motivation({ motivation }) {
     "You're faster than a spinning kebab skewer!",
     "Imagine the taste of victory... and the taste of a mouthwatering kebab!",
     "Imagine the victory dance you'll do when you get to the kebab shop!",
-    "Run like a champ, then treat yourself to some well-deserved kebab!",
-    "Don't stop! The world needs more superheroes in sweatbands!",
   ];
   const notify = () =>
     toast(
