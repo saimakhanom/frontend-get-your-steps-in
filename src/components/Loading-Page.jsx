@@ -29,7 +29,7 @@ export const Page = ({ setForward, setScore }) => {
           <div className="instructions">
             <h2>Instructions </h2>
             <p>
-            Welcome to Get Your Steps In, a thrilling adventure where you'll embark on a journey to win the ultimate prize — a delicious kebab! But it won't be an easy task... To earn your savory reward, you'll need to get some serious steps in for the day. Avoid hitting the obstacles in your path or you'll lose your motivation! Remember, every step counts...
+            Welcome to Get Your Steps In, a thrilling adventure where you'll embark on a journey to win the ultimate prize — a delicious kebab! But it won't be an easy task... To earn your savory reward you'll need to get some serious steps in for the day. Avoid hitting the obstacles in your path or you'll lose your motivation! Remember, every step counts...
             </p>
             {/* Welcome to Get Your Steps In, the fitness game for the coach potato.
               If your step count is high enough you will be rewarded with a visit to the kebab shop, but be careful of the obstacles in your way or you'll soon run out of motivation for the journey!  */}
