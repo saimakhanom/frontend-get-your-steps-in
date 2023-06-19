@@ -289,3 +289,14 @@ h1 {
 .burger-canvas-container {
   height: 400px;
 }
+
+.scoreboard-score {
+  text-align: center;
+  color: tomato;
+  /* font-family: bangers, monospace */
+  font-size: 2rem;
+  border: 1px solid tomato;
+  width: fit-content;
+  margin: 2rem auto;
+  padding: 0.5rem 1rem;
+}

@@ -20,14 +20,14 @@ import { Page } from "./components/Loading-Page";
 import { Canvas } from "@react-three/fiber";
 import { Environment, PerspectiveCamera, Sky } from "@react-three/drei";
 
-function App() {
+function App({score, setScore}) {
   const [left, setLeft] = useState(0);
   const [right, setRight] = useState(0);
   const [forward, setForward] = useState(-20);
   const [jump, setJump] = useState(0);
   const [motivation, setMotivation] = useState(3);
   const [showGameOver, setShowGameOver] = useState(false)
-  const [score, setScore] = useState(0);
+  // const [score, setScore] = useState(0);
 
   const planeDimensions = {
     pathLength: 10000,

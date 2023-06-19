@@ -31,7 +31,7 @@ const highScorers = [
   }
 ]
 
-const Scoreboard = () => {
+const Scoreboard = ({score}) => {
   const [scorers, setScorers] = useState(highScorers)
   const navigate = useNavigate()
 
@@ -46,6 +46,7 @@ const Scoreboard = () => {
     <div className="scoreboard-container">
       
       <h1>Scoreboard</h1>
+      <h2 className="scoreboard-score">Your score is: {score}</h2>
       
       <div className="flex-wrapper">
         
