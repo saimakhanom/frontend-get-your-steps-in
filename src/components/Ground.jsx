@@ -11,7 +11,7 @@ export default function Ground({ planeDimensions }) {
   texture.repeat.set(10000, 10000);
 
   return (
-    <RigidBody type="fixed" friction={2}>
+    <RigidBody type="fixed" >
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, 0]} receiveShadow>
         <planeGeometry args={[1000, planeDimensions.pathLength]} />
         <meshStandardMaterial map={texture} />
