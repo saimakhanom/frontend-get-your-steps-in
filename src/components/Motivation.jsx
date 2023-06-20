@@ -8,22 +8,23 @@ function Motivation({ motivation,  setShowGameOver, showGameOver, win }) {
   const [gameOverMessage, setGameOverMessage] = useState('Game over!')
   const navigate = useNavigate()
 
-  const motivationalMessages = [
-    "Run like the wind, or at least like a man about to get a kebab!",
-    "Keep running, the kebab shop is just around the corner!",
-    "Pain is temporary, but the glory of a kebab lasts forever!",
-    "You're faster than a spinning kebab skewer!",
-    "Imagine the taste of victory... and the taste of a mouthwatering kebab!",
-    "Imagine the victory dance you'll do when you get to the kebab shop!",
-  ];
-  const notify = () =>
+  
+  
+  useEffect(() => {
+    const motivationalMessages = [
+      "Run like the wind, or at least like a man about to get a kebab!",
+      "Keep running, the kebab shop is just around the corner!",
+      "Pain is temporary, but the glory of a kebab lasts forever!",
+      "You're faster than a spinning kebab skewer!",
+      "Imagine the taste of victory... and the taste of a mouthwatering kebab!",
+      "Imagine the victory dance you'll do when you get to the kebab shop!",
+    ];
+    const notify = () =>
     toast(
       motivationalMessages[
         Math.floor(Math.random() * motivationalMessages.length)
       ]
     );
-
-  useEffect(() => {
     if (motivation === 0) {
       const timeout = setTimeout(() => {
         setShowGameOver(true);
@@ -51,7 +52,7 @@ function Motivation({ motivation,  setShowGameOver, showGameOver, win }) {
     if (motivation === 2 || motivation === 1) {
       notify();
     }
-  }, [motivation, setShowGameOver, win]);
+  }, [motivation, setShowGameOver, win, navigate]);
 
   let motivationIcons = Array(motivation).fill(1);
 

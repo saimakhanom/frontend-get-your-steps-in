@@ -22,7 +22,7 @@ const Character = ({
   setMotivation,
   setWin
 }) => {
-  const [allowJump, setAllowJump] = useState(true);
+  const [allowJump] = useState(true);
   const [jumpKeyPressed, setJumpKeyPressed] = useState(false);
   const charRef = useRef();
 
@@ -58,16 +58,15 @@ const Character = ({
 
   useFrame((state, delta) => {
     const y = charRef.current?.translation().y;
-    const x = charRef.current?.translation().x;
     const z = charRef.current?.translation().z;
     const velocity = charRef.current?.linvel();
-    const target = state.camera.position.set(0, y+5, z+15)
+    state.camera.position.set(0, y+5, z+15)
     damp(state.camera.position,[0, y+5, z+15], 1, delta);
     state.camera.updateProjectionMatrix();
     if (z <= -4900){
       setWin(true)
       const runAction = modelAnimations.actions[charRunning];
-      const deathAction = modelAnimations.actions[charDeath];
+      // const deathAction = modelAnimations.actions[charDeath];
     
       charRef.current?.setLinvel({ x: 0, y: 0, z: 0 })
         runAction.stop();

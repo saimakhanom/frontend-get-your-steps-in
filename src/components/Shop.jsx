@@ -1,7 +1,6 @@
 import ShopGLB from "../assets/Shop.glb";
 import { useLoader } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import { Clone } from "@react-three/drei";
 
 export default function Shop() {
   const model = useLoader(GLTFLoader, ShopGLB);
