@@ -38,6 +38,24 @@ function App() {
     groundWidth: 30,
     groundLength: 1000,
   };
+  function play() {
+    new Audio(sound).play()
+  }
+  
+  useEffect(() => {
+    const handleKeyPress = (event) => {
+      if (event.key === 'f') {
+        play();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyPress);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyPress);
+    };
+  }, []);
+
 
   useEffect(() => {
     const handleKeyPress = () => {

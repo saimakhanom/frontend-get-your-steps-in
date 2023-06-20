@@ -27,7 +27,7 @@ export const Page = ({ gameStarted }) => {
           <p>
             <b>Space:</b> Jump
           </p>
-          <button className="start-btn">Press Any Key To Start</button>
+          <button className="start-btn">Press F To Start</button>
           </div>
         <footer>
           <ul className="names">
