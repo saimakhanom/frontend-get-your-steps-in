@@ -1,6 +1,4 @@
-import { Clone } from "@react-three/drei";
 import { RigidBody } from "@react-three/rapier";
-import { meshStandardMaterial } from "three";
 
 function SideWalls({ planeDimensions }) {
   const { pathLength } = planeDimensions;
