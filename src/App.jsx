@@ -69,7 +69,7 @@ function App() {
       />
       <Canvas shadows>
         <Suspense>
-          <Physics>
+          <Physics interpolate={false}>
             <Environment preset="dawn" />
             <Lights />
             <Sky

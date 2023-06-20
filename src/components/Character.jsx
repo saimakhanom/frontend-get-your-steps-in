@@ -67,8 +67,6 @@ const Character = ({
     
       charRef.current?.setLinvel({ x: 0, y: 0, z: 0 })
         runAction.stop();
-  
-    
     }
     if (forward && velocity?.z > -75) {
       charRef.current?.applyImpulse({
