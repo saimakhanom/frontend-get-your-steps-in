@@ -1,94 +1,137 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLoader } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import burgerFile from "../assets/Hamburger.glb"
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
+import { getAllScores, postScore } from "../utils/api-calls";
 
-
-// mock data
-const highScorers = [
-  {
-    name: "Nadia",
-    score: 23456
-  },
-  {
-    name: "Dave",
-    score: 12456
-  },
-  {
-    name: "Joel",
-    score: 11942
-  },
-  {
-    name: "Saima",
-    score: 10456
-  },
-  {
-    name: "Jorge",
-    score: 16
-  }
-]
+// Spinner 
+const Spinner = () => {
+  return (
+    <div className="spinnerContainer">
+      <h2>Loading Scores...</h2>
+      <div className="spinner"></div>
+    </div>
+  )
+}
 
 const Scoreboard = ({score}) => {
-  const [scorers, setScorers] = useState(highScorers)
-  const navigate = useNavigate()
+  const [scorers, setScorers] = useState([])
+  const [userInput, setUserInput] = useState("")
+  const [disableForm, setDisableForm] = useState(false)
+  const [isLoading, setIsloading] = useState(true)
+  const [sortMethod, setSortMethod] = useState(null)
 
+
+
+  const navigate = useNavigate()
   const model = useLoader(GLTFLoader, burgerFile);
   
-
   const goHome = () => {
     navigate("/")
   }
 
-  return (
-    <div className="scoreboard-container">
-      
-      <h1>Scoreboard</h1>
-      <h2 className="scoreboard-score">Your score is: {score}</h2>
-      
-      <div className="flex-wrapper">
-        
-        <form className="score-form">
-          <label htmlFor="userScore">Join the hall of fame: </label>
-          <input type="text" placeholder="Enter your name..." id="userScore"/>
-          <button className="add-score">Join</button>
-        </form>
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setScorers(s => [...s, {name: userInput, score: score}])
+    if (userInput !== "") {
+      postScore(userInput, score)
+      .then(response => console.log(response))
+      .catch(error => {
+        if (error) {
+        setScorers(s => {
+          const arrayCopy = [...s]
+          arrayCopy.pop()
+          return arrayCopy;
+        })
 
-        <div className="burger-canvas-container">
-        <Canvas className="burger-canvas">
-        <OrbitControls />
-        <ambientLight intensity={1}/>
-          <primitive
-            object={model.scene}
-            scale={0.27}
-            position={[0, -1, 0]}
-            rotation={[-0.1, 0, 0]}
-          />
-          </Canvas>
-      </div>
+        }
+      })
+    }
+    setUserInput("")
+    setDisableForm(true)
+  }
+
+  const handleRadioChange = (e) => {
+    setSortMethod(e.target.value)
+  }
+  
+  useEffect(() => {
+    const scores = getAllScores()
+    scores.then(data => {
+      setScorers(data)
+      setIsloading(false)
+    })
+  }, [])
+
+
+  if (isLoading) {
+    return <Spinner />
+  } else {
+    return (
+      <div className="scoreboard-container">
         
-        <div className="board">
-          <div className="board-header">
-            <span>Name</span>
-            <span>Steps</span>
-          </div>
-          {scorers.map(score => {
-            return (
-              <div key={crypto.randomUUID()} className="score-item">
-                <span>{score.name}</span>
-                <span>{score.score}</span>
-              </div>
-            )
-          })}
+        <h1>Scoreboard</h1>
+        <h2 className="scoreboard-score">Your score is: {score}</h2>
+        
+        <div className="flex-wrapper">
+          
+          <form className="score-form" onSubmit={handleSubmit}>
+            <label htmlFor="userScore">Join the hall of fame: </label>
+            <input type="text" placeholder="Enter your name..." id="userScore" name="useInput" value={userInput} onChange={(e) => setUserInput(e.target.value)}/>
+            <button type="submit" className="add-score" disabled={disableForm}>Join</button>
+          </form>
+  
+          <div className="burger-canvas-container">
+          <Canvas className="burger-canvas">
+          <OrbitControls />
+          <ambientLight intensity={1}/>
+            <primitive
+              object={model.scene}
+              scale={0.27}
+              position={[0, -1, 0]}
+              rotation={[-0.1, 0, 0]}
+            />
+            </Canvas>
         </div>
-      </div>
+          
 
-      <button className="playagain-btn" onClick={goHome}>Play again</button>
-    
-    </div>
-  );
+          <div className="board">
+            <div className="radioButtons" onChange={handleRadioChange}>
+              <span>
+                <input type="radio" id="historic" name="sort_type" value="historic"/>
+                <label htmlFor="historic">Historic</label>
+              </span>
+              <span>
+                <input type="radio" id="lastWeek" name="sort_type" value="lastWeek"/>
+                <label htmlFor="lastWeek">Last Week</label>
+              </span>
+            </div>
+            <div className="board-header">
+              <span>Name</span>
+              <span>Steps</span>
+            </div>
+            {scorers.length > 0 && scorers.map(score => {
+      
+              return (
+                <div key={crypto.randomUUID()} className="score-item">
+                  <span>{score.name}</span>
+                  <span>{score.score}</span>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+  
+        <button className="playagain-btn" onClick={goHome}>Play again</button>
+      
+      </div>
+    );
+  }
+
+ 
 }
  
 export default Scoreboard;

@@ -28,6 +28,7 @@ function App({score, setScore}) {
   const [motivation, setMotivation] = useState(3);
   const [showGameOver, setShowGameOver] = useState(false)
   // const [score, setScore] = useState(0);
+  
 
   const planeDimensions = {
     pathLength: 10000,
