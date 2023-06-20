@@ -26,7 +26,7 @@ function App() {
   const [forward, setForward] = useState(-20);
   const [jump, setJump] = useState(0);
   const [motivation, setMotivation] = useState(3);
-  const [showGameOver, setShowGameOver] = useState(false)
+  const [showGameOver, setShowGameOver] = useState(false);
   const [score, setScore] = useState(0);
 
   const planeDimensions = {
@@ -53,12 +53,16 @@ function App() {
       <button onClick={getAllScores}>Axios GET</button> */}
       <Page setForward={setForward} setScore={setScore} />
       <StepCounter motivation={motivation} score={score} setScore={setScore} />
-      <Motivation motivation={motivation} setShowGameOver={setShowGameOver} showGameOver={showGameOver}/>
+      <Motivation
+        motivation={motivation}
+        setShowGameOver={setShowGameOver}
+        showGameOver={showGameOver}
+      />
       <Canvas shadows>
         <Suspense>
-          <Physics >
+          <Physics>
             {/* <Lights /> */}
-            <Environment preset="dawn"/>
+            <Environment preset="dawn" />
             <Lights />
             <Sky
               turbidity={10}
@@ -121,7 +125,6 @@ function App() {
               objectSize={1.2}
               numObjects={3}
             /> */}
-
             <Path planeDimensions={planeDimensions} />
             <SideWalls planeDimensions={planeDimensions} />
             <RightWall planeDimensions={planeDimensions} />

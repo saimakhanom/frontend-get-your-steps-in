@@ -4,8 +4,8 @@ import "react-toastify/dist/ReactToastify.css";
 import fist from "../assets/fist.png";
 import { useNavigate } from "react-router-dom";
 
-function Motivation({ motivation,  setShowGameOver, showGameOver }) {
-  const navigate = useNavigate()
+function Motivation({ motivation, setShowGameOver, showGameOver }) {
+  const navigate = useNavigate();
 
   const motivationalMessages = [
     "Run like the wind, or at least like a man about to get a kebab!",
@@ -27,14 +27,14 @@ function Motivation({ motivation,  setShowGameOver, showGameOver }) {
       const timeout = setTimeout(() => {
         setShowGameOver(true);
         setTimeout(() => {
-           navigate("/scoreboard")
-        }, 3000)
+          navigate("/scoreboard");
+        }, 3000);
       }, 3000);
       return () => {
         clearTimeout(timeout);
       };
     }
-    
+
     if (motivation === 2 || motivation === 1) {
       notify();
     }
@@ -61,7 +61,7 @@ function Motivation({ motivation,  setShowGameOver, showGameOver }) {
           })}
         </div>
       )}
-      {showGameOver  && (
+      {showGameOver && (
         <div className="game-over">
           <h2 className="text">Game over!</h2>
           <p className="game-over-message">Time for a kebab...</p>

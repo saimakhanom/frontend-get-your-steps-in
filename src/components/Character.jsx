@@ -61,13 +61,13 @@ const Character = ({
     damp(state.camera.position,[0, y+5, z+15], 1, delta);
     state.camera.updateProjectionMatrix();
 
-    if (forward && velocity?.z > -75) {
-      charRef.current?.applyImpulse({
-        x: 0,
-        y: 0,
-        z: forward * 0.5 * delta,
-      });
-    }
+    // if (forward && velocity?.z > -75) {
+    //   charRef.current?.applyImpulse({
+    //     x: 0,
+    //     y: 0,
+    //     z: forward * 0.5 * delta,
+    //   });
+    // }
     if (left) {
       charRef.current?.applyImpulse({ x: left * delta, y: 0, z: 0 }, true);
     }
@@ -173,9 +173,7 @@ const Character = ({
         onCollisionEnter={(event) => {
           handleCollisionEnter(event);
         }}
-      
       >
-
         <primitive
           object={model.scene}
           scale={1.2}
