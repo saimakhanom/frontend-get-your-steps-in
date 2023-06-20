@@ -20,6 +20,7 @@ const Character = ({
   setJump,
   motivation,
   setMotivation,
+  setWin
 }) => {
   const [allowJump, setAllowJump] = useState(true);
   const [jumpKeyPressed, setJumpKeyPressed] = useState(false);
@@ -37,7 +38,7 @@ const Character = ({
   useEffect(() => {
     const runAction = modelAnimations.actions[charRunning];
     const deathAction = modelAnimations.actions[charDeath];
-
+  
     if (motivation > 0) {
       runAction.fadeIn(0.5).play();
     } else {
@@ -52,6 +53,9 @@ const Character = ({
     };
   }, [motivation, modelAnimations, charRunning, charDeath]);
 
+
+ 
+
   useFrame((state, delta) => {
     const y = charRef.current?.translation().y;
     const x = charRef.current?.translation().x;
@@ -60,7 +64,16 @@ const Character = ({
     const target = state.camera.position.set(0, y+5, z+15)
     damp(state.camera.position,[0, y+5, z+15], 1, delta);
     state.camera.updateProjectionMatrix();
-
+    if (z <= -4900){
+      setWin(true)
+      const runAction = modelAnimations.actions[charRunning];
+      const deathAction = modelAnimations.actions[charDeath];
+    
+      charRef.current?.setLinvel({ x: 0, y: 0, z: 0 })
+        runAction.stop();
+  
+    
+    }
     if (forward && velocity?.z > -75) {
       charRef.current?.applyImpulse({
         x: 0,

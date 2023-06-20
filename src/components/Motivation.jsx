@@ -1,10 +1,11 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import fist from "../assets/fist.png";
 import { useNavigate } from "react-router-dom";
 
-function Motivation({ motivation,  setShowGameOver, showGameOver }) {
+function Motivation({ motivation,  setShowGameOver, showGameOver, win }) {
+  const [gameOverMessage, setGameOverMessage] = useState('Game over!')
   const navigate = useNavigate()
 
   const motivationalMessages = [
@@ -34,11 +35,23 @@ function Motivation({ motivation,  setShowGameOver, showGameOver }) {
         clearTimeout(timeout);
       };
     }
+    if (win) {
+      setGameOverMessage('Well done!')
+      const timeout = setTimeout(() => {
+        setShowGameOver(true);
+        setTimeout(() => {
+           navigate("/scoreboard")
+        }, 3000)
+      }, 2500);
+      return () => {
+        clearTimeout(timeout);
+      };
+    }
     
     if (motivation === 2 || motivation === 1) {
       notify();
     }
-  }, [motivation, setShowGameOver]);
+  }, [motivation, setShowGameOver, win]);
 
   let motivationIcons = Array(motivation).fill(1);
 
@@ -63,7 +76,7 @@ function Motivation({ motivation,  setShowGameOver, showGameOver }) {
       )}
       {showGameOver  && (
         <div className="game-over">
-          <h2 className="text">Game over!</h2>
+          <h2 className="text">{gameOverMessage}</h2>
           <p className="game-over-message">Time for a kebab...</p>
         </div>
       )}

@@ -2,24 +2,10 @@ import { useEffect, useState } from "react";
 import { VscGithub } from "react-icons/vsc";
 import { SiLinkedin } from "react-icons/si";
 
-export const Page = ({ setForward, setScore }) => {
-  const [gameStarted, setGameStarted] = useState(false);
-
-  useEffect(() => {
-    const handleKeyPress = () => {
-      setGameStarted(true);
-      setForward(-20);
-    };
-
-    window.addEventListener("keydown", handleKeyPress);
-
-    return () => {
-      window.removeEventListener("keydown", handleKeyPress);
-    };
-  });
+export const Page = ({ gameStarted }) => {
+  
+ 
   if (!gameStarted) {
-    setForward(0);
-    setScore(0);
     return (
       <div className="blurry-screen">
         <div className="title">
@@ -29,11 +15,7 @@ export const Page = ({ setForward, setScore }) => {
           <div className="instructions">
             <h2>Instructions </h2>
             <p>
-              You are playing as John, a lad hell-bent on getting his steps in,
-              on his journey he encounters a load of obstacles blocking his
-              path. If he were to
-              hit one of these obstacles it would decrease his motivation to
-              continue running, if he hits 3 obstacles he's off for a kebab...
+            Welcome to Get Your Steps In, a thrilling adventure where you'll embark on a journey to win the ultimate prize — a delicious kebab! But it won't be an easy task... To earn your savory reward you'll need to get some serious steps in for the day. Avoid hitting the obstacles in your path or you'll lose your motivation! Remember, every step counts...
             </p>
         </div>
           <h2 className="ctrl-title">Controls</h2>
@@ -136,4 +118,5 @@ export const Page = ({ setForward, setScore }) => {
       </div>
     );
   }
+  
 };
