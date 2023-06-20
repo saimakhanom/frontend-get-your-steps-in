@@ -7,7 +7,6 @@ import RandomisedGrassComponents from "./components/Randomised-trees";
 import Path from "./components/Path";
 import Ground from "./components/Ground";
 import Lights from "./components/Lights";
-import Grass from "./components/Grass";
 import Character from "./components/Character";
 import Rock from "./components/Rock";
 import Branch from "./components/Branch";
@@ -18,7 +17,7 @@ import SideWalls from "./components/SideWalls";
 import RightWall from "./components/RightWall";
 import { Page } from "./components/Loading-Page";
 import { Canvas } from "@react-three/fiber";
-import { Environment, PerspectiveCamera, Sky } from "@react-three/drei";
+import { Environment, PerspectiveCamera, Sky, Stats } from "@react-three/drei";
 import Shop from "./components/Shop";
 import Kebab from "./components/Kebab";
 
@@ -28,16 +27,15 @@ function App() {
   const [forward, setForward] = useState(0);
   const [jump, setJump] = useState(0);
   const [motivation, setMotivation] = useState(3);
-  const [showGameOver, setShowGameOver] = useState(false)
+  const [showGameOver, setShowGameOver] = useState(false);
   const [score, setScore] = useState(0);
-  const [win, setWin] = useState(false)
+  const [win, setWin] = useState(false);
   const [gameStarted, setGameStarted] = useState(false);
 
-
   const planeDimensions = {
-    pathLength: 10000,
+    pathLength: 8000,
     pathWidth: 10,
-    groundWidth: 300,
+    groundWidth: 30,
     groundLength: 1000,
   };
 
@@ -53,16 +51,26 @@ function App() {
     };
   }, []);
 
-
   return (
     <div className="canvas-container">
       <Page gameStarted={gameStarted} />
-      <StepCounter gameStarted={gameStarted} win={win} motivation={motivation} score={score} setScore={setScore} />
-      <Motivation motivation={motivation} setShowGameOver={setShowGameOver} showGameOver={showGameOver} win={win}/>
+      <StepCounter
+        gameStarted={gameStarted}
+        win={win}
+        motivation={motivation}
+        score={score}
+        setScore={setScore}
+      />
+      <Motivation
+        motivation={motivation}
+        setShowGameOver={setShowGameOver}
+        showGameOver={showGameOver}
+        win={win}
+      />
       <Canvas shadows>
         <Suspense>
-          <Physics >
-            <Environment preset="dawn"/>
+          <Physics interpolate={false}>
+            <Environment preset="dawn" />
             <Lights />
             <Sky
               turbidity={10}
@@ -100,13 +108,6 @@ function App() {
               numObjects={200}
               buffer={10}
             />
-            <RandomisedGrassComponents
-              planeDimensions={planeDimensions}
-              Component={Grass}
-              objectSize={5}
-              numObjects={500}
-              buffer={10}
-            />
 
             <RandomisedObstacles
               planeDimensions={planeDimensions}
@@ -121,13 +122,14 @@ function App() {
               numObjects={50}
             />
             <Path planeDimensions={planeDimensions} />
-            <Shop/>
-            <Kebab/>
+            <Shop />
+            <Kebab />
             <SideWalls planeDimensions={planeDimensions} />
             <RightWall planeDimensions={planeDimensions} />
             <RightWall planeDimensions={planeDimensions} />
             <Ground planeDimensions={planeDimensions} />
           </Physics>
+          <Stats />
         </Suspense>
       </Canvas>
     </div>
