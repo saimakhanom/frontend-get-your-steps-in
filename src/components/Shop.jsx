@@ -9,7 +9,7 @@ export default function Shop() {
     <>
       <primitive
         object={model.scene}
-        position={[0,2.3,-4920]}
+        position={[0,2.3,-3920]}
         rotation={[0, -3.14, 0]}
         scale={10}
       />

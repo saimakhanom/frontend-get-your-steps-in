@@ -15,7 +15,7 @@ export default function Kebab() {
       <primitive
         ref={kebabRef}
         object={model.scene}
-        position={[0, 11, -4927]}
+        position={[0, 11, -3927]}
         rotation={[0, -3.14, 180]}
         scale={1.5}
       />
