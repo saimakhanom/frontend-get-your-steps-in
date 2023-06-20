@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { VscGithub } from "react-icons/vsc";
 import { SiLinkedin } from "react-icons/si";
 
@@ -57,7 +56,7 @@ export const Page = ({ gameStarted }) => {
               >
                 <VscGithub />
               </a>
-              <a href="#">
+              <a href="https://uk.linkedin.com/">
                 <SiLinkedin />
               </a>
               <li>Λ Jorge Martin</li>

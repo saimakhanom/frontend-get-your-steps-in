@@ -16,11 +16,11 @@ function StepCounter({motivation, score, setScore, win, gameStarted}) {
   }, [timer, gameStarted])
 
   useEffect(() => {
-    if (gameStarted && motivation > 0 || win ) {
+    if (gameStarted && (motivation > 0 || win) ) {
     setTimeout(() => {
       setScore((s) => s + 1);
     }, interval);
-  }}, [score, interval, motivation, gameStarted]);
+  }}, [score, interval, motivation, gameStarted, setScore, win]);
 
   return (
     <div className="score">

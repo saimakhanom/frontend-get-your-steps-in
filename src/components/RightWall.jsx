@@ -1,4 +1,3 @@
-import { MeshReflectorMaterial } from "@react-three/drei";
 import { RigidBody } from "@react-three/rapier";
 
 function RightWall({ planeDimensions }) {

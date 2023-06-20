@@ -32,7 +32,7 @@ const highScorers = [
 ]
 
 const Scoreboard = () => {
-  const [scorers, setScorers] = useState(highScorers)
+  const [scorers] = useState(highScorers)
   const navigate = useNavigate()
 
   const model = useLoader(GLTFLoader, burgerFile);
