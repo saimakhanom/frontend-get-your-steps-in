@@ -1,5 +1,5 @@
 import "./App.css";
-import { Suspense, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { Physics } from "@react-three/rapier";
 
 import RandomisedObstacles from "./components/Randomised-obstacles";
@@ -25,12 +25,14 @@ import Kebab from "./components/Kebab";
 function App() {
   const [left, setLeft] = useState(0);
   const [right, setRight] = useState(0);
-  const [forward, setForward] = useState(-20);
+  const [forward, setForward] = useState(0);
   const [jump, setJump] = useState(0);
   const [motivation, setMotivation] = useState(3);
   const [showGameOver, setShowGameOver] = useState(false)
   const [score, setScore] = useState(0);
   const [win, setWin] = useState(false)
+  const [gameStarted, setGameStarted] = useState(false);
+
 
   const planeDimensions = {
     pathLength: 10000,
@@ -39,28 +41,27 @@ function App() {
     groundLength: 1000,
   };
 
+  useEffect(() => {
+    const handleKeyPress = () => {
+      setGameStarted(true);
+      setForward(-20);
+    };
+    window.addEventListener("keydown", handleKeyPress);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyPress);
+    };
+  }, []);
+
+
   return (
     <div className="canvas-container">
-      {/* <label htmlFor="name" style={{ margin: "20px" }}>
-        Your Name:
-      </label>
-      <input
-        style={{ margin: "20px" }}
-        id="name"
-        value={name}
-        onChange={(e) => {
-          setName(e.target.value);
-        }}
-      />
-      <button onClick={() => { postScore(name, score) }}>Axios POST</button>
-      <button onClick={getAllScores}>Axios GET</button> */}
-      <Page setForward={setForward} setScore={setScore} />
-      <StepCounter win={win} motivation={motivation} score={score} setScore={setScore} />
+      <Page gameStarted={gameStarted} />
+      <StepCounter gameStarted={gameStarted} win={win} motivation={motivation} score={score} setScore={setScore} />
       <Motivation motivation={motivation} setShowGameOver={setShowGameOver} showGameOver={showGameOver} win={win}/>
       <Canvas shadows>
         <Suspense>
           <Physics >
-            {/* <Lights /> */}
             <Environment preset="dawn"/>
             <Lights />
             <Sky
@@ -119,13 +120,6 @@ function App() {
               objectSize={0.5}
               numObjects={50}
             />
-            {/* <RandomisedObstacles
-              planeDimensions={planeDimensions}
-              Component={ObstacleRunner}
-              objectSize={1.2}
-              numObjects={3}
-            /> */}
-
             <Path planeDimensions={planeDimensions} />
             <Shop/>
             <Kebab/>
