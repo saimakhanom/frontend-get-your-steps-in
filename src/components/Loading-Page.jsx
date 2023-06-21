@@ -1,4 +1,4 @@
-import Footer from "./Footer";
+
 
 export const Page = ({ gameStarted}) => {
   if (!gameStarted) {
@@ -31,7 +31,6 @@ export const Page = ({ gameStarted}) => {
           </p>
           <button className="start-btn">Press Any Key To Start</button>
         </div>
-        <Footer />
       </div>
     );
   }

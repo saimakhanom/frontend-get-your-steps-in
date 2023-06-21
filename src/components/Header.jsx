@@ -1,9 +1,9 @@
 import { VscGithub } from "react-icons/vsc";
 import { SiLinkedin } from "react-icons/si";
 
-const Footer = () => {
+const Header = () => {
     return(
-        <footer>
+        <nav>
           <ul className="names">
             <div className="name-item">
               <a
@@ -87,8 +87,8 @@ const Footer = () => {
               <li>Λ Saima Khanom</li>
             </div>
           </ul>
-        </footer>
+        </nav>
     )
 }
 
-export default Footer
+export default Header
