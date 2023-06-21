@@ -3,6 +3,8 @@ This project is a culmination of the work undertaken by Team Ctrl Alt Elite duri
 
 "Get Your Steps In" is an immersive 3D game developed using React as the foundation, while leveraging React-Three-Fiber to construct the captivating virtual environment. Additionally, the game harnesses the power of Rapier as its physics engine. The primary objective of the game is to skillfully navigate all obstacles in the runner's path in order to boost their step count. Upon successfully reaching the end of this obstacle-laden route, players are rewarded with a trip to the kebab shop!
 
+The hosted version of the game can be played [here](https://getyourstepsin.netlify.app).
+
 Feel free to explore the backend repository for this project [here](https://github.com/saimakhanom/backend-get-your-steps-in.git).
 
 ## Getting started
