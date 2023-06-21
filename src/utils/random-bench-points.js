@@ -10,10 +10,9 @@ const isNotOnPath = (x) => {
     buffer,
     objectSize,
     pathConstraint,
-    groundWidth
   ) => {
-    let x = Math.floor(Math.random() * (groundWidth/2 - buffer) -
-    groundWidth / 2 +
+    let x = Math.floor(Math.random() * (30/2 - buffer) -
+    30 / 2 +
     buffer / 2);
     const y = -1.2 + objectSize / 2;
     let z = Math.random() * (pathConstraint - buffer - 2) + 2;
