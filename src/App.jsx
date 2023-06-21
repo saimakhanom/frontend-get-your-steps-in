@@ -23,14 +23,13 @@ import Kebab from "./components/Kebab";
 import Bench from "./components/Bench";
 import RandomisedBenchComponents from "./components/Randomised-benches";
 
-function App() {
+function App({score, setScore}) {
   const [left, setLeft] = useState(0);
   const [right, setRight] = useState(0);
   const [forward, setForward] = useState(0);
   const [jump, setJump] = useState(0);
   const [motivation, setMotivation] = useState(3);
   const [showGameOver, setShowGameOver] = useState(false);
-  const [score, setScore] = useState(0);
   const [win, setWin] = useState(false);
   const [gameStarted, setGameStarted] = useState(false);
 
@@ -43,6 +42,9 @@ function App() {
   // function play() {
   //   new Audio(sound).play()
   // }
+  function play() {
+    // new Audio(sound).play()
+  }
   
   // useEffect(() => {
   //   const handleKeyPress = (event) => {
@@ -150,7 +152,7 @@ function App() {
             />
             <Path planeDimensions={planeDimensions} />
             <Shop />
-            <Kebab />
+            <Kebab position={[0, 11, -3927]} scale={1.5} rotationSpeed={0.1}/>
             <SideWalls planeDimensions={planeDimensions} />
             <RightWall planeDimensions={planeDimensions} />
             <RightWall planeDimensions={planeDimensions} />

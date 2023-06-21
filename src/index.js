@@ -1,19 +1,21 @@
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import App from "./App";
-import { createBrowserRouter, RouterProvider, Route, createRoutesFromElements } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useState } from "react";
 import Scoreboard from "./components/Scoreboard";
+import App from "./App";
 
-
-const myRouter = createBrowserRouter(
-  createRoutesFromElements(
-
-    <Route path="/">
-      <Route index element={<App />} />
-      <Route path="/scoreboard" element={<Scoreboard />}/> 
-    </Route>
-))
-
+const WholeApp = () => {
+  const [score, setScore] = useState(0)
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<App score={score} setScore={setScore}/>} />
+        <Route path="/scoreboard" element={<Scoreboard score={score} />}/> 
+      </Routes>
+    </BrowserRouter>
+  )
+}
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<RouterProvider router={myRouter} />);
+root.render(<WholeApp />);

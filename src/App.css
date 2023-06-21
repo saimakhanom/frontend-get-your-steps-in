@@ -14,7 +14,7 @@ body {
 body,
 html {
   min-height: 100vh;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 a {
@@ -195,7 +195,7 @@ h1 {
 
 .board {
   background-color: white;
-  width: 20%;
+  width: 25%;
   max-width: 450px;
   font-family: monospace;
   font-size: 1.3rem;
@@ -239,7 +239,7 @@ h1 {
 }
 
 .score-form {
-  width: 20%;
+  width: 25%;
   max-width: 450px;
   background-color: white;
   padding: 2rem;
@@ -290,5 +290,67 @@ h1 {
 }
 
 .burger-canvas-container {
-  height: 400px;
+  height: 500px;
+  width: 25%;
+}
+
+.scoreboard-score {
+  text-align: center;
+  color: tomato;
+  /* font-family: bangers, monospace */
+  font-size: 3rem;
+  border: 5px dashed tomato;
+  width: fit-content;
+  margin: 2rem auto;
+  padding: 1.4rem 2rem;
+}
+
+.spinner {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  border: 30px solid rgb(231, 168, 157);
+  border-top: 30px solid red;
+  animation: spin 1.5s linear infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.spinnerContainer {
+  background-color: rgba(0, 0, 0, 0.9);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  gap: 2rem;
+}
+
+.spinnerContainer h2 {
+  font-size: 3rem;
+}
+
+.radioButtons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.radioButtons span {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.radioButtons input {
+  accent-color: tomato;
+  scale: 1.2;
 }

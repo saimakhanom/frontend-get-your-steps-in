@@ -3,21 +3,21 @@ import { useLoader, useFrame } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { useRef } from "react";
 
-export default function Kebab() {
+export default function Kebab({position, scale, rotationSpeed}) {
   const model = useLoader(GLTFLoader, KebabGLB);
   const kebabRef = useRef();
 
   useFrame(() => {
-    kebabRef.current.rotation.y += .1;
+    kebabRef.current.rotation.y += rotationSpeed;
   });
   return (
     <>
       <primitive
         ref={kebabRef}
         object={model.scene}
-        position={[0, 11, -4922]}
+        position={position}
         rotation={[0, -3.14, 180]}
-        scale={1.5}
+        scale={scale}
       />
     </>
   );
