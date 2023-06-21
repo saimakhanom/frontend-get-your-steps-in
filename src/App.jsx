@@ -21,14 +21,13 @@ import { Environment, PerspectiveCamera, Sky, Stats } from "@react-three/drei";
 import Shop from "./components/Shop";
 import Kebab from "./components/Kebab";
 
-function App() {
+function App({score, setScore}) {
   const [left, setLeft] = useState(0);
   const [right, setRight] = useState(0);
   const [forward, setForward] = useState(0);
   const [jump, setJump] = useState(0);
   const [motivation, setMotivation] = useState(3);
   const [showGameOver, setShowGameOver] = useState(false);
-  const [score, setScore] = useState(0);
   const [win, setWin] = useState(false);
   const [gameStarted, setGameStarted] = useState(false);
 
@@ -39,7 +38,7 @@ function App() {
     groundLength: 1000,
   };
   function play() {
-    new Audio(sound).play()
+    // new Audio(sound).play()
   }
   
   useEffect(() => {
@@ -141,7 +140,7 @@ function App() {
             />
             <Path planeDimensions={planeDimensions} />
             <Shop />
-            <Kebab />
+            <Kebab position={[0, 11, -3927]} scale={1.5} rotationSpeed={0.1}/>
             <SideWalls planeDimensions={planeDimensions} />
             <RightWall planeDimensions={planeDimensions} />
             <RightWall planeDimensions={planeDimensions} />
