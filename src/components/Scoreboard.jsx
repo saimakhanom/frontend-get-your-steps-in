@@ -5,6 +5,7 @@ import { OrbitControls } from "@react-three/drei";
 import { getAllScores, postScore, getLastSevenDays } from "../utils/api-calls";
 import Kebab from "./Kebab";
 import Spinner from "./Spinner";
+import Footer from "./Footer";
 
 
 const Scoreboard = ({score}) => {
@@ -145,6 +146,7 @@ const Scoreboard = ({score}) => {
 
         <button className="playagain-btn" onClick={goHome}>Play again</button>
       
+      <Footer/>
       </div> )}
       </>
     );
