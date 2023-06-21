@@ -1,23 +1,11 @@
 import { useNavigate } from "react-router-dom";
-import { useEffect, useRef, useState } from "react";
-import { useLoader } from "@react-three/fiber";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
-import burgerFile from "../assets/Kebab.glb"
+import { useEffect, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import { getAllScores, postScore, getLastSevenDays } from "../utils/api-calls";
 import Kebab from "./Kebab";
+import Spinner from "./Spinner";
 
-
-// Spinner 
-const Spinner = () => {
-  return (
-    <div className="spinnerContainer">
-      <h2>Loading Scores...</h2>
-      <div className="spinner"></div>
-    </div>
-  )
-}
 
 const Scoreboard = ({score}) => {
   const [scorers, setScorers] = useState([])
@@ -29,7 +17,7 @@ const Scoreboard = ({score}) => {
 
 
   const navigate = useNavigate()
-  const model = useLoader(GLTFLoader, burgerFile);
+
   
   const goHome = () => {
     navigate("/")
@@ -65,7 +53,6 @@ const Scoreboard = ({score}) => {
 
   const handleRadioChange = (e) => {
     
-    // setSortMethod(e.target.value)
     if(e.target.value === "historic") {
       getAllScores()
       .then(data => {
@@ -78,7 +65,6 @@ const Scoreboard = ({score}) => {
       getLastSevenDays()
       .then(score => {
         setScorers(score)
-        // setIsloading(false)
       })
       .catch(e => console.error(e) )
     }
@@ -93,11 +79,6 @@ const Scoreboard = ({score}) => {
     })
     .catch(e => console.error(e))
   }, [])
-
-
-  // if (isLoading) {
-  //   return <Spinner />
-  // } else {
 
 
     return (
