@@ -118,11 +118,11 @@ const Scoreboard = ({score}) => {
               <div className="radioButtons" onChange={handleRadioChange}>
                 <span>
                   <input type="radio" id="historic" name="sort_type" value="historic"/>
-                  <label htmlFor="historic">Historic</label>
+                  <label htmlFor="historic">All Time</label>
                 </span>
                 <span>
                   <input type="radio" id="lastWeek" name="sort_type" value="lastWeek"/>
-                  <label htmlFor="lastWeek">Last Week</label>
+                  <label htmlFor="lastWeek">This Week</label>
                 </span>
               </div>
 
