@@ -18,3 +18,11 @@ export const postScore = (name, score) => {
        return res.data.data
     })
 }
+
+export const getLastSevenDays = () => {
+    return api.get("/leaderboard/sort").then((res) => {
+        // console.log(res.data.scores)
+        return res.data.scores
+    })
+}
+

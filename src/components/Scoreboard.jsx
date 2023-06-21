@@ -5,7 +5,8 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import burgerFile from "../assets/Hamburger.glb"
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
-import { getAllScores, postScore } from "../utils/api-calls";
+import { getAllScores, postScore, getLastSevenDays } from "../utils/api-calls";
+
 
 // Spinner 
 const Spinner = () => {
@@ -22,7 +23,7 @@ const Scoreboard = ({score}) => {
   const [userInput, setUserInput] = useState("")
   const [disableForm, setDisableForm] = useState(false)
   const [isLoading, setIsloading] = useState(true)
-  const [sortMethod, setSortMethod] = useState(null)
+
 
 
 
@@ -35,7 +36,14 @@ const Scoreboard = ({score}) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setScorers(s => [...s, {name: userInput, score: score}])
+    setScorers(s => {
+      const newArray = [...s, {name: userInput, score: score}]
+      return newArray.sort((a,b) => {
+        return b.score - a.score;
+      })
+    })
+  
+
     if (userInput !== "") {
       postScore(userInput, score)
       .then(response => console.log(response))
@@ -55,23 +63,46 @@ const Scoreboard = ({score}) => {
   }
 
   const handleRadioChange = (e) => {
-    setSortMethod(e.target.value)
+    
+    // setSortMethod(e.target.value)
+    if(e.target.value === "historic") {
+      getAllScores()
+      .then(data => {
+        setScorers(data)
+        
+      })
+      .catch(e => console.error(e))
+  
+    } else if (e.target.value === "lastWeek") {
+      getLastSevenDays()
+      .then(score => {
+        setScorers(score)
+        // setIsloading(false)
+      })
+      .catch(e => console.error(e) )
+    }
   }
+
   
   useEffect(() => {
-    const scores = getAllScores()
-    scores.then(data => {
+    getAllScores()
+    .then(data => {
       setScorers(data)
       setIsloading(false)
     })
+    .catch(e => console.error(e))
   }, [])
 
 
-  if (isLoading) {
-    return <Spinner />
-  } else {
+  // if (isLoading) {
+  //   return <Spinner />
+  // } else {
+
+
     return (
-      <div className="scoreboard-container">
+      <>
+      {isLoading && <Spinner />}
+       {!isLoading && (<div className="scoreboard-container">
         
         <h1>Scoreboard</h1>
         <h2 className="scoreboard-score">Your score is: {score}</h2>
@@ -83,7 +114,7 @@ const Scoreboard = ({score}) => {
             <input type="text" placeholder="Enter your name..." id="userScore" name="useInput" value={userInput} onChange={(e) => setUserInput(e.target.value)}/>
             <button type="submit" className="add-score" disabled={disableForm}>Join</button>
           </form>
-  
+
           <div className="burger-canvas-container">
           <Canvas className="burger-canvas">
           <OrbitControls />
@@ -99,16 +130,20 @@ const Scoreboard = ({score}) => {
           
 
           <div className="board">
-            <div className="radioButtons" onChange={handleRadioChange}>
-              <span>
-                <input type="radio" id="historic" name="sort_type" value="historic"/>
-                <label htmlFor="historic">Historic</label>
-              </span>
-              <span>
-                <input type="radio" id="lastWeek" name="sort_type" value="lastWeek"/>
-                <label htmlFor="lastWeek">Last Week</label>
-              </span>
-            </div>
+
+           
+              <div className="radioButtons" onChange={handleRadioChange}>
+                <span>
+                  <input type="radio" id="historic" name="sort_type" value="historic"/>
+                  <label htmlFor="historic">Historic</label>
+                </span>
+                <span>
+                  <input type="radio" id="lastWeek" name="sort_type" value="lastWeek"/>
+                  <label htmlFor="lastWeek">Last Week</label>
+                </span>
+              </div>
+
+           
             <div className="board-header">
               <span>Name</span>
               <span>Steps</span>
@@ -124,14 +159,14 @@ const Scoreboard = ({score}) => {
             })}
           </div>
         </div>
-  
+
         <button className="playagain-btn" onClick={goHome}>Play again</button>
       
-      </div>
+      </div> )}
+      </>
     );
-  }
+  
 
- 
 }
  
 export default Scoreboard;
