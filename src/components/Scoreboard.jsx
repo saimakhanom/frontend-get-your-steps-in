@@ -2,10 +2,11 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import { useLoader } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
-import burgerFile from "../assets/Hamburger.glb"
+import burgerFile from "../assets/Kebab.glb"
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import { getAllScores, postScore, getLastSevenDays } from "../utils/api-calls";
+import Kebab from "./Kebab";
 
 
 // Spinner 
@@ -119,12 +120,13 @@ const Scoreboard = ({score}) => {
           <Canvas className="burger-canvas">
           <OrbitControls />
           <ambientLight intensity={1}/>
-            <primitive
+            {/* <primitive
               object={model.scene}
-              scale={0.27}
-              position={[0, -1, 0]}
+              scale={1}
+              position={[0, 0, 0]}
               rotation={[-0.1, 0, 0]}
-            />
+            /> */}
+            <Kebab scale={1} position={[0,0,0]} rotationSpeed={0.05}/>
             </Canvas>
         </div>
           

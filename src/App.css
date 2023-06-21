@@ -290,7 +290,8 @@ h1 {
 }
 
 .burger-canvas-container {
-  height: 400px;
+  height: 500px;
+  width: 25%;
 }
 
 .scoreboard-score {
