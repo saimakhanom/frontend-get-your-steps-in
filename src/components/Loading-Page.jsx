@@ -1,37 +1,6 @@
-import { useEffect, useState } from "react";
 import Footer from "./Footer";
-import soundFile from "../assets/sound.mp3";
 
-export const Page = ({ gameStarted }) => {
-  const sound = new Audio(soundFile);
-
-  const [isPlaying, setIsPlaying] = useState(false);
-
-  const handlePlay = () => {
-    setIsPlaying(!isPlaying); 
-  };
-
-  useEffect(() => {
-    if (isPlaying) {
-      sound.play()
-    } else {
-      sound.pause();
-      sound.currentTime = 0;
-    }
-  }, [isPlaying]);
-
-  // const toggleSound = () => {
-  //   if(isPlaying) {
-  //     sound.play();
-  //     setIsPlaying(true)
-  //   }
-  //   else if (!isPlaying) {
-  //     sound.pause();
-  //     setIsPlaying(false)
-  //   }
-  //   setIsPlaying(isPlaying);
-  // };
-
+export const Page = ({ gameStarted}) => {
   if (!gameStarted) {
     return (
       <div className="blurry-screen">
@@ -39,14 +8,6 @@ export const Page = ({ gameStarted }) => {
           <h1>Get Your Steps In!</h1>
         </div>
         <div className="controls">
-          <button onClick={handlePlay}> Toggle Music </button>
-          <input
-            type="range"
-            min="0"
-            max="100"
-            value={volume}
-            onChange={(event)=>handleVolumeChange(event)}
-          />
           <div className="instructions">
             <h2>Instructions </h2>
             <p>

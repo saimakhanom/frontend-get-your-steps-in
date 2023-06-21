@@ -16,13 +16,14 @@ import SideWalls from "./components/SideWalls";
 import RightWall from "./components/RightWall";
 import { Page } from "./components/Loading-Page";
 import { Canvas } from "@react-three/fiber";
-import { Environment, PerspectiveCamera, Sky, Stats } from "@react-three/drei";
+import { Environment, PerspectiveCamera, Sky } from "@react-three/drei";
 import Shop from "./components/Shop";
 import Kebab from "./components/Kebab";
 import Bench from "./components/Bench";
 import RandomisedBenchComponents from "./components/Randomised-benches";
+import soundFile from "./assets/sound.mp3"
 
-function App({score, setScore, sound}) {
+function App({ score, setScore }) {
   const [left, setLeft] = useState(0);
   const [right, setRight] = useState(0);
   const [forward, setForward] = useState(0);
@@ -31,7 +32,6 @@ function App({score, setScore, sound}) {
   const [showGameOver, setShowGameOver] = useState(false);
   const [win, setWin] = useState(false);
   const [gameStarted, setGameStarted] = useState(false);
-  // const [playing, setPlaying] = useState(false)
 
   const planeDimensions = {
     pathLength: 8000,
@@ -39,25 +39,25 @@ function App({score, setScore, sound}) {
     groundWidth: 300,
     groundLength: 1000,
   };
-  
-  // let playing = false
-  
-  // useEffect(() => {
-  //   const handleKeyPress = (event) => {
-  //     if (event.key && !playing) {
-  //       playing= true
-  //       sound.play();
-  //     }
-  //   };
 
-  //   window.addEventListener('keydown', handleKeyPress);
+  useEffect(() => {
+    const sound = new Audio(soundFile)
+    let playing = false;
+    const handleKeyPress = (event) => {
+      if (event.key && !playing) {
+        playing = true;
+        sound.volume = 0.1
+        sound.play();
+      }
+    };
 
-  //   return () => {
-  //     sound.pause()
-  //     window.removeEventListener('keydown', handleKeyPress);
-  //   };
-  // }, []);
+    window.addEventListener("keydown", handleKeyPress);
 
+    return () => {
+      sound.pause();
+      window.removeEventListener("keydown", handleKeyPress);
+    };
+  }, []);
 
   useEffect(() => {
     const handleKeyPress = () => {
@@ -150,13 +150,12 @@ function App({score, setScore, sound}) {
             />
             <Path planeDimensions={planeDimensions} />
             <Shop />
-            <Kebab position={[0, 11, -3927]} scale={1.5} rotationSpeed={0.1}/>
+            <Kebab position={[0, 11, -3927]} scale={1.5} rotationSpeed={0.1} />
             <SideWalls planeDimensions={planeDimensions} />
             <RightWall planeDimensions={planeDimensions} />
             <RightWall planeDimensions={planeDimensions} />
             <Ground planeDimensions={planeDimensions} />
           </Physics>
-          <Stats />
         </Suspense>
       </Canvas>
     </div>
