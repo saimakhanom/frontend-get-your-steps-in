@@ -1,7 +1,7 @@
 import "./App.css";
 import { Suspense, useEffect, useState } from "react";
 import { Physics } from "@react-three/rapier";
-
+import soundFile from "./assets/sound.mp3"
 import RandomisedObstacles from "./components/Randomised-obstacles";
 import RandomisedGrassComponents from "./components/Randomised-trees";
 import Path from "./components/Path";
@@ -23,7 +23,7 @@ import Kebab from "./components/Kebab";
 import Bench from "./components/Bench";
 import RandomisedBenchComponents from "./components/Randomised-benches";
 
-function App({score, setScore}) {
+function App({score, setScore, sound}) {
   const [left, setLeft] = useState(0);
   const [right, setRight] = useState(0);
   const [forward, setForward] = useState(0);
@@ -32,6 +32,7 @@ function App({score, setScore}) {
   const [showGameOver, setShowGameOver] = useState(false);
   const [win, setWin] = useState(false);
   const [gameStarted, setGameStarted] = useState(false);
+  // const [playing, setPlaying] = useState(false)
 
   const planeDimensions = {
     pathLength: 8000,
@@ -39,26 +40,27 @@ function App({score, setScore}) {
     groundWidth: 300,
     groundLength: 1000,
   };
-  // function play() {
-  //   new Audio(sound).play()
-  // }
-  function play() {
-    // new Audio(sound).play()
-  }
+
   
-  // useEffect(() => {
-  //   const handleKeyPress = (event) => {
-  //     if (event.key === 'f') {
-  //       play();
-  //     }
-  //   };
+  
+  
+  let playing = false
+  
+  useEffect(() => {
+    const handleKeyPress = (event) => {
+      if (event.key && !playing) {
+        playing= true
+        sound.play();
+      }
+    };
 
-  //   window.addEventListener('keydown', handleKeyPress);
+    window.addEventListener('keydown', handleKeyPress);
 
-  //   return () => {
-  //     window.removeEventListener('keydown', handleKeyPress);
-  //   };
-  // }, []);
+    return () => {
+      sound.pause()
+      window.removeEventListener('keydown', handleKeyPress);
+    };
+  }, []);
 
 
   useEffect(() => {

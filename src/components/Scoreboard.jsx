@@ -8,7 +8,7 @@ import Spinner from "./Spinner";
 import Footer from "./Footer";
 
 
-const Scoreboard = ({score}) => {
+const Scoreboard = ({score, sound}) => {
   const [scorers, setScorers] = useState([])
   const [userInput, setUserInput] = useState("")
   const [disableForm, setDisableForm] = useState(false)
@@ -19,8 +19,13 @@ const Scoreboard = ({score}) => {
 
   const navigate = useNavigate()
 
+  useEffect(() => {
+    sound.play()
+    // return () => sound.pause()
+  }, [])
   
   const goHome = () => {
+    
     navigate("/");
   };
 

@@ -19,14 +19,14 @@ export const Page = ({ gameStarted }) => {
           <h2 className="ctrl-title">Controls</h2>
           <p>
             <b>Left Arrow:</b> Left
-          </p>1
+          </p>
           <p>
             <b>Right Arrow:</b> Right
           </p>
           <p>
             <b>Space:</b> Jump
           </p>
-          <button className="start-btn">Press F To Start</button>
+          <button className="start-btn">Press Any Key To Start</button>
           </div>
         <Footer/>
       </div>
