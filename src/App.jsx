@@ -1,5 +1,5 @@
 import "./App.css";
-import { Suspense, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { Physics } from "@react-three/rapier";
 
 import RandomisedObstacles from "./components/Randomised-obstacles";
@@ -7,7 +7,6 @@ import RandomisedGrassComponents from "./components/Randomised-trees";
 import Path from "./components/Path";
 import Ground from "./components/Ground";
 import Lights from "./components/Lights";
-import Grass from "./components/Grass";
 import Character from "./components/Character";
 import Rock from "./components/Rock";
 import Branch from "./components/Branch";
@@ -18,48 +17,78 @@ import SideWalls from "./components/SideWalls";
 import RightWall from "./components/RightWall";
 import { Page } from "./components/Loading-Page";
 import { Canvas } from "@react-three/fiber";
-import { Environment, PerspectiveCamera, Sky } from "@react-three/drei";
+import { Environment, PerspectiveCamera, Sky, Stats } from "@react-three/drei";
+import Shop from "./components/Shop";
+import Kebab from "./components/Kebab";
 
 function App({score, setScore}) {
   const [left, setLeft] = useState(0);
   const [right, setRight] = useState(0);
-  const [forward, setForward] = useState(-20);
+  const [forward, setForward] = useState(0);
   const [jump, setJump] = useState(0);
   const [motivation, setMotivation] = useState(3);
-  const [showGameOver, setShowGameOver] = useState(false)
-  // const [score, setScore] = useState(0);
-  
+  const [showGameOver, setShowGameOver] = useState(false);
+  const [score, setScore] = useState(0);
+  const [win, setWin] = useState(false);
+  const [gameStarted, setGameStarted] = useState(false);
 
   const planeDimensions = {
-    pathLength: 10000,
+    pathLength: 8000,
     pathWidth: 10,
-    groundWidth: 300,
+    groundWidth: 30,
     groundLength: 1000,
   };
+  function play() {
+    new Audio(sound).play()
+  }
+  
+  useEffect(() => {
+    const handleKeyPress = (event) => {
+      if (event.key === 'f') {
+        play();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyPress);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyPress);
+    };
+  }, []);
+
+
+  useEffect(() => {
+    const handleKeyPress = () => {
+      setGameStarted(true);
+      setForward(-20);
+    };
+    window.addEventListener("keydown", handleKeyPress);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyPress);
+    };
+  }, []);
 
   return (
     <div className="canvas-container">
-      {/* <label htmlFor="name" style={{ margin: "20px" }}>
-        Your Name:
-      </label>
-      <input
-        style={{ margin: "20px" }}
-        id="name"
-        value={name}
-        onChange={(e) => {
-          setName(e.target.value);
-        }}
+      <Page gameStarted={gameStarted} />
+      <StepCounter
+        gameStarted={gameStarted}
+        win={win}
+        motivation={motivation}
+        score={score}
+        setScore={setScore}
       />
-      <button onClick={() => { postScore(name, score) }}>Axios POST</button>
-      <button onClick={getAllScores}>Axios GET</button> */}
-      <Page setForward={setForward} setScore={setScore} />
-      <StepCounter motivation={motivation} score={score} setScore={setScore} />
-      <Motivation motivation={motivation} setShowGameOver={setShowGameOver} showGameOver={showGameOver}/>
+      <Motivation
+        motivation={motivation}
+        setShowGameOver={setShowGameOver}
+        showGameOver={showGameOver}
+        win={win}
+      />
       <Canvas shadows>
         <Suspense>
-          <Physics >
-            {/* <Lights /> */}
-            <Environment preset="dawn"/>
+          <Physics interpolate={false}>
+            <Environment preset="dawn" />
             <Lights />
             <Sky
               turbidity={10}
@@ -86,6 +115,7 @@ function App({score, setScore}) {
                 motivation={motivation}
                 setMotivation={setMotivation}
                 setShowGameOver={setShowGameOver}
+                setWin={setWin}
               />
             </PerspectiveCamera>
 
@@ -94,13 +124,6 @@ function App({score, setScore}) {
               Component={Tree}
               objectSize={1.2}
               numObjects={200}
-              buffer={10}
-            />
-            <RandomisedGrassComponents
-              planeDimensions={planeDimensions}
-              Component={Grass}
-              objectSize={5}
-              numObjects={500}
               buffer={10}
             />
 
@@ -116,19 +139,15 @@ function App({score, setScore}) {
               objectSize={0.5}
               numObjects={50}
             />
-            {/* <RandomisedObstacles
-              planeDimensions={planeDimensions}
-              Component={ObstacleRunner}
-              objectSize={1.2}
-              numObjects={3}
-            /> */}
-
             <Path planeDimensions={planeDimensions} />
+            <Shop />
+            <Kebab />
             <SideWalls planeDimensions={planeDimensions} />
             <RightWall planeDimensions={planeDimensions} />
             <RightWall planeDimensions={planeDimensions} />
             <Ground planeDimensions={planeDimensions} />
           </Physics>
+          <Stats />
         </Suspense>
       </Canvas>
     </div>
