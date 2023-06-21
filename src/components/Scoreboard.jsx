@@ -14,15 +14,12 @@ const Scoreboard = ({score, sound}) => {
   const [disableForm, setDisableForm] = useState(false)
   const [isLoading, setIsloading] = useState(true)
 
-
-
-
   const navigate = useNavigate()
 
-  useEffect(() => {
-    sound.play()
-    // return () => sound.pause()
-  }, [])
+  // useEffect(() => {
+  //   sound.play()
+  //   // return () => sound.pause()
+  // }, [])
   
   const goHome = () => {
     
