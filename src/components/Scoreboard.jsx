@@ -12,14 +12,9 @@ const Scoreboard = ({score, sound}) => {
   const [scorers, setScorers] = useState([])
   const [userInput, setUserInput] = useState("")
   const [disableForm, setDisableForm] = useState(false)
-  const [isLoading, setIsloading] = useState(true)
+  const [isLoading, setIsLoading] = useState(true)
 
   const navigate = useNavigate()
-
-  // useEffect(() => {
-  //   sound.play()
-  //   // return () => sound.pause()
-  // }, [])
   
   const goHome = () => {
     
@@ -78,7 +73,7 @@ const Scoreboard = ({score, sound}) => {
     getAllScores()
     .then(data => {
       setScorers(data)
-      setIsloading(false)
+      setIsLoading(false)
     })
     .catch(e => console.error(e))
   }, [])
