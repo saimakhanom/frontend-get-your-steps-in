@@ -22,7 +22,7 @@ const Scoreboard = ({score, sound}) => {
   useEffect(() => {
     sound.play()
     // return () => sound.pause()
-  }, [])
+  }, [sound])
   
   const goHome = () => {
     

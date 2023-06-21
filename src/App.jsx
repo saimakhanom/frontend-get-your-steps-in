@@ -1,7 +1,6 @@
 import "./App.css";
 import { Suspense, useEffect, useState } from "react";
 import { Physics } from "@react-three/rapier";
-import soundFile from "./assets/sound.mp3"
 import RandomisedObstacles from "./components/Randomised-obstacles";
 import RandomisedGrassComponents from "./components/Randomised-trees";
 import Path from "./components/Path";
@@ -44,9 +43,9 @@ function App({score, setScore, sound}) {
   
   
   
-  let playing = false
   
   useEffect(() => {
+    let playing = false
     const handleKeyPress = (event) => {
       if (event.key && !playing) {
         playing= true
