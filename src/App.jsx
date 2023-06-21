@@ -22,6 +22,7 @@ import Shop from "./components/Shop";
 import Kebab from "./components/Kebab";
 import Bench from "./components/Bench";
 import RandomisedBenchComponents from "./components/Randomised-benches";
+import Flowers from "./components/Bush";
 
 function App() {
   const [left, setLeft] = useState(0);
@@ -126,6 +127,13 @@ function App() {
               Component={Tree}
               objectSize={1.2}
               numObjects={200}
+              buffer={10}
+            />
+            <RandomisedGrassComponents
+              planeDimensions={planeDimensions}
+              Component={Flowers}
+              objectSize={1.2}
+              numObjects={50}
               buffer={10}
             />
             <RandomisedBenchComponents
