@@ -59,7 +59,7 @@ function App({score, setScore, sound}) {
       sound.pause()
       window.removeEventListener('keydown', handleKeyPress);
     };
-  }, []);
+  }, [sound]);
 
 
   useEffect(() => {
