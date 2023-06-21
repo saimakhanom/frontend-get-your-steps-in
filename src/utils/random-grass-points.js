@@ -15,7 +15,7 @@ export const generateRandomGrassPosition = (
   let x = Math.floor(Math.random() * (groundWidth - buffer) -
   groundWidth / 2 +
   buffer / 2);
-  const y = -1.9 + objectSize / 2;
+  const y = 9 + objectSize / 2;
   let z = Math.random() * (pathConstraint - buffer - 2) + 2;
   if (Math.random() < 0.5) {
     z = -z;

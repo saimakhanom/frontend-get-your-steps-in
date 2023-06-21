@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 function Motivation({ motivation,  setShowGameOver, showGameOver, win }) {
   const [gameOverMessage, setGameOverMessage] = useState('Game over!')
+  const [subMessage, setSubMessage] = useState('Better luck next time!')
   const navigate = useNavigate()
 
   
@@ -38,6 +39,7 @@ function Motivation({ motivation,  setShowGameOver, showGameOver, win }) {
     }
     if (win) {
       setGameOverMessage('Well done!')
+      setSubMessage('Time for a kebab...')
       const timeout = setTimeout(() => {
         setShowGameOver(true);
         setTimeout(() => {
@@ -78,7 +80,7 @@ function Motivation({ motivation,  setShowGameOver, showGameOver, win }) {
       {showGameOver  && (
         <div className="game-over">
           <h2 className="text">{gameOverMessage}</h2>
-          <p className="game-over-message">Time for a kebab...</p>
+          <p className="game-over-message">{subMessage}</p>
         </div>
       )}
     </>
