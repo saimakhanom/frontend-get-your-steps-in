@@ -1,4 +1,4 @@
-import TreeGLB from "../assets/Tree.glb";
+import TreeGLB from "../assets/GreenTree.glb";
 import { useLoader } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { Clone } from "@react-three/drei";

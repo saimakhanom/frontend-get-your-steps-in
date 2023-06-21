@@ -20,6 +20,8 @@ import { Canvas } from "@react-three/fiber";
 import { Environment, PerspectiveCamera, Sky, Stats } from "@react-three/drei";
 import Shop from "./components/Shop";
 import Kebab from "./components/Kebab";
+import Bench from "./components/Bench";
+import RandomisedBenchComponents from "./components/Randomised-benches";
 
 function App() {
   const [left, setLeft] = useState(0);
@@ -35,26 +37,26 @@ function App() {
   const planeDimensions = {
     pathLength: 8000,
     pathWidth: 10,
-    groundWidth: 30,
+    groundWidth: 300,
     groundLength: 1000,
   };
-  function play() {
-    new Audio(sound).play()
-  }
+  // function play() {
+  //   new Audio(sound).play()
+  // }
   
-  useEffect(() => {
-    const handleKeyPress = (event) => {
-      if (event.key === 'f') {
-        play();
-      }
-    };
+  // useEffect(() => {
+  //   const handleKeyPress = (event) => {
+  //     if (event.key === 'f') {
+  //       play();
+  //     }
+  //   };
 
-    window.addEventListener('keydown', handleKeyPress);
+  //   window.addEventListener('keydown', handleKeyPress);
 
-    return () => {
-      window.removeEventListener('keydown', handleKeyPress);
-    };
-  }, []);
+  //   return () => {
+  //     window.removeEventListener('keydown', handleKeyPress);
+  //   };
+  // }, []);
 
 
   useEffect(() => {
@@ -89,7 +91,7 @@ function App() {
         <Suspense>
           <Physics interpolate={false}>
             <Environment preset="dawn" />
-            <Lights />
+            {/* <Lights /> */}
             <Sky
               turbidity={10}
               rayleigh={2.5}
@@ -124,6 +126,13 @@ function App() {
               Component={Tree}
               objectSize={1.2}
               numObjects={200}
+              buffer={10}
+            />
+            <RandomisedBenchComponents
+              planeDimensions={planeDimensions}
+              Component={Bench}
+              objectSize={4}
+              numObjects={20}
               buffer={10}
             />
 
