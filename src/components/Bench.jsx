@@ -1,7 +1,6 @@
 import { useLoader } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import benchFile from "../assets/Bench2.glb"
-import { RigidBody } from "@react-three/rapier";
 import { Clone } from "@react-three/drei";
 
 const Bench = ({position, scale}) => {
