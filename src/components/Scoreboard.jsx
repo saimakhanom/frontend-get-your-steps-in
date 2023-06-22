@@ -8,7 +8,7 @@ import Spinner from "./Spinner";
 import Header from "./Header";
 
 
-const Scoreboard = ({score, sound}) => {
+const Scoreboard = ({score}) => {
   const [scorers, setScorers] = useState([])
   const [userInput, setUserInput] = useState("")
   const [disableForm, setDisableForm] = useState(false)
@@ -25,11 +25,11 @@ const Scoreboard = ({score, sound}) => {
     e.preventDefault();
     setScorers(s => {
       const newArray = [...s, {name: userInput, score: score}]
-      return newArray.sort((a,b) => {
+     newArray.sort((a,b) => {
         return b.score - a.score;
-      })
+     })
+      return newArray.slice(0, 10)
     })
-  
 
     if (userInput !== "") {
       postScore(userInput, score)
@@ -113,7 +113,7 @@ const Scoreboard = ({score, sound}) => {
             <div className="board">
               <div className="radioButtons" onChange={handleRadioChange}>
                 <span>
-                  <input type="radio" id="historic" name="sort_type" value="historic"/>
+                  <input type="radio" id="historic" name="sort_type" value="historic" defaultChecked/>
                   <label htmlFor="historic">All Time</label>
                 </span>
                 <span>
@@ -141,14 +141,14 @@ const Scoreboard = ({score, sound}) => {
           <div className="credits">
             <h3>Attributions: </h3>
             <br />
-            <p className="credit-unit">Tree by Zsky [CC-BY] via Poly Pizza</p>
-            <p className="credit-unit">Bench by Pixel [CC-BY] via Poly Pizza</p>
-            <p className="credit-unit">Grass by Zsky [CC-BY] via Poly Pizza</p>
-            <p className="credit-unit">Rocks by Quaternius</p>
-            <p className="credit-unit">Wood Log by Quaternius</p>
-            <p className="credit-unit">Grass/Ground texture 2 by VladimirP</p>
-            <p className="credit-unit">Shop by Shaun Glowa [CC-BY] via Poly Pizza</p>
-            <p className="credit-unit">Kebab by Poly by Google [CC-BY] via Poly Pizza</p>
+            <p className="credit-unit"><a className="credit-links" href="https://poly.pizza/m/uxSb2WTPU4">Tree by Zsky [CC-BY] via Poly Pizza</a></p>
+            <p className="credit-unit"><a className="credit-links" href="https://poly.pizza/m/mW2az70DsU">Bench by Pixel [CC-BY] via Poly Pizza</a></p>
+            <p className="credit-unit"><a className="credit-links" href="https://opengameart.org/users/vladimirp">Grassby VladimirP</a></p>
+            <p className="credit-unit"><a className="credit-links" href="https://poly.pizza/m/OQvi8PIZ40">Rocks by Quaternius</a></p>
+            <p className="credit-unit"><a className="credit-links" href="https://poly.pizza/m/L4E32Wee6C">Wood Log by Quaternius</a></p>
+            <p className="credit-unit"><a className="credit-links" href="https://poly.pizza/m/5qD-9AvW0eh">Shop by Shaun Glowa [CC-BY] via Poly Pizza</a></p>
+            <p className="credit-unit"><a className="credit-links" href="https://poly.pizza/m/47UYz6vLa_V">Kebab by Poly by Google [CC-BY] via Poly Pizza</a></p>
+            <p className="credit-unit"><a className="credit-links" href="https://www.youtube.com/watch?v=tQsKQZ3Nt6Q">Music: PAWSA - Room Service (24 Hour Mix)</a></p>
           </div>
 
 

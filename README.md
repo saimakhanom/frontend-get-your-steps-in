@@ -32,7 +32,7 @@ This project uses:
 - [React](https://react.dev/learn): a popular open-source JavaScript library for building user interfaces
 - [React Three Fiber](https://docs.pmnd.rs/react-three-fiber/getting-started/introduction): a library that combines the power of React.js and Three.js to create 3D and immersive web applications
 - [Drei](https://github.com/pmndrs/drei): a library for React Three Fiber, which is built on top of Three.js and enables developers to create 3D scenes and animations using React components
-- [Rapier](https://rapier.rs/docs/): 
+- [Rapier](https://rapier.rs/docs/): an open-source physics engine designed for 2D and 3D simulations and games.
 
 ## Accreditation
 The poly models used in our app  have been sourced from the following:

@@ -13,7 +13,7 @@ export const Page = ({ gameStarted}) => {
             <p>
               Welcome to Get Your Steps In, a thrilling adventure where you'll
               embark on a journey to win the ultimate prize — a delicious kebab!
-              But it won't be an easy task, to earn your savory reward you'll
+              But it won't be an easy task, to earn your savoury reward you'll
               need to get some serious steps in for the day. Avoid hitting the
               obstacles in your path or you'll lose your motivation! Remember,
               every step counts...
