@@ -41,6 +41,7 @@ function App({ score, setScore }) {
   };
 
   useEffect(() => {
+    setScore(0)
     const sound = new Audio(soundFile)
     let playing = false;
     const handleKeyPress = (event) => {
@@ -57,7 +58,7 @@ function App({ score, setScore }) {
       sound.pause();
       window.removeEventListener("keydown", handleKeyPress);
     };
-  }, []);
+  }, [setScore]);
 
   useEffect(() => {
     const handleKeyPress = () => {
