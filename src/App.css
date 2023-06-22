@@ -22,6 +22,10 @@ a {
   color: whitesmoke;
 }
 
+.credit-links {
+  color: black;
+}
+
 a:hover {
   -moz-transition: color 0.2s ease-in;
   -o-transition: color 0.2s ease-in;
