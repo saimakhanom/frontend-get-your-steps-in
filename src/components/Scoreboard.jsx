@@ -141,14 +141,23 @@ const Scoreboard = ({score}) => {
           <div className="credits">
             <h3>Attributions: </h3>
             <br />
-            <p className="credit-unit"><a className="credit-links" href="https://poly.pizza/m/uxSb2WTPU4">Tree by Zsky [CC-BY] via Poly Pizza</a></p>
-            <p className="credit-unit"><a className="credit-links" href="https://poly.pizza/m/mW2az70DsU">Bench by Pixel [CC-BY] via Poly Pizza</a></p>
-            <p className="credit-unit"><a className="credit-links" href="https://opengameart.org/users/vladimirp">Grassby VladimirP</a></p>
-            <p className="credit-unit"><a className="credit-links" href="https://poly.pizza/m/OQvi8PIZ40">Rocks by Quaternius</a></p>
-            <p className="credit-unit"><a className="credit-links" href="https://poly.pizza/m/L4E32Wee6C">Wood Log by Quaternius</a></p>
-            <p className="credit-unit"><a className="credit-links" href="https://poly.pizza/m/5qD-9AvW0eh">Shop by Shaun Glowa [CC-BY] via Poly Pizza</a></p>
-            <p className="credit-unit"><a className="credit-links" href="https://poly.pizza/m/47UYz6vLa_V">Kebab by Poly by Google [CC-BY] via Poly Pizza</a></p>
-            <p className="credit-unit"><a className="credit-links" href="https://www.youtube.com/watch?v=tQsKQZ3Nt6Q">Music: PAWSA - Room Service (24 Hour Mix)</a></p>
+            <p className="credit-unit"><a className="credit-links" href="https://poly.pizza/m/uxSb2WTPU4" target="_blank"
+                rel="noreferrer">Tree by Zsky [CC-BY] via Poly Pizza</a></p>
+            <p className="credit-unit"><a className="credit-links" href="https://poly.pizza/m/mW2az70DsU" target="_blank"
+                rel="noreferrer">Bench by Pixel [CC-BY] via Poly Pizza</a></p>
+            <p className="credit-unit"><a className="credit-links" href="https://opengameart.org/users/vladimirp" target="_blank"
+                rel="noreferrer">Grassby VladimirP</a></p>
+            <p className="credit-unit"><a className="credit-links" href="https://poly.pizza/m/OQvi8PIZ40" target="_blank"
+                rel="noreferrer">Rocks by Quaternius</a></p>
+            <p className="credit-unit"><a className="credit-links" href="https://poly.pizza/m/L4E32Wee6C" target="_blank"
+                rel="noreferrer">Wood Log by Quaternius</a></p>
+            <p className="credit-unit"><a className="credit-links" href="https://poly.pizza/m/5qD-9AvW0eh" target="_blank"
+                rel="noreferrer">Shop by Shaun Glowa [CC-BY] via Poly Pizza</a></p>
+                <p className="credit-unit"><a className="credit-links" href="https://poly.pizza/m/47UYz6vLa_V" target="_blank"
+                rel="noreferrer">Kebab by Poly by Google [CC-BY] via Poly Pizza</a></p>
+                <p className="credit-unit"><a className="credit-links" href="https://poly.pizza/m/gKLBoRsyKe" target="_blank"
+                rel="noreferrer">Hoodie Character by Quaternius</a></p>
+            <p className="credit-unit"><a className="credit-links" href="https://www.youtube.com/watch?v=tQsKQZ3Nt6Q" >Music: PAWSA - Room Service (24 Hour Mix)</a></p>
           </div>
 
 
